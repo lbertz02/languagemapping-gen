@@ -19,6 +19,9 @@ logging.basicConfig(filename="test.log", level=logging.DEBUG)
 #Used to capture refcounts for reporting
 refcounts = {}
 unknown_refs = []
+# The number of values in an IE's ENUM that when exceeded will
+# cause the generator to swith from #define to an enum type
+ie_enum_define_limit = 3
 
 def pyang_plugin_init():
     plugin.register_plugin(gtp2ngicPlugin())
@@ -86,7 +89,45 @@ class gtp2ngicPlugin(plugin.PyangPlugin):
             if len(ies) > 0:
                 for key in sorted(ie_reg.iterkeys()):
                     result += "{:<65}".format("#define IE_" + ie_reg[key].upper()) + "(" + str(key) +")\n"
+        
+        #Produce enumerations
+        if root_stmt.i_typedefs is not None and len(root_stmt.i_typedefs) > 0:
+            for stmt in root_stmt.i_typedefs.values():
+                type = get_substmt("type", stmt)
+                if type is not None and type.arg == "enumeration":
+                    enums = {}
+                    e_count = 0
+                    for enum in type.search("enum"):
+                        val = get_substmt("value",enum)
+                        if val is not None:
+                            v = val.arg
+                        else:
+                            v = e_count
+                            e_count += 1
+                        enums[v] = enum.arg
+                    if len(enums) > ie_enum_define_limit:
+                        result += print_enum_struct(stmt.arg, enums)
+                    else:
+                        result += print_enum_defs(stmt.arg, enums)
+
+        result += "#pragma pack(1)\n\n"
+
+        dump_stats()
+
         fd.write( result )
+
+def print_enum_struct(nm, enums):
+    res = "enum " + nm.lower() + " {\n"
+    for key in sorted(enums.iterkeys()):
+        res += "\t" + nm.upper() + "_" + enums[key].upper() + " = " + str(key) + ",\n"
+    res += "};\n\n"
+    return res
+
+def print_enum_defs(nm, enums):
+    res = ""
+    for key in sorted(enums.iterkeys()):
+        res += "{:<65}".format("#define " + nm.upper() + "_" + enums[key].upper()) + "(" + str(key) + ")\n"
+    return res + "\n"
 
 def is_ie(stmt):
     if hasattr(stmt, 'substmts'):
@@ -107,22 +148,6 @@ def get_substmt(name, stmt):
     return None
 
 """
-def xxx():
-    if root_stmt.i_typedefs is not None and len(root_stmt.i_typedefs) > 0:
-        result['definitions']['type-definitions'] = { }
-        for stmt in modules[0].i_typedefs.values():
-            if should_emit(stmt):
-                type_definition = produce_typedef(stmt)
-                result['definitions']['type-definitions'].update(type_definition)
-                refcounts['type-definitions/#/definitions/type-definition/' + type_definition.iterkeys().next()] = 0
-
-    schema = produce_schema(root_stmt)
-    result["properties"].update(schema)
-
-    dump_stats()
-
-    fd.write(json.dumps(result, indent=2))
-
 def should_emit(stmt):
     return false if get_substmt("status", stmt) == 'deprecated' else true
 

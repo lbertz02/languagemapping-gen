@@ -1866,3 +1866,104 @@ DEBUG:pip.vcs:Registered VCS backend: git
 DEBUG:pip.vcs:Registered VCS backend: hg
 DEBUG:pip.vcs:Registered VCS backend: svn
 DEBUG:pip.vcs:Registered VCS backend: bzr
+DEBUG:pip.utils:lzma module is not available
+DEBUG:pip.vcs:Registered VCS backend: git
+DEBUG:pip.vcs:Registered VCS backend: hg
+DEBUG:pip.vcs:Registered VCS backend: svn
+DEBUG:pip.vcs:Registered VCS backend: bzr
+DEBUG:pip.utils:lzma module is not available
+DEBUG:pip.vcs:Registered VCS backend: git
+DEBUG:pip.vcs:Registered VCS backend: hg
+DEBUG:pip.vcs:Registered VCS backend: svn
+DEBUG:pip.vcs:Registered VCS backend: bzr
+DEBUG:pip.utils:lzma module is not available
+DEBUG:pip.vcs:Registered VCS backend: git
+DEBUG:pip.vcs:Registered VCS backend: hg
+DEBUG:pip.vcs:Registered VCS backend: svn
+DEBUG:pip.vcs:Registered VCS backend: bzr
+DEBUG:pip.utils:lzma module is not available
+DEBUG:pip.vcs:Registered VCS backend: git
+DEBUG:pip.vcs:Registered VCS backend: hg
+DEBUG:pip.vcs:Registered VCS backend: svn
+DEBUG:pip.vcs:Registered VCS backend: bzr
+DEBUG:pip.utils:lzma module is not available
+DEBUG:pip.vcs:Registered VCS backend: git
+DEBUG:pip.vcs:Registered VCS backend: hg
+DEBUG:pip.vcs:Registered VCS backend: svn
+DEBUG:pip.vcs:Registered VCS backend: bzr
+DEBUG:pip.utils:lzma module is not available
+DEBUG:pip.vcs:Registered VCS backend: git
+DEBUG:pip.vcs:Registered VCS backend: hg
+DEBUG:pip.vcs:Registered VCS backend: svn
+DEBUG:pip.vcs:Registered VCS backend: bzr
+DEBUG:root:
+
+
+>>>>>>>>>>>>>>>> Reference Statistics <<<<<<<<<<<<<<<<<<<<
+
+
+DEBUG:root:
+
+Unknown Items
+
+
+DEBUG:root:
+
+
+DEBUG:pip.utils:lzma module is not available
+DEBUG:pip.vcs:Registered VCS backend: git
+DEBUG:pip.vcs:Registered VCS backend: hg
+DEBUG:pip.vcs:Registered VCS backend: svn
+DEBUG:pip.vcs:Registered VCS backend: bzr
+DEBUG:root:
+
+
+>>>>>>>>>>>>>>>> Reference Statistics <<<<<<<<<<<<<<<<<<<<
+
+
+DEBUG:root:
+
+Unknown Items
+
+
+DEBUG:root:
+
+
+DEBUG:pip.utils:lzma module is not available
+DEBUG:pip.vcs:Registered VCS backend: git
+DEBUG:pip.vcs:Registered VCS backend: hg
+DEBUG:pip.vcs:Registered VCS backend: svn
+DEBUG:pip.vcs:Registered VCS backend: bzr
+DEBUG:root:
+
+
+>>>>>>>>>>>>>>>> Reference Statistics <<<<<<<<<<<<<<<<<<<<
+
+
+DEBUG:root:
+
+Unknown Items
+
+
+DEBUG:root:
+
+
+DEBUG:pip.utils:lzma module is not available
+DEBUG:pip.vcs:Registered VCS backend: git
+DEBUG:pip.vcs:Registered VCS backend: hg
+DEBUG:pip.vcs:Registered VCS backend: svn
+DEBUG:pip.vcs:Registered VCS backend: bzr
+DEBUG:root:
+
+
+>>>>>>>>>>>>>>>> Reference Statistics <<<<<<<<<<<<<<<<<<<<
+
+
+DEBUG:root:
+
+Unknown Items
+
+
+DEBUG:root:
+
+
