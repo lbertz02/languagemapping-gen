@@ -112,29 +112,14 @@ class gtp2ngicPlugin(plugin.PyangPlugin):
 
         result += "#pragma pack(1)\n\n"
 
+        if root_stmt.i_groupings is not None and len(root_stmt.i_groupings) > 0:
+            ies = [x for x in root_stmt.i_groupings.values() if is_ie(x)]
+            for stmt in ies:
+                result += print_ie(stmt) + "\n\n"
+
         dump_stats()
 
         fd.write( result )
-
-def print_enum_struct(nm, enums):
-    res = "enum " + nm.lower() + " {\n"
-    for key in sorted(enums.iterkeys()):
-        res += "\t" + nm.upper() + "_" + enums[key].upper() + " = " + str(key) + ",\n"
-    res += "};\n\n"
-    return res
-
-def print_enum_defs(nm, enums):
-    res = ""
-    for key in sorted(enums.iterkeys()):
-        res += "{:<65}".format("#define " + nm.upper() + "_" + enums[key].upper()) + "(" + str(key) + ")\n"
-    return res + "\n"
-
-def is_ie(stmt):
-    if hasattr(stmt, 'substmts'):
-        y = [x for x in stmt.substmts if x.keyword == (u'ts29274-ies-f40', u'ie-type')]
-        if len(y) > 0:
-            return True
-    return False
 
 def get_substmts(name, stmt):
     if hasattr(stmt, 'substmts'):
@@ -146,10 +131,6 @@ def get_substmt(name, stmt):
     if len(x) > 0:
         return x[0]
     return None
-
-"""
-def should_emit(stmt):
-    return false if get_substmt("status", stmt) == 'deprecated' else true
 
 def find_stmt_by_path(module, path):
     logging.debug("in find_stmt_by_path with: %s %s path: %s", module.keyword, module.arg, path)
@@ -176,6 +157,132 @@ def find_stmt_by_path(module, path):
 
     logging.debug("Ended up with %s %s", match[0].keyword, match[0].arg)
     return match[0]
+
+def is_ie(stmt):
+    if hasattr(stmt, 'substmts'):
+        y = [x for x in stmt.substmts if x.keyword == (u'ts29274-ies-f40', u'ie-type')]
+        if len(y) > 0:
+            return True
+    return False
+
+def print_ie(stmt):
+    children = {}
+    if hasattr(stmt, 'substmts'):
+        #Collect all container/leaf/leaf-list/list children
+        result = ""
+        for x in stmt.substmts:
+            if x.keyword in [ 'leaf', 'container', 'leaf-list', 'list' ]:
+                #result = str(x.keyword) + " with name = " + x.arg + "\n"
+                #for zz in x.substmts:
+                #    result += "item: " + str(zz.keyword) + "\n"
+                z = [y for y in x.substmts if y.keyword == (u'ts29274-ies-f40', u'order')]
+                #result += "length = " + str(len(z)) + "\n"
+                if len(z) > 0:
+                    aa = get_substmt('mandatory', x)
+                    da_truth = True if (aa is not None and aa.arg == "true") else False
+                    children[z[0]] = (x, da_truth)
+                        
+        #Determine if the mandatory header structure is in effect
+        first_element_mandatory = None
+        has_non_mandatory_member = False
+        for key in sorted(children.iterkeys()):
+            (child, mandatory) = children[key]
+            if first_element_mandatory is None:
+                logging.debug("First member %s is mandatory = %s", child.arg, mandatory)
+                first_element_mandatory = mandatory
+            if not mandatory:
+                logging.debug("Non-mandatory member %s ", child.arg)
+                has_non_mandatory_member = True
+
+        result += "typedef struct " + stmt.arg.lower() + "_ie_t {\n"
+
+        if first_element_mandatory and has_non_mandatory_member:
+            result += "\tstruct " + stmt.arg.lower() + "_ie_hdr_t {\n"
+            indent = "\t\t"
+            close_header_struct = True
+        else:
+            indent = "\t"
+            close_header_struct = False
+        #result += str(children)
+
+        for key in sorted(children.iterkeys()):
+            (child, mandatory) = children[key]
+            if (not mandatory) and close_header_struct:
+                result += "\t} " + stmt.arg.lower() + "_ie_hdr;\n"
+                close_header_struct = False
+                indent = "\t"
+            last_child_mandatory = mandatory
+            result += produce_ie_member(child, indent)
+        return result + "} " + stmt.arg.lower() + "_ie;\n"
+
+def produce_ie_member(stmt, indent):
+    type_stmt = get_substmt('type', stmt)
+    type = stmt.arg
+    
+    result = ""
+    if stmt.keyword == 'leaf':
+        bitslength = get_substmt('length', type_stmt)
+        if bitslength is not None:
+            blengths = bitslength.arg.split("|")
+            if blengths[0] == '':
+                blengths = blengths[1:]
+            for bl in blengths:
+                blength = 0 if bitslength is None else int( bl )
+                (tp, endl) = get_member_info( blength )
+                result += indent + tp + " " + stmt.arg + endl
+        else:
+            result = indent + "char* " + stmt.arg + ";\n"
+    else:
+        result = "NOT SUPPORTED - TYPE = " + stmt.keyword + " for member = " + stmt.arg + "\n"
+    return result
+
+def get_member_info(bitlength):
+    (rlength, modulus) = roundToMultipleOf8( bitlength )
+    if modulus != 0:
+        endl = " :"  + str(bitlength) + ";\n"
+    else:
+        endl = ";\n"
+    if rlength == 16:
+        tgt_type = "uint16_t"
+    elif rlength == 32:
+        tgt_type = "uint32_t"
+    elif rlength == 8:
+        tgt_type = "uint8_t"
+    elif modulus == 0 and rlength == 8:
+        tgt_type = "uint8_t"
+        endl = "[" + (rlength / 8) + "];\n"
+    else:
+        tgt_type = "????"
+        endl = " This was the disaster we were waiting for in the generator. Hand code it!\n";
+    return (tgt_type, endl)
+
+
+def roundToMultipleOf8(val):
+    if val == 0:
+        return (0, 0)
+    m = val % 8
+    if m == 0:
+        return (val, 0)
+    return ((val + 8 - m), m)
+
+def print_enum_struct(nm, enums):
+    res = "enum " + nm.lower() + " {\n"
+    for key in sorted(enums.iterkeys()):
+        res += "\t" + nm.upper() + "_" + enums[key].upper() + " = " + str(key) + ",\n"
+    res += "};\n\n"
+    return res
+
+def print_enum_defs(nm, enums):
+    res = ""
+    for key in sorted(enums.iterkeys()):
+        res += "{:<67}".format("#define " + nm.upper() + "_" + enums[key].upper()) + "(" + str(key) + ")\n"
+    return res + "\n"
+
+
+
+"""
+def should_emit(stmt):
+    return false if get_substmt("status", stmt) == 'deprecated' else true
 
 def produce_schema(root_stmt):
     logging.debug("in produce_schema: %s %s", root_stmt.keyword, root_stmt.arg)
