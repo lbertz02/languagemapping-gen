@@ -1,0 +1,4378 @@
+module ts29274-messages-f40 {
+
+namespace "urn:onf:params:xml:ns:yang:ts29274:f:messages";
+prefix "gtp";
+
+import ts29274-ies-f40 {	
+	prefix "gtp_ies";
+}
+
+import ts29280-ies-f00 {
+	prefix "sv_ies";
+}
+
+extension intsancenum {
+	description "The instance number of the IE in the message";
+	argument "number";
+}
+
+extension messageTypeValue {
+	description "The eGTP Message Type number";
+	argument "number";
+}
+
+extension messageType {
+	description "GTP Message Type.  It is one of Request, Response, Notification, Acknowledge or Indication";
+    argument "string";
+}
+
+extension iemandatory {
+	description "Indicates that the IE (container) is mandatory";
+}
+
+grouping echo_request {
+	gtp:messageType "request";
+	gtp:messageTypeValue 1;
+	container recovery {
+		uses gtp_ies:recovery_restart_counter;
+		gtp_ies:order 2;
+		gtp:iemandatory;
+		gtp:intsancenum 0;
+	}
+	container sending_node_features {
+		uses gtp_ies:node_features;
+		gtp_ies:order 3;
+		gtp:intsancenum 0;
+		description "This IE shall be sent towards a peer node on any GTPv2 interface if the sending node supports at least one feature on this interface or if the sending node supports at least one feature and does not know the interface type towards the peer node. This IE may be present otherwise. ";
+	}
+	container private_extension {
+		uses gtp_ies:private_extension;
+		gtp_ies:order 4;
+	}
+}
+grouping echo_response {
+	gtp:messageType "response";
+	gtp:messageTypeValue 2;
+	container recovery {
+		uses gtp_ies:recovery_restart_counter;
+		gtp_ies:order 2;
+		gtp:iemandatory;
+		gtp:intsancenum 0;
+	}
+	container sending_node_features {
+		uses gtp_ies:node_features;
+		gtp_ies:order 3;
+		gtp:intsancenum 0;
+		description "This IE shall be sent towards a peer node on any GTPv2 interface if the sending node supports at least one feature on this interface or if the sending node supports at least one feature and does not know the interface type towards the peer node. This IE may be present otherwise.";
+	}
+	container private_extension {
+		uses gtp_ies:private_extension;
+		gtp_ies:order 4;
+	}
+}
+grouping version_not_supported_indication {
+	gtp:messageType "indication";
+	gtp:messageTypeValue 3;
+}
+grouping create_session_request {
+	gtp:messageType "request";
+	gtp:messageTypeValue 32;
+	container imsi {
+		uses gtp_ies:imsi;
+		gtp_ies:order 1;
+		gtp:intsancenum 0;
+	}
+	container msisdn {
+		uses gtp_ies:msisdn;
+		gtp_ies:order 2;
+		gtp:intsancenum 0;
+	}
+	container me_identity_ {
+		uses gtp_ies:mobile_equipment_identity;
+		gtp_ies:order 3;
+		gtp:intsancenum 0;
+	}
+	container user_location_information_ {
+		uses gtp_ies:user_location_information;
+		gtp_ies:order 4;
+		gtp:intsancenum 0;
+	}
+	container rat_type {
+		uses gtp_ies:rat_type;
+		gtp_ies:order 5;
+		gtp:iemandatory;
+		gtp:intsancenum 0;
+	}
+	container indication_flags {
+		uses gtp_ies:indication;
+		gtp_ies:order 6;
+		gtp:intsancenum 0;
+	}
+	container sender_f_teid_for_control_plane {
+		uses gtp_ies:fully_qualified_tunnel_endpoint_identifier;
+		gtp_ies:order 7;
+		gtp:iemandatory;
+		gtp:intsancenum 0;
+	}
+	container pgw_s5s8_address_for_control_plane_or_pmip {
+		uses gtp_ies:fully_qualified_tunnel_endpoint_identifier;
+		gtp_ies:order 8;
+		gtp:intsancenum 1;
+	}
+	container access_point_name_ {
+		uses gtp_ies:access_point_name;
+		gtp_ies:order 9;
+		gtp:iemandatory;
+		gtp:intsancenum 0;
+	}
+	container selection_mode {
+		uses gtp_ies:selection_mode;
+		gtp_ies:order 10;
+		gtp:intsancenum 0;
+	}
+	container pdn_type {
+		uses gtp_ies:pdn_type;
+		gtp_ies:order 11;
+		gtp:intsancenum 0;
+	}
+	container pdn_address_allocation_ {
+		uses gtp_ies:pdn_address_allocation;
+		gtp_ies:order 12;
+		gtp:intsancenum 0;
+	}
+	container maximum_apn_restriction {
+		uses gtp_ies:access_point_name_restriction;
+		gtp_ies:order 13;
+		gtp:intsancenum 0;
+	}
+	container aggregate_maximum_bit_rate_ {
+		uses gtp_ies:aggregate_maximum_bit_rate;
+		gtp_ies:order 14;
+		gtp:intsancenum 0;
+	}
+	container linked_eps_bearer_id {
+		uses gtp_ies:eps_bearer_id;
+		gtp_ies:order 15;
+		gtp:intsancenum 0;
+	}
+	container trusted_wlan_mode_indication {
+		uses gtp_ies:trusted_wlan_mode_indication;
+		gtp_ies:order 16;
+		gtp:intsancenum 0;
+	}
+	container protocol_configuration_options_ {
+		uses gtp_ies:protocol_configuration_options;
+		gtp_ies:order 17;
+		gtp:intsancenum 0;
+	}
+	container bearer_contexts_to_be_created {
+		uses gtp_ies:bearer_context;
+		gtp_ies:order 18;
+		gtp:iemandatory;
+		gtp:intsancenum 0;
+	}
+	container bearer_contexts_to_be_removed {
+		uses gtp_ies:bearer_context;
+		gtp_ies:order 19;
+		gtp:intsancenum 1;
+	}
+	container trace_information {
+		uses gtp_ies:trace_information;
+		gtp_ies:order 20;
+		gtp:intsancenum 0;
+	}
+	container recovery {
+		uses gtp_ies:recovery_restart_counter;
+		gtp_ies:order 21;
+		gtp:intsancenum 0;
+	}
+	container mme_fq_csid {
+		uses gtp_ies:fq_csid;
+		gtp_ies:order 22;
+		gtp:intsancenum 0;
+	}
+	container sgw_fq_csid {
+		uses gtp_ies:fq_csid;
+		gtp_ies:order 23;
+		gtp:intsancenum 1;
+	}
+	container epdg_fq_csid {
+		uses gtp_ies:fq_csid;
+		gtp_ies:order 24;
+		gtp:intsancenum 2;
+	}
+	container twan_fq_csid {
+		uses gtp_ies:fq_csid;
+		gtp_ies:order 25;
+		gtp:intsancenum 3;
+	}
+	container ue_time_zone {
+		uses gtp_ies:ue_time_zone;
+		gtp_ies:order 26;
+		gtp:intsancenum 0;
+	}
+	container user_csg_information_ {
+		uses gtp_ies:user_csg_information;
+		gtp_ies:order 27;
+		gtp:intsancenum 0;
+	}
+	container charging_characteristics {
+		uses gtp_ies:charging_characteristics;
+		gtp_ies:order 28;
+		gtp:intsancenum 0;
+	}
+	container mmex4_sgsn_ldn {
+		uses gtp_ies:local_distinguished_name;
+		gtp_ies:order 29;
+		gtp:intsancenum 0;
+	}
+	container sgw_ldn {
+		uses gtp_ies:local_distinguished_name;
+		gtp_ies:order 30;
+		gtp:intsancenum 1;
+	}
+	container epdg_ldn {
+		uses gtp_ies:local_distinguished_name;
+		gtp_ies:order 31;
+		gtp:intsancenum 2;
+	}
+	container twan_ldn {
+		uses gtp_ies:local_distinguished_name;
+		gtp_ies:order 32;
+		gtp:intsancenum 3;
+	}
+	container signalling_priority_indication {
+		uses gtp_ies:signalling_priority_indication;
+		gtp_ies:order 33;
+		gtp:intsancenum 0;
+	}
+	container ue_local_ip_address {
+		uses gtp_ies:ip_address;
+		gtp_ies:order 34;
+		gtp:intsancenum 0;
+	}
+	container ue_udp_port {
+		uses gtp_ies:port_number;
+		gtp_ies:order 35;
+		gtp:intsancenum 0;
+	}
+	container additional_protocol_configuration_options_ {
+		uses gtp_ies:additional_protocol_configuration_options;
+		gtp_ies:order 36;
+		gtp:intsancenum 0;
+	}
+	container h_enb_local_ip_address {
+		uses gtp_ies:ip_address;
+		gtp_ies:order 37;
+		gtp:intsancenum 1;
+	}
+	container h_enb_udp_port {
+		uses gtp_ies:port_number;
+		gtp_ies:order 38;
+		gtp:intsancenum 1;
+	}
+	container mmes4_sgsn_identifier {
+		uses gtp_ies:ip_address;
+		gtp_ies:order 39;
+		gtp:intsancenum 2;
+	}
+	container twan_identifier {
+		uses gtp_ies:twan_identifier;
+		gtp_ies:order 40;
+		gtp:intsancenum 0;
+	}
+	container epdg_ip_address {
+		uses gtp_ies:ip_address;
+		gtp_ies:order 41;
+		gtp:intsancenum 3;
+	}
+	container cn_operator_selection_entity {
+		uses gtp_ies:cn_operator_selection_entity;
+		gtp_ies:order 42;
+		gtp:intsancenum 0;
+	}
+	container presence_reporting_area_information {
+		uses gtp_ies:presence_reporting_area_information;
+		gtp_ies:order 43;
+		gtp:intsancenum 0;
+	}
+	container mmes4_sgsn_overload_control_information {
+		uses gtp_ies:overload_control_information;
+		gtp_ies:order 44;
+		gtp:intsancenum 0;
+	}
+	container sgw_overload_control_information {
+		uses gtp_ies:overload_control_information;
+		gtp_ies:order 45;
+		gtp:intsancenum 1;
+	}
+	container twan_epdg_overload_control_information {
+		uses gtp_ies:overload_control_information;
+		gtp_ies:order 46;
+		gtp:intsancenum 2;
+	}
+	container origination_time_stamp {
+		uses gtp_ies:millisecond_time_stamp;
+		gtp_ies:order 47;
+		gtp:intsancenum 0;
+	}
+	container maximum_wait_time {
+		uses gtp_ies:integer_number;
+		gtp_ies:order 48;
+		gtp:intsancenum 0;
+	}
+	container wlan_location_information {
+		uses gtp_ies:twan_identifier;
+		gtp_ies:order 49;
+		gtp:intsancenum 1;
+	}
+	container wlan_location_timestamp {
+		uses gtp_ies:twan_identifier_timestamp;
+		gtp_ies:order 50;
+		gtp:intsancenum 0;
+	}
+	container nbifom_container {
+		uses gtp_ies:fully_qualified_container;
+		gtp_ies:order 51;
+		gtp:intsancenum 0;
+	}
+	container remote_ue_context_connected {
+		uses gtp_ies:remote_ue_context;
+		gtp_ies:order 52;
+		gtp:intsancenum 0;
+	}
+	container tgpp_aaa_server_identifier {
+		uses gtp_ies:node_identifier;
+		gtp_ies:order 53;
+		gtp:intsancenum 0;
+	}
+	container extended_protocol_configuration_options_ {
+		uses gtp_ies:extended_protocol_configuration_options;
+		gtp_ies:order 54;
+		gtp:intsancenum 0;
+	}
+	container serving_plmn_rate_control {
+		uses gtp_ies:serving_plmn_rate_control;
+		gtp_ies:order 55;
+		gtp:intsancenum 0;
+	}
+	container mo_exception_data_counter {
+		uses gtp_ies:counter;
+		gtp_ies:order 56;
+		gtp:intsancenum 0;
+	}
+	container ue_tcp_port {
+		uses gtp_ies:port_number;
+		gtp_ies:order 57;
+		gtp:intsancenum 2;
+	}
+	container mapped_ue_usage_type {
+		uses gtp_ies:mapped_ue_usage_type;
+		gtp_ies:order 58;
+		gtp:intsancenum 0;
+	}
+	container user_location_information_for_sgw_ {
+		uses gtp_ies:user_location_information;
+		gtp_ies:order 59;
+		gtp:intsancenum 1;
+	}
+	container sgw_u_node_name {
+		uses gtp_ies:fully_qualified_domain_name;
+		gtp_ies:order 60;
+		gtp:intsancenum 0;
+	}
+	container secondary_rat_usage_data_report {
+		uses gtp_ies:secondary_rat_usage_data_report;
+		gtp_ies:order 61;
+		gtp:intsancenum 0;
+	}
+	container up_function_selection_indication_flags {
+		uses gtp_ies:up_function_selection_indication_flags;
+		gtp_ies:order 62;
+		gtp:intsancenum 0;
+	}
+	container private_extension {
+		uses gtp_ies:private_extension;
+		gtp_ies:order 63;
+	}
+}
+
+grouping create_session_response {
+	gtp:messageType "response";
+	gtp:messageTypeValue 33;
+	container cause {
+		uses gtp_ies:cause;
+		gtp_ies:order 1;
+		gtp:iemandatory;
+		gtp:intsancenum 0;
+	}
+	container change_reporting_action_ {
+		uses gtp_ies:change_reporting_action;
+		gtp_ies:order 2;
+		gtp:intsancenum 0;
+	}
+	container csg_information_reporting_action {
+		uses gtp_ies:csg_reporting_action;
+		gtp_ies:order 3;
+		gtp:intsancenum 0;
+	}
+	container h_enb_information_reporting {
+		uses gtp_ies:h_e_nb_information_reporting;
+		gtp_ies:order 4;
+		gtp:intsancenum 0;
+	}
+	container sender_f_teid_for_control_plane {
+		uses gtp_ies:fully_qualified_tunnel_endpoint_identifier;
+		gtp_ies:order 5;
+		gtp:intsancenum 0;
+	}
+	container pgw_s5s8_s2as2b_f_teid_for_pmip_based_interface_or_for_gtp_based_control_plane_interface {
+		uses gtp_ies:fully_qualified_tunnel_endpoint_identifier;
+		gtp_ies:order 6;
+		gtp:intsancenum 1;
+	}
+	container pdn_address_allocation_ {
+		uses gtp_ies:pdn_address_allocation;
+		gtp_ies:order 7;
+		gtp:intsancenum 0;
+	}
+	container apn_restriction {
+		uses gtp_ies:access_point_name_restriction;
+		gtp_ies:order 8;
+		gtp:intsancenum 0;
+	}
+	container aggregate_maximum_bit_rate_ {
+		uses gtp_ies:aggregate_maximum_bit_rate;
+		gtp_ies:order 9;
+		gtp:intsancenum 0;
+	}
+	container linked_eps_bearer_id {
+		uses gtp_ies:eps_bearer_id;
+		gtp_ies:order 10;
+		gtp:intsancenum 0;
+	}
+	container protocol_configuration_options_ {
+		uses gtp_ies:protocol_configuration_options;
+		gtp_ies:order 11;
+		gtp:intsancenum 0;
+	}
+	container bearer_contexts_created {
+		uses gtp_ies:bearer_context;
+		gtp_ies:order 12;
+		gtp:iemandatory;
+		gtp:intsancenum 0;
+	}
+	container bearer_contexts_marked_for_removal {
+		uses gtp_ies:bearer_context;
+		gtp_ies:order 13;
+		gtp:intsancenum 1;
+	}
+	container recovery {
+		uses gtp_ies:recovery_restart_counter;
+		gtp_ies:order 14;
+		gtp:intsancenum 0;
+	}
+	container charging_gateway_name {
+		uses gtp_ies:fully_qualified_domain_name;
+		gtp_ies:order 15;
+		gtp:intsancenum 0;
+	}
+	container charging_gateway_address {
+		uses gtp_ies:ip_address;
+		gtp_ies:order 16;
+		gtp:intsancenum 0;
+	}
+	container pgw_fq_csid {
+		uses gtp_ies:fq_csid;
+		gtp_ies:order 17;
+		gtp:intsancenum 0;
+	}
+	container sgw_fq_csid {
+		uses gtp_ies:fq_csid;
+		gtp_ies:order 18;
+		gtp:intsancenum 1;
+	}
+	container sgw_ldn {
+		uses gtp_ies:local_distinguished_name;
+		gtp_ies:order 19;
+		gtp:intsancenum 0;
+	}
+	container pgw_ldn {
+		uses gtp_ies:local_distinguished_name;
+		gtp_ies:order 20;
+		gtp:intsancenum 1;
+	}
+	container pgw_back_off_time {
+		uses gtp_ies:epc_timer;
+		gtp_ies:order 21;
+		gtp:intsancenum 0;
+	}
+	container additional_protocol_configuration_options_ {
+		uses gtp_ies:additional_protocol_configuration_options;
+		gtp_ies:order 22;
+		gtp:intsancenum 0;
+	}
+	container trusted_wlan_ipv4_parameters_ {
+		uses gtp_ies:ipv4_configuration_parameters;
+		gtp_ies:order 23;
+		gtp:intsancenum 0;
+	}
+	container indication_flags {
+		uses gtp_ies:indication;
+		gtp_ies:order 24;
+		gtp:intsancenum 0;
+	}
+	container presence_reporting_area_action {
+		uses gtp_ies:presence_reporting_area_action;
+		gtp_ies:order 25;
+		gtp:intsancenum 0;
+	}
+	container pgw_node_level_load_control_information {
+		uses gtp_ies:load_control_information;
+		gtp_ies:order 26;
+		gtp:intsancenum 0;
+	}
+	container pgw_apn_level_load_control_information {
+		uses gtp_ies:load_control_information;
+		gtp_ies:order 27;
+		gtp:intsancenum 1;
+	}
+	container sgw_node_level_load_control_information {
+		uses gtp_ies:load_control_information;
+		gtp_ies:order 28;
+		gtp:intsancenum 2;
+	}
+	container pgw_overload_control_information {
+		uses gtp_ies:overload_control_information;
+		gtp_ies:order 29;
+		gtp:intsancenum 0;
+	}
+	container sgw_overload_control_information {
+		uses gtp_ies:overload_control_information;
+		gtp_ies:order 30;
+		gtp:intsancenum 1;
+	}
+	container nbifom_container {
+		uses gtp_ies:fully_qualified_container;
+		gtp_ies:order 31;
+		gtp:intsancenum 0;
+	}
+	container pdn_connection_charging_id {
+		uses gtp_ies:charging_id;
+		gtp_ies:order 32;
+		gtp:intsancenum 0;
+	}
+	container extended_protocol_configuration_options_ {
+		uses gtp_ies:extended_protocol_configuration_options;
+		gtp_ies:order 33;
+		gtp:intsancenum 0;
+	}
+	container private_extension {
+		uses gtp_ies:private_extension;
+		gtp_ies:order 34;
+	}
+}
+
+grouping create_bearer_request {
+	gtp:messageType "request";
+	gtp:messageTypeValue 95;
+	container procedure_transaction_id_ {
+		uses gtp_ies:procedure_transaction_id;
+		gtp_ies:order 1;
+		gtp:intsancenum 0;
+	}
+	container linked_eps_bearer_id_ {
+		uses gtp_ies:eps_bearer_id;
+		gtp_ies:order 2;
+		gtp:iemandatory;
+		gtp:intsancenum 0;
+	}
+	container protocol_configuration_options_ {
+		uses gtp_ies:protocol_configuration_options;
+		gtp_ies:order 3;
+		gtp:intsancenum 0;
+	}
+	container bearer_contexts {
+		uses gtp_ies:bearer_context;
+		gtp_ies:order 4;
+		gtp:iemandatory;
+		gtp:intsancenum 0;
+	}
+	container pgw_fq_csid {
+		uses gtp_ies:fq_csid;
+		gtp_ies:order 5;
+		gtp:intsancenum 0;
+	}
+	container sgw_fq_csid {
+		uses gtp_ies:fq_csid;
+		gtp_ies:order 6;
+		gtp:intsancenum 1;
+	}
+	container change_reporting_action {
+		uses gtp_ies:change_reporting_action;
+		gtp_ies:order 7;
+		gtp:intsancenum 0;
+	}
+	container csg_information_reporting_action {
+		uses gtp_ies:csg_reporting_action ;
+		gtp_ies:order 8;
+		gtp:intsancenum 0;
+	}
+	container h_enb_information_reporting {
+		uses gtp_ies:h_e_nb_information_reporting;
+		gtp_ies:order 9;
+		gtp:intsancenum 0;
+	}
+	container presence_reporting_area_action {
+		uses gtp_ies:presence_reporting_area_action;
+		gtp_ies:order 10;
+		gtp:intsancenum 0;
+	}
+	container indication_flags {
+		uses gtp_ies:indication;
+		gtp_ies:order 11;
+		gtp:intsancenum 0;
+	}
+	container pgw_node_level_load_control_information {
+		uses gtp_ies:load_control_information;
+		gtp_ies:order 12;
+		gtp:intsancenum 0;
+	}
+	container pgw_apn_level_load_control_information {
+		uses gtp_ies:load_control_information;
+		gtp_ies:order 13;
+		gtp:intsancenum 1;
+	}
+	container sgw_node_level_load_control_information {
+		uses gtp_ies:load_control_information;
+		gtp_ies:order 14;
+		gtp:intsancenum 2;
+	}
+	container pgw_overload_control_information {
+		uses gtp_ies:overload_control_information;
+		gtp_ies:order 15;
+		gtp:intsancenum 0;
+	}
+	container sgw_overload_control_information {
+		uses gtp_ies:overload_control_information;
+		gtp_ies:order 16;
+		gtp:intsancenum 1;
+	}
+	container nbifom_container {
+		uses gtp_ies:fully_qualified_container;
+		gtp_ies:order 17;
+		gtp:intsancenum 0;
+	}
+	container private_extension {
+		uses gtp_ies:private_extension;
+		gtp_ies:order 18;
+	}
+}
+
+grouping create_bearer_response {
+	gtp:messageType "response";
+	gtp:messageTypeValue 96;
+	container cause {
+		uses gtp_ies:cause;
+		gtp_ies:order 1;
+		gtp:iemandatory;
+		gtp:intsancenum 0;
+	}
+	container bearer_contexts {
+		uses gtp_ies:bearer_context;
+		gtp_ies:order 2;
+		gtp:iemandatory;
+		gtp:intsancenum 0;
+	}
+	container recovery {
+		uses gtp_ies:recovery_restart_counter;
+		gtp_ies:order 3;
+		gtp:intsancenum 0;
+	}
+	container mme_fq_csid {
+		uses gtp_ies:fq_csid;
+		gtp_ies:order 4;
+		gtp:intsancenum 0;
+	}
+	container sgw_fq_csid {
+		uses gtp_ies:fq_csid;
+		gtp_ies:order 5;
+		gtp:intsancenum 1_;
+	}
+	container epdg_fq_csid {
+		uses gtp_ies:fq_csid;
+		gtp_ies:order 6;
+		gtp:intsancenum 2;
+	}
+	container twan_fq_csid {
+		uses gtp_ies:fq_csid;
+		gtp_ies:order 7;
+		gtp:intsancenum 3;
+	}
+	container protocol_configuration_options {
+		uses gtp_ies:protocol_configuration_options;
+		gtp_ies:order 8;
+		gtp:intsancenum 0;
+	}
+	container ue_time_zone {
+		uses gtp_ies:ue_time_zone;
+		gtp_ies:order 9;
+		gtp:intsancenum 0;
+	}
+	container user_location_information {
+		uses gtp_ies:user_location_information;
+		gtp_ies:order 10;
+		gtp:intsancenum 0;
+	}
+	container twan_identifier {
+		uses gtp_ies:twan_identifier;
+		gtp_ies:order 11;
+		gtp:intsancenum 0;
+	}
+	container mmes4_sgsn_overload_control_information {
+		uses gtp_ies:overload_control_information;
+		gtp_ies:order 12;
+		gtp:intsancenum 0;
+	}
+	container sgw_overload_control_information {
+		uses gtp_ies:overload_control_information;
+		gtp_ies:order 13;
+		gtp:intsancenum 1;
+	}
+	container presence_reporting_area_information {
+		uses gtp_ies:presence_reporting_area_information;
+		gtp_ies:order 14;
+		gtp:intsancenum 0;
+	}
+	container mmes4_sgsn_identifier {
+		uses gtp_ies:ip_address;
+		gtp_ies:order 15;
+		gtp:intsancenum 0;
+	}
+	container twanepdg_overload_control_information {
+		uses gtp_ies:overload_control_information;
+		gtp_ies:order 16;
+		gtp:intsancenum 2;
+	}
+	container wlan_location_information {
+		uses gtp_ies:twan_identifier;
+		gtp_ies:order 17;
+		gtp:intsancenum 1;
+	}
+	container wlan_location_timestamp {
+		uses gtp_ies:twan_identifier_timestamp;
+		gtp_ies:order 18;
+		gtp:intsancenum 1;
+	}
+	container ue_local_ip_address {
+		uses gtp_ies:ip_address;
+		gtp_ies:order 19;
+		gtp:intsancenum 0;
+	}
+	container ue_udp_port {
+		uses gtp_ies:port_number;
+		gtp_ies:order 20;
+		gtp:intsancenum 0;
+	}
+	container nbifom_container {
+		uses gtp_ies:fully_qualified_container;
+		gtp_ies:order 21;
+		gtp:intsancenum 0;
+	}
+	container ue_tcp_port {
+		uses gtp_ies:port_number;
+		gtp_ies:order 22;
+		gtp:intsancenum 1;
+	}
+	container private_extension {
+		uses gtp_ies:private_extension;
+		gtp_ies:order 23;
+	}
+}
+
+grouping bearer_resource_command {
+	gtp:messageType "request";
+	gtp:messageTypeValue 68;
+	container linked_eps_bearer_id {
+		uses gtp_ies:eps_bearer_id;
+		gtp_ies:order 1;
+		gtp:iemandatory;
+		gtp:intsancenum 0;
+	}
+	container procedure_transaction_id {
+		uses gtp_ies:procedure_transaction_id;
+		gtp_ies:order 2;
+		gtp:iemandatory;
+		gtp:intsancenum 0;
+	}
+	container flow_quality_of_service {
+		uses gtp_ies:flow_quality_of_service;
+		gtp_ies:order 3;
+		gtp:intsancenum 0;
+	}
+	container traffic_aggregate_description {
+		uses gtp_ies:traffic_aggregate_description;
+		gtp_ies:order 4;
+		gtp:intsancenum 0;
+	}
+	container rat_type {
+		uses gtp_ies:rat_type;
+		gtp_ies:order 5;
+		gtp:intsancenum 0;
+	}
+	container serving_network {
+		uses gtp_ies:serving_network;
+		gtp_ies:order 6;
+		gtp:intsancenum 0;
+	}
+	container user_location_information {
+		uses gtp_ies:user_location_information;
+		gtp_ies:order 7;
+		gtp:intsancenum 0;
+	}
+	container eps_bearer_id {
+		uses gtp_ies:eps_bearer_id;
+		gtp_ies:order 8;
+		gtp:intsancenum 1;
+	}
+	container indication_flags {
+		uses gtp_ies:indication;
+		gtp_ies:order 9;
+		gtp:intsancenum 0;
+	}
+	container s4_u_sgsn_f_teid {
+		uses gtp_ies:fully_qualified_tunnel_endpoint_identifier;
+		gtp_ies:order 10;
+		gtp:intsancenum 0;
+	}
+	container s12_rnc_f_teid {
+		uses gtp_ies:fully_qualified_tunnel_endpoint_identifier;
+		gtp_ies:order 11;
+		gtp:intsancenum 1;
+	}
+	container protocol_configuration_options {
+		uses gtp_ies:protocol_configuration_options;
+		gtp_ies:order 12;
+		gtp:intsancenum 0;
+	}
+	container signalling_priority_indication {
+		uses gtp_ies:signalling_priority_indication;
+		gtp_ies:order 13;
+		gtp:intsancenum 0;
+	}
+	container mmes4_sgsn_overload_control_information {
+		uses gtp_ies:overload_control_information;
+		gtp_ies:order 14;
+		gtp:intsancenum 0;
+	}
+	container sgw_overload_control_information {
+		uses gtp_ies:overload_control_information;
+		gtp_ies:order 15;
+		gtp:intsancenum 1;
+	}
+	container nbifom_container {
+		uses gtp_ies:fully_qualified_container;
+		gtp_ies:order 16;
+		gtp:intsancenum 0;
+	}
+	container extended_protocol_configuration_options_ {
+		uses gtp_ies:extended_protocol_configuration_options;
+		gtp_ies:order 17;
+		gtp:intsancenum 0;
+	}
+	container sender_f_teid_for_control_plane {
+		uses gtp_ies:fully_qualified_tunnel_endpoint_identifier;
+		gtp_ies:order 18;
+		gtp:intsancenum 2;
+	}
+	container private_extension {
+		uses gtp_ies:private_extension;
+		gtp_ies:order 19;
+	}
+}
+
+grouping bearer_resource_failure_indication {
+	gtp:messageType "request";
+	gtp:messageTypeValue 69;
+	container cause {
+		uses gtp_ies:cause;
+		gtp_ies:order 1;
+		gtp:iemandatory;
+		gtp:intsancenum 0;
+	}
+	container linked_eps_bearer_id {
+		uses gtp_ies:eps_bearer_id;
+		gtp_ies:order 2;
+		gtp:iemandatory;
+		gtp:intsancenum 0;
+	}
+	container procedure_transaction_id {
+		uses gtp_ies:procedure_transaction_id;
+		gtp_ies:order 3;
+		gtp:iemandatory;
+		gtp:intsancenum 0;
+	}
+	container indication_flags {
+		uses gtp_ies:indication;
+		gtp_ies:order 4;
+		gtp:intsancenum 0;
+	}
+	container pgw_overload_control_information {
+		uses gtp_ies:overload_control_information;
+		gtp_ies:order 5;
+		gtp:intsancenum 0;
+	}
+	container sgwoverload_control_information {
+		uses gtp_ies:overload_control_information;
+		gtp_ies:order 6;
+		gtp:intsancenum 1;
+	}
+	container recovery {
+		uses gtp_ies:recovery_restart_counter;
+		gtp_ies:order 7;
+		gtp:intsancenum 0;
+	}
+	container nbifom_container {
+		uses gtp_ies:fully_qualified_container;
+		gtp_ies:order 8;
+		gtp:intsancenum 0;
+	}
+	container private_extension {
+		uses gtp_ies:private_extension;
+		gtp_ies:order 9;
+	}
+}
+
+grouping modify_bearer_request {
+	gtp:messageType "request";
+	gtp:messageTypeValue 34;
+	container me_identity {
+		uses gtp_ies:mobile_equipment_identity;
+		gtp_ies:order 1;
+		gtp:intsancenum 0;
+	}
+	container user_location_information {
+		uses gtp_ies:user_location_information;
+		gtp_ies:order 2;
+		gtp:intsancenum 0;
+	}
+	container serving_network {
+		uses gtp_ies:serving_network;
+		gtp_ies:order 3;
+		gtp:intsancenum 0;
+	}
+	container indication_flags {
+		uses gtp_ies:indication;
+		gtp_ies:order 4;
+		gtp:intsancenum 0;
+	}
+	container sender_f_teid_for_control_plane {
+		uses gtp_ies:fully_qualified_tunnel_endpoint_identifier;
+		gtp_ies:order 5;
+		gtp:intsancenum 0;
+	}
+	container aggregate_maximum_bit_rate {
+		uses gtp_ies:aggregate_maximum_bit_rate;
+		gtp_ies:order 6;
+		gtp:intsancenum 0;
+	}
+	container delay_downlink_packet_notification_request {
+		uses gtp_ies:delay_value;
+		gtp_ies:order 7;
+		gtp:intsancenum 0;
+	}
+	container bearer_contexts_to_be_modified {
+		uses gtp_ies:bearer_context;
+		gtp_ies:order 8;
+		gtp:intsancenum 0;
+	}
+	container bearer_contexts_to_be_removed {
+		uses gtp_ies:bearer_context;
+		gtp_ies:order 9;
+		gtp:intsancenum 1;
+	}
+	container recovery {
+		uses gtp_ies:recovery_restart_counter;
+		gtp_ies:order 10;
+		gtp:intsancenum 0;
+	}
+	container ue_time_zone {
+		uses gtp_ies:ue_time_zone;
+		gtp_ies:order 11;
+		gtp:intsancenum 0;
+	}
+	container mme_fq_csid {
+		uses gtp_ies:fq_csid;
+		gtp_ies:order 12;
+		gtp:intsancenum 0;
+	}
+	container sgw_fq_csid {
+		uses gtp_ies:fq_csid;
+		gtp_ies:order 13;
+		gtp:intsancenum 1_;
+	}
+	container user_csg_information {
+		uses gtp_ies:user_csg_information;
+		gtp_ies:order 14;
+		gtp:intsancenum 0;
+	}
+	container ue_local_ip_address {
+		uses gtp_ies:ip_address;
+		gtp_ies:order 15;
+		gtp:intsancenum 1;
+	}
+	container ue_udp_port {
+		uses gtp_ies:port_number;
+		gtp_ies:order 16;
+		gtp:intsancenum 1;
+	}
+	container mmes4_sgsn_ldn {
+		uses gtp_ies:local_distinguished_name;
+		gtp_ies:order 17;
+		gtp:intsancenum 0;
+	}
+	container sgw_ldn {
+		uses gtp_ies:local_distinguished_name;
+		gtp_ies:order 18;
+		gtp:intsancenum 1;
+	}
+	container h_enb_local_ip_address {
+		uses gtp_ies:ip_address;
+		gtp_ies:order 19;
+		gtp:intsancenum 0;
+	}
+	container h_enb_udp_port {
+		uses gtp_ies:port_number;
+		gtp_ies:order 20;
+		gtp:intsancenum 0;
+	}
+	container mmes4_sgsn_identifier {
+		uses gtp_ies:ip_address;
+		gtp_ies:order 21;
+		gtp:intsancenum 2;
+	}
+	container cn_operator_selection_entity {
+		uses gtp_ies:cn_operator_selection_entity;
+		gtp_ies:order 22;
+		gtp:intsancenum 0;
+	}
+	container presence_reporting_area_information {
+		uses gtp_ies:presence_reporting_area_information;
+		gtp_ies:order 23;
+		gtp:intsancenum 0;
+	}
+	container mmes4_sgsn_overload_control_information {
+		uses gtp_ies:overload_control_information;
+		gtp_ies:order 24;
+		gtp:intsancenum 0;
+	}
+	container sgw_overload_control_information {
+		uses gtp_ies:overload_control_information;
+		gtp_ies:order 25;
+		gtp:intsancenum 1;
+	}
+	container epdg_overload_control_information {
+		uses gtp_ies:overload_control_information;
+		gtp_ies:order 26;
+		gtp:intsancenum 2;
+	}
+	container serving_plmn_rate_control {
+		uses gtp_ies:serving_plmn_rate_control;
+		gtp_ies:order 27;
+		gtp:intsancenum 0;
+	}
+	container mo_exception_data_counter {
+		uses gtp_ies:counter;
+		gtp_ies:order 28;
+		gtp:intsancenum 0;
+	}
+	container imsi {
+		uses gtp_ies:imsi;
+		gtp_ies:order 29;
+		gtp:intsancenum 0;
+	}
+	container user_location_information_for_sgw {
+		uses gtp_ies:user_location_information;
+		gtp_ies:order 30;
+		gtp:intsancenum 1;
+	}
+	container wlan_location_information {
+		uses gtp_ies:twan_identifier;
+		gtp_ies:order 31;
+		gtp:intsancenum 0;
+	}
+	container wlan_location_timestamp {
+		uses gtp_ies:twan_identifier_timestamp;
+		gtp_ies:order 32;
+		gtp:intsancenum 0;
+	}
+	container secondary_rat_usage_data_report {
+		uses gtp_ies:secondary_rat_usage_data_report;
+		gtp_ies:order 33;
+		gtp:intsancenum 0;
+	}
+	container private_extension {
+		uses gtp_ies:private_extension;
+		gtp_ies:order 34;
+	}
+}
+
+grouping modify_bearer_response {
+	gtp:messageType "response";
+	gtp:messageTypeValue 35;
+	container cause {
+		uses gtp_ies:cause;
+		gtp_ies:order 1;
+		gtp:iemandatory;
+		gtp:intsancenum 0;
+	}
+	container msisdn {
+		uses gtp_ies:msisdn;
+		gtp_ies:order 2;
+		gtp:intsancenum 0;
+	}
+	container linked_eps_bearer_id {
+		uses gtp_ies:eps_bearer_id;
+		gtp_ies:order 3;
+		gtp:intsancenum 0;
+	}
+	container apn_restriction {
+		uses gtp_ies:access_point_name_restriction;
+		gtp_ies:order 4;
+		gtp:intsancenum 0;
+	}
+	container protocol_configuration_options {
+		uses gtp_ies:protocol_configuration_options;
+		gtp_ies:order 5;
+		gtp:intsancenum 0;
+	}
+	container bearer_contexts_modified {
+		uses gtp_ies:bearer_context;
+		gtp_ies:order 6;
+		gtp:intsancenum 0;
+	}
+	container bearer_contexts_marked_for_removal {
+		uses gtp_ies:bearer_context;
+		gtp_ies:order 7;
+		gtp:intsancenum 1;
+	}
+	container change_reporting_action {
+		uses gtp_ies:change_reporting_action;
+		gtp_ies:order 8;
+		gtp:intsancenum 0;
+	}
+	container csg_information_reporting_action {
+		uses gtp_ies:csg_reporting_action ;
+		gtp_ies:order 9;
+		gtp:intsancenum 0;
+	}
+	container h_enb_information_reporting {
+		uses gtp_ies:h_e_nb_information_reporting;
+		gtp_ies:order 10;
+		gtp:intsancenum 0;
+	}
+	container charging_gateway_name {
+		uses gtp_ies:fully_qualified_domain_name;
+		gtp_ies:order 11;
+		gtp:intsancenum 0;
+	}
+	container charging_gateway_address {
+		uses gtp_ies:ip_address;
+		gtp_ies:order 12;
+		gtp:intsancenum 0;
+	}
+	container pgw_fq_csid {
+		uses gtp_ies:fq_csid;
+		gtp_ies:order 13;
+		gtp:intsancenum 0;
+	}
+	container sgw_fq_csid {
+		uses gtp_ies:fq_csid;
+		gtp_ies:order 14;
+		gtp:intsancenum 1;
+	}
+	container recovery {
+		uses gtp_ies:recovery_restart_counter;
+		gtp_ies:order 15;
+		gtp:intsancenum 0;
+	}
+	container sgw_ldn {
+		uses gtp_ies:local_distinguished_name;
+		gtp_ies:order 16;
+		gtp:intsancenum 0;
+	}
+	container pgw_ldn {
+		uses gtp_ies:local_distinguished_name;
+		gtp_ies:order 17;
+		gtp:intsancenum 1;
+	}
+	container indication_flags {
+		uses gtp_ies:indication;
+		gtp_ies:order 18;
+		gtp:intsancenum 0;
+	}
+	container presence_reporting_area_action {
+		uses gtp_ies:presence_reporting_area_action;
+		gtp_ies:order 19;
+		gtp:intsancenum 0;
+	}
+	container pgw_node_level_load_control_information {
+		uses gtp_ies:load_control_information;
+		gtp_ies:order 20;
+		gtp:intsancenum 0;
+	}
+	container pgw_apn_level_load_control_information {
+		uses gtp_ies:load_control_information;
+		gtp_ies:order 21;
+		gtp:intsancenum 1;
+	}
+	container sgw_node_level_load_control_information {
+		uses gtp_ies:load_control_information;
+		gtp_ies:order 22;
+		gtp:intsancenum 2;
+	}
+	container pgw_overload_control_information {
+		uses gtp_ies:overload_control_information;
+		gtp_ies:order 23;
+		gtp:intsancenum 0;
+	}
+	container sgw_overload_control_information {
+		uses gtp_ies:overload_control_information;
+		gtp_ies:order 24;
+		gtp:intsancenum 1;
+	}
+	container pdn_connection_charging_id {
+		uses gtp_ies:charging_id;
+		gtp_ies:order 25;
+		gtp:intsancenum 0;
+	}
+	container private_extension {
+		uses gtp_ies:private_extension;
+		gtp_ies:order 26;
+	}
+}
+
+grouping delete_session_request {
+	gtp:messageType "request";
+	gtp:messageTypeValue 36;
+	container linked_eps_bearer_id {
+		uses gtp_ies:eps_bearer_id;
+		gtp_ies:order 1;
+		gtp:intsancenum 0;
+	}
+	container user_location_information {
+		uses gtp_ies:user_location_information;
+		gtp_ies:order 2;
+		gtp:intsancenum 0;
+	}
+	container indication_flags {
+		uses gtp_ies:indication;
+		gtp_ies:order 3;
+		gtp:intsancenum 0;
+	}
+	container protocol_configuration_options {
+		uses gtp_ies:protocol_configuration_options;
+		gtp_ies:order 4;
+		gtp:intsancenum 0;
+	}
+	container originating_node {
+		uses gtp_ies:node_type;
+		gtp_ies:order 5;
+		gtp:intsancenum 0;
+	}
+	container sender_f_teid_for_control_plane {
+		uses gtp_ies:fully_qualified_tunnel_endpoint_identifier;
+		gtp_ies:order 6;
+		gtp:intsancenum 0;
+	}
+	container ue_time_zone {
+		uses gtp_ies:ue_time_zone;
+		gtp_ies:order 7;
+		gtp:intsancenum 0;
+	}
+	container uli_timestamp {
+		uses gtp_ies:uli_timestamp;
+		gtp_ies:order 8;
+		gtp:intsancenum 0;
+	}
+	container ran_nas_release_cause {
+		uses gtp_ies:ran_nas_cause;
+		gtp_ies:order 9;
+		gtp:intsancenum 0;
+	}
+	container twan_identifier {
+		uses gtp_ies:twan_identifier;
+		gtp_ies:order 10;
+		gtp:intsancenum 0;
+	}
+	container twan_identifier_timestamp {
+		uses gtp_ies:twan_identifier_timestamp;
+		gtp_ies:order 11;
+		gtp:intsancenum 0;
+	}
+	container mmes4_sgsn_overload_control_information {
+		uses gtp_ies:overload_control_information;
+		gtp_ies:order 12;
+		gtp:intsancenum 0;
+	}
+	container sgw_overload_control_information {
+		uses gtp_ies:overload_control_information;
+		gtp_ies:order 13;
+		gtp:intsancenum 1;
+	}
+	container twanepdg_overload_control_information {
+		uses gtp_ies:overload_control_information;
+		gtp_ies:order 14;
+		gtp:intsancenum 2;
+	}
+	container wlan_location_information {
+		uses gtp_ies:twan_identifier;
+		gtp_ies:order 15;
+		gtp:intsancenum 1;
+	}
+	container wlan_location_timestamp {
+		uses gtp_ies:twan_identifier_timestamp;
+		gtp_ies:order 16;
+		gtp:intsancenum 1;
+	}
+	container ue_local_ip_address {
+		uses gtp_ies:ip_address;
+		gtp_ies:order 17;
+		gtp:intsancenum 0;
+	}
+	container ue_udp_port {
+		uses gtp_ies:port_number;
+		gtp_ies:order 18;
+		gtp:intsancenum 0;
+	}
+	container extended_protocol_configuration_options {
+		uses gtp_ies:extended_protocol_configuration_options;
+		gtp_ies:order 19;
+		gtp:intsancenum 0;
+	}
+	container ue_tcp_port {
+		uses gtp_ies:port_number;
+		gtp_ies:order 20;
+		gtp:intsancenum 1;
+	}
+	container secondary_rat_usage_data_report {
+		uses gtp_ies:secondary_rat_usage_data_report;
+		gtp_ies:order 21;
+		gtp:intsancenum 0;
+	}
+	container private_extension {
+		uses gtp_ies:private_extension;
+		gtp_ies:order 22;
+	}
+}
+
+grouping delete_bearer_request {
+	gtp:messageType "request";
+	gtp:messageTypeValue 99;
+	container eps_bearer_ids {
+		uses gtp_ies:eps_bearer_id;
+		gtp_ies:order 1;
+		gtp:intsancenum 1;
+	}
+	container failed_bearer_contexts {
+		uses gtp_ies:bearer_context;
+		gtp_ies:order 2;
+		gtp:intsancenum 0;
+	}
+	container procedure_transaction_id {
+		uses gtp_ies:procedure_transaction_id;
+		gtp_ies:order 3;
+		gtp:intsancenum 0;
+	}
+	container protocol_configuration_options {
+		uses gtp_ies:protocol_configuration_options;
+		gtp_ies:order 4;
+		gtp:intsancenum 0;
+	}
+	container pgw_fq_csid {
+		uses gtp_ies:fq_csid;
+		gtp_ies:order 5;
+		gtp:intsancenum 0;
+	}
+	container sgw_fq_csid {
+		uses gtp_ies:fq_csid;
+		gtp_ies:order 6;
+		gtp:intsancenum 1;
+	}
+	container indication_flags {
+		uses gtp_ies:indication;
+		gtp_ies:order 7;
+		gtp:intsancenum 0;
+	}
+	container pgw_node_level_load_control_information {
+		uses gtp_ies:load_control_information;
+		gtp_ies:order 8;
+		gtp:intsancenum 0;
+	}
+	container pgw_apn_level_load_control_information {
+		uses gtp_ies:load_control_information;
+		gtp_ies:order 9;
+		gtp:intsancenum 1;
+	}
+	container sgw_node_level_load_control_information {
+		uses gtp_ies:load_control_information;
+		gtp_ies:order 10;
+		gtp:intsancenum 2;
+	}
+	container pgw_overload_control_information {
+		uses gtp_ies:overload_control_information;
+		gtp_ies:order 11;
+		gtp:intsancenum 0;
+	}
+	container sgw_overload_control_information {
+		uses gtp_ies:overload_control_information;
+		gtp_ies:order 12;
+		gtp:intsancenum 1;
+	}
+	container nbifom_container {
+		uses gtp_ies:fully_qualified_container;
+		gtp_ies:order 13;
+		gtp:intsancenum 0;
+	}
+	container extended_protocol_configuration_options {
+		uses gtp_ies:extended_protocol_configuration_options;
+		gtp_ies:order 14;
+		gtp:intsancenum 0;
+	}
+	container private_extension {
+		uses gtp_ies:private_extension;
+		gtp_ies:order 15;
+	}
+}
+
+grouping delete_session_response {
+	gtp:messageType "response";
+	gtp:messageTypeValue 37;
+	container cause {
+		uses gtp_ies:cause;
+		gtp_ies:order 1;
+		gtp:iemandatory;
+		gtp:intsancenum 0;
+	}
+	container recovery {
+		uses gtp_ies:recovery_restart_counter;
+		gtp_ies:order 2;
+		gtp:intsancenum 0;
+	}
+	container protocol_configuration_options {
+		uses gtp_ies:protocol_configuration_options;
+		gtp_ies:order 3;
+		gtp:intsancenum 0;
+	}
+	container indication_flags {
+		uses gtp_ies:indication;
+		gtp_ies:order 4;
+		gtp:intsancenum 0;
+	}
+	container pgw_node_level_load_control_information {
+		uses gtp_ies:load_control_information;
+		gtp_ies:order 5;
+		gtp:intsancenum 0;
+	}
+	container pgw_apn_level_load_control_information {
+		uses gtp_ies:load_control_information;
+		gtp_ies:order 6;
+		gtp:intsancenum 1;
+	}
+	container sgw_node_level_load_control_information {
+		uses gtp_ies:load_control_information;
+		gtp_ies:order 7;
+		gtp:intsancenum 2;
+	}
+	container pgw_overload_control_information {
+		uses gtp_ies:overload_control_information;
+		gtp_ies:order 8;
+		gtp:intsancenum 0;
+	}
+	container sgw_overload_control_information {
+		uses gtp_ies:overload_control_information;
+		gtp_ies:order 9;
+		gtp:intsancenum 1;
+	}
+	container extended_protocol_configuration_options {
+		uses gtp_ies:extended_protocol_configuration_options;
+		gtp_ies:order 10;
+		gtp:intsancenum 0;
+	}
+	container private_extension {
+		uses gtp_ies:private_extension;
+		gtp_ies:order 11;
+	}
+}
+
+grouping delete_bearer_response {
+	gtp:messageType "response";
+	gtp:messageTypeValue 100;
+	container cause {
+		uses gtp_ies:cause;
+		gtp_ies:order 1;
+		gtp:iemandatory;
+		gtp:intsancenum 0;
+	}
+	container linked_eps_bearer_id {
+		uses gtp_ies:eps_bearer_id;
+		gtp_ies:order 2;
+		gtp:intsancenum 0;
+	}
+	container bearer_context {
+		uses gtp_ies:bearer_context;
+		gtp_ies:order 3;
+		gtp:intsancenum 0;
+	}
+	container recovery {
+		uses gtp_ies:recovery_restart_counter;
+		gtp_ies:order 4;
+		gtp:intsancenum 0;
+	}
+	container mme_fq_csid {
+		uses gtp_ies:fq_csid;
+		gtp_ies:order 5;
+		gtp:intsancenum 0;
+	}
+	container sgw_fq_csid {
+		uses gtp_ies:fq_csid;
+		gtp_ies:order 6;
+		gtp:intsancenum 1;
+	}
+	container epdg_fq_csid {
+		uses gtp_ies:fq_csid;
+		gtp_ies:order 7;
+		gtp:intsancenum 2;
+	}
+	container twan_fq_csid {
+		uses gtp_ies:fq_csid;
+		gtp_ies:order 8;
+		gtp:intsancenum 3;
+	}
+	container protocol_configuration_options {
+		uses gtp_ies:protocol_configuration_options;
+		gtp_ies:order 9;
+		gtp:intsancenum 0;
+	}
+	container ue_time_zone {
+		uses gtp_ies:ue_time_zone;
+		gtp_ies:order 10;
+		gtp:intsancenum 0;
+	}
+	container user_location_information {
+		uses gtp_ies:user_location_information;
+		gtp_ies:order 11;
+		gtp:intsancenum 0;
+	}
+	container uli_timestamp {
+		uses gtp_ies:uli_timestamp;
+		gtp_ies:order 12;
+		gtp:intsancenum 0;
+	}
+	container twan_identifier {
+		uses gtp_ies:twan_identifier;
+		gtp_ies:order 13;
+		gtp:intsancenum 0;
+	}
+	container twan_identifier_timestamp {
+		uses gtp_ies:twan_identifier_timestamp;
+		gtp_ies:order 14;
+		gtp:intsancenum 0;
+	}
+	container mmes4_sgsn_overload_control_information {
+		uses gtp_ies:overload_control_information;
+		gtp_ies:order 15;
+		gtp:intsancenum 0;
+	}
+	container sgw_overload_control_information {
+		uses gtp_ies:overload_control_information;
+		gtp_ies:order 16;
+		gtp:intsancenum 1;
+	}
+	container mmes4_sgsn_identifier {
+		uses gtp_ies:ip_address;
+		gtp_ies:order 17;
+		gtp:intsancenum 0;
+	}
+	container twanepdg_overload_control_information {
+		uses gtp_ies:overload_control_information;
+		gtp_ies:order 18;
+		gtp:intsancenum 2;
+	}
+	container wlan_location_information {
+		uses gtp_ies:twan_identifier;
+		gtp_ies:order 19;
+		gtp:intsancenum 1;
+	}
+	container wlan_location_timestamp {
+		uses gtp_ies:twan_identifier_timestamp;
+		gtp_ies:order 20;
+		gtp:intsancenum 1;
+	}
+	container ue_local_ip_address {
+		uses gtp_ies:ip_address;
+		gtp_ies:order 21;
+		gtp:intsancenum 0;
+	}
+	container ue_udp_port {
+		uses gtp_ies:port_number;
+		gtp_ies:order 22;
+		gtp:intsancenum 0;
+	}
+	container nbifom_container {
+		uses gtp_ies:fully_qualified_container;
+		gtp_ies:order 23;
+		gtp:intsancenum 0;
+	}
+	container ue_tcp_port {
+		uses gtp_ies:port_number;
+		gtp_ies:order 24;
+		gtp:intsancenum 1;
+	}
+	container secondary_rat_usage_data_report {
+		uses gtp_ies:secondary_rat_usage_data_report;
+		gtp_ies:order 25;
+		gtp:intsancenum 0;
+	}
+	container private_extension {
+		uses gtp_ies:private_extension;
+		gtp_ies:order 26;
+	}
+}
+
+grouping downlink_data_notification {
+	gtp:messageType "request";
+	gtp:messageTypeValue 176;
+	container cause {
+		uses gtp_ies:cause;
+		gtp_ies:order 1;
+		gtp:intsancenum 0;
+	}
+	container eps_bearer_id {
+		uses gtp_ies:eps_bearer_id;
+		gtp_ies:order 2;
+		gtp:intsancenum 0;
+	}
+	container allocation_retention_priority {
+		uses gtp_ies:allocation_retention_priority;
+		gtp_ies:order 3;
+		gtp:intsancenum 0;
+	}
+	container imsi {
+		uses gtp_ies:imsi;
+		gtp_ies:order 4;
+		gtp:intsancenum 0;
+	}
+	container sender_f_teid_for_control_plane {
+		uses gtp_ies:fully_qualified_tunnel_endpoint_identifier;
+		gtp_ies:order 5;
+		gtp:intsancenum 0;
+	}
+	container indication_flags {
+		uses gtp_ies:indication;
+		gtp_ies:order 6;
+		gtp:intsancenum 0;
+	}
+	container sgw_node_level_load_control_information {
+		uses gtp_ies:load_control_information;
+		gtp_ies:order 7;
+		gtp:intsancenum 0;
+	}
+	container sgw_overload_control_information {
+		uses gtp_ies:overload_control_information;
+		gtp_ies:order 8;
+		gtp:intsancenum 0;
+	}
+	container paging_and_service_information {
+		uses gtp_ies:paging_and_service_information;
+		gtp_ies:order 9;
+		gtp:intsancenum 0;
+	}
+	container private_extension {
+		uses gtp_ies:private_extension;
+		gtp_ies:order 10;
+	}
+}
+
+grouping downlink_data_notification_acknowledge {
+	gtp:messageType "response";
+	gtp:messageTypeValue 177;
+	container cause {
+		uses gtp_ies:cause;
+		gtp_ies:order 1;
+		gtp:iemandatory;
+		gtp:intsancenum 0;
+	}
+	container data_notification_delay {
+		uses gtp_ies:delay_value;
+		gtp_ies:order 2;
+		gtp:intsancenum 0;
+	}
+	container recovery {
+		uses gtp_ies:recovery_restart_counter;
+		gtp_ies:order 3;
+		gtp:intsancenum 0;
+	}
+	container dl_low_priority_traffic_throttling {
+		uses gtp_ies:throttling;
+		gtp_ies:order 4;
+		gtp:intsancenum 0;
+	}
+	container imsi {
+		uses gtp_ies:imsi;
+		gtp_ies:order 5;
+		gtp:intsancenum 0;
+	}
+	container dl_buffering_duration {
+		uses gtp_ies:epc_timer;
+		gtp_ies:order 6;
+		gtp:intsancenum 0;
+	}
+	container dl_buffering_suggested_packet_count {
+		uses gtp_ies:integer_number;
+		gtp_ies:order 7;
+		gtp:intsancenum 0;
+	}
+	container private_extension {
+		uses gtp_ies:private_extension;
+		gtp_ies:order 8;
+	}
+}
+
+grouping downlink_data_notification_failure_indication {
+	gtp:messageType "request";
+	gtp:messageTypeValue 70;
+	container cause {
+		uses gtp_ies:cause;
+		gtp_ies:order 2;
+		gtp:iemandatory;
+		gtp:intsancenum 0;
+	}
+	container originating_node {
+		uses gtp_ies:node_type;
+		gtp_ies:order 3;
+		gtp:intsancenum 0;
+		description "This IE shall be included on the S4/S11 interface if the ISR associated GTP entities i.e. MME, S4_SGSN, send this message to the SGW during the Network Triggered Service Request procedure to denote the type of the node originating the message.";
+	}
+	container imsi {
+		uses gtp_ies:imsi;
+		gtp_ies:order 4;
+		gtp:intsancenum 0;
+		description "3GPP TS 23.007 [17] specifies conditions for sending this IE on the S11/S4 interface as part of the network triggered service restoration procedure, if both the SGW and the MME/S4_SGSN support this optional feature.";
+	}
+	container private_extension {
+		uses gtp_ies:private_extension;
+		gtp_ies:order 5;
+	}
+}
+
+grouping delete_indirect_data_forwarding_tunnel_request {
+	gtp:messageType "request";
+	gtp:messageTypeValue 168;
+	container private_extension {
+		uses gtp_ies:private_extension;
+		gtp_ies:order 2;
+		description "Vendor or operator specific information";
+	}
+}
+
+grouping  delete_indirect_data_forwarding_tunnel_response {
+	gtp:messageType "response";
+	gtp:messageTypeValue 169;
+	container cause {
+		uses gtp_ies:cause;
+		gtp_ies:order 2;
+		gtp:iemandatory;
+		gtp:intsancenum 0;
+		description "This IE shall indicate if the deletion of indirect tunnel is successful, and if not, gives information on the reason.";
+	}
+	container recovery {
+		uses gtp_ies:recovery_restart_counter;
+		gtp_ies:order 3;
+		gtp:intsancenum 0;
+		description "This IE shall be included if contacting the peer for the first time.";
+	}
+	container private_extension {
+		uses gtp_ies:private_extension;
+		gtp_ies:order 4;
+	}
+}
+
+grouping modify_bearer_command {
+	gtp:messageType "request";
+	gtp:messageTypeValue 64;
+	container apn_aggregate_maximum_bit_rate {
+		uses gtp_ies:aggregate_maximum_bit_rate;
+		gtp_ies:order 1;
+		gtp:iemandatory;
+		gtp:intsancenum 0;
+	}
+	container bearer_context {
+		uses gtp_ies:bearer_context;
+		gtp_ies:order 2;
+		gtp:iemandatory;
+		gtp:intsancenum 0;
+	}
+	container mmes4_sgsn_overload_control_information {
+		uses gtp_ies:overload_control_information;
+		gtp_ies:order 3;
+		gtp:intsancenum 0;
+	}
+	container sgw_overload_control_information {
+		uses gtp_ies:overload_control_information;
+		gtp_ies:order 4;
+		gtp:intsancenum 1;
+	}
+	container twanepdg_overload_control_information {
+		uses gtp_ies:overload_control_information;
+		gtp_ies:order 5;
+		gtp:intsancenum 2;
+	}
+	container sender_f_teid_for_control_plane {
+		uses gtp_ies:fully_qualified_tunnel_endpoint_identifier;
+		gtp_ies:order 6;
+		gtp:intsancenum 0;
+	}
+	container private_extension {
+		uses gtp_ies:private_extension;
+		gtp_ies:order 7;
+	}
+}
+
+grouping modify_bearer_failure_indication {
+	gtp:messageType "response";
+	gtp:messageTypeValue 65;
+	container cause {
+		uses gtp_ies:cause;
+		gtp_ies:order 1;
+		gtp:iemandatory;
+		gtp:intsancenum 0;
+	}
+	container recovery {
+		uses gtp_ies:recovery_restart_counter;
+		gtp_ies:order 2;
+		gtp:intsancenum 0;
+	}
+	container indication_flags {
+		uses gtp_ies:indication;
+		gtp_ies:order 3;
+		gtp:intsancenum 0;
+	}
+	container pgw_overload_control_information {
+		uses gtp_ies:overload_control_information;
+		gtp_ies:order 4;
+		gtp:intsancenum 0;
+	}
+	container sgw_overload_control_information {
+		uses gtp_ies:overload_control_information;
+		gtp_ies:order 5;
+		gtp:intsancenum 1;
+	}
+	container private_extension {
+		uses gtp_ies:private_extension;
+		gtp_ies:order 6;
+	}
+}
+
+grouping update_bearer_request {
+	gtp:messageType "request";
+	gtp:messageTypeValue 97;
+	container bearer_context {
+		uses gtp_ies:bearer_context;
+		gtp_ies:order 1;
+		gtp:iemandatory;
+		gtp:intsancenum 0;
+	}
+	container procedure_transaction_id {
+		uses gtp_ies:procedure_transaction_id;
+		gtp_ies:order 2;
+		gtp:intsancenum 0;
+	}
+	container protocol_configuration_options {
+		uses gtp_ies:protocol_configuration_options;
+		gtp_ies:order 3;
+		gtp:intsancenum 0;
+	}
+	container aggregate_maximum_bit_rate {
+		uses gtp_ies:aggregate_maximum_bit_rate;
+		gtp_ies:order 4;
+		gtp:iemandatory;
+		gtp:intsancenum 0;
+	}
+	container change_reporting_action {
+		uses gtp_ies:change_reporting_action;
+		gtp_ies:order 5;
+		gtp:intsancenum 0;
+	}
+	container csg_information_reporting_action {
+		uses gtp_ies:csg_reporting_action ;
+		gtp_ies:order 6;
+		gtp:intsancenum 0;
+	}
+	container h_enb_information_reporting {
+		uses gtp_ies:h_e_nb_information_reporting;
+		gtp_ies:order 7;
+		gtp:intsancenum 0;
+	}
+	container indication_flags {
+		uses gtp_ies:indication;
+		gtp_ies:order 8;
+		gtp:intsancenum 0;
+	}
+	container pgw_fq_csid {
+		uses gtp_ies:fq_csid;
+		gtp_ies:order 9;
+		gtp:intsancenum 0;
+	}
+	container sgw_fq_csid {
+		uses gtp_ies:fq_csid;
+		gtp_ies:order 10;
+		gtp:intsancenum 1;
+	}
+	container presence_reporting_area_action {
+		uses gtp_ies:presence_reporting_area_action;
+		gtp_ies:order 11;
+		gtp:intsancenum 0;
+	}
+	container pgw_node_level_load_control_information {
+		uses gtp_ies:load_control_information;
+		gtp_ies:order 12;
+		gtp:intsancenum 0;
+	}
+	container pgw_apn_level_load_control_information {
+		uses gtp_ies:load_control_information;
+		gtp_ies:order 13;
+		gtp:intsancenum 1;
+	}
+	container sgw_node_level_load_control_information {
+		uses gtp_ies:load_control_information;
+		gtp_ies:order 14;
+		gtp:intsancenum 2;
+	}
+	container pgw_overload_control_information {
+		uses gtp_ies:overload_control_information;
+		gtp_ies:order 15;
+		gtp:intsancenum 0;
+	}
+	container sgw_overload_control_information {
+		uses gtp_ies:overload_control_information;
+		gtp_ies:order 16;
+		gtp:intsancenum 1;
+	}
+	container nbifom_container {
+		uses gtp_ies:fully_qualified_container;
+		gtp_ies:order 17;
+		gtp:intsancenum 0;
+	}
+	container private_extension {
+		uses gtp_ies:private_extension;
+		gtp_ies:order 18;
+	}
+}
+
+grouping update_bearer_response {
+	gtp:messageType "response";
+	gtp:messageTypeValue 98;
+	container cause {
+		uses gtp_ies:cause;
+		gtp_ies:order 1;
+		gtp:iemandatory;
+		gtp:intsancenum 0;
+	}
+	container bearer_context {
+		uses gtp_ies:bearer_context;
+		gtp_ies:order 2;
+		gtp:iemandatory;
+		gtp:intsancenum 0;
+	}
+	container protocol_configuration_options {
+		uses gtp_ies:protocol_configuration_options;
+		gtp_ies:order 3;
+		gtp:intsancenum 0;
+	}
+	container recovery {
+		uses gtp_ies:recovery_restart_counter;
+		gtp_ies:order 4;
+		gtp:intsancenum 0;
+	}
+	container mme_fq_csid {
+		uses gtp_ies:fq_csid;
+		gtp_ies:order 5;
+		gtp:intsancenum 0;
+	}
+	container sgw_fq_csid {
+		uses gtp_ies:fq_csid;
+		gtp_ies:order 6;
+		gtp:intsancenum 1;
+	}
+	container epdg_fq_csid {
+		uses gtp_ies:fq_csid;
+		gtp_ies:order 7;
+		gtp:intsancenum 2;
+	}
+	container twan_fq_csid {
+		uses gtp_ies:fq_csid;
+		gtp_ies:order 8;
+		gtp:intsancenum 3;
+	}
+	container indication_flags {
+		uses gtp_ies:indication;
+		gtp_ies:order 9;
+		gtp:intsancenum 0;
+	}
+	container ue_time_zone {
+		uses gtp_ies:ue_time_zone;
+		gtp_ies:order 10;
+		gtp:intsancenum 0;
+	}
+	container user_location_information {
+		uses gtp_ies:user_location_information;
+		gtp_ies:order 11;
+		gtp:intsancenum 0;
+	}
+	container twan_identifier {
+		uses gtp_ies:twan_identifier;
+		gtp_ies:order 12;
+		gtp:intsancenum 0;
+	}
+	container mmes4_sgsn_overload_control_information {
+		uses gtp_ies:overload_control_information;
+		gtp_ies:order 13;
+		gtp:intsancenum 0;
+	}
+	container sgw_overload_control_information {
+		uses gtp_ies:overload_control_information;
+		gtp_ies:order 14;
+		gtp:intsancenum 1;
+	}
+	container presence_reporting_area_information {
+		uses gtp_ies:presence_reporting_area_information;
+		gtp_ies:order 15;
+		gtp:intsancenum 0;
+	}
+	container mmes4_sgsn_identifier {
+		uses gtp_ies:ip_address;
+		gtp_ies:order 16;
+		gtp:intsancenum 0;
+	}
+	container twanepdg_overload_control_information {
+		uses gtp_ies:overload_control_information;
+		gtp_ies:order 17;
+		gtp:intsancenum 2;
+	}
+	container wlan_location_information {
+		uses gtp_ies:twan_identifier;
+		gtp_ies:order 18;
+		gtp:intsancenum 1;
+	}
+	container wlan_location_timestamp {
+		uses gtp_ies:twan_identifier_timestamp;
+		gtp_ies:order 19;
+		gtp:intsancenum 1;
+	}
+	container ue_local_ip_address {
+		uses gtp_ies:ip_address;
+		gtp_ies:order 20;
+		gtp:intsancenum 0;
+	}
+	container ue_udp_port {
+		uses gtp_ies:port_number;
+		gtp_ies:order 21;
+		gtp:intsancenum 0;
+	}
+	container nbifom_container {
+		uses gtp_ies:fully_qualified_container;
+		gtp_ies:order 22;
+		gtp:intsancenum 0;
+	}
+	container ue_tcp_port {
+		uses gtp_ies:port_number;
+		gtp_ies:order 23;
+		gtp:intsancenum 1;
+	}
+	container private_extension {
+		uses gtp_ies:private_extension;
+		gtp_ies:order 24;
+	}
+}
+
+grouping delete_bearer_command {
+	gtp:messageType "request";
+	gtp:messageTypeValue 66;
+	container bearer_context {
+		uses gtp_ies:bearer_context;
+		gtp_ies:order 1;
+		gtp:iemandatory;
+		gtp:intsancenum 0;
+	}
+	container user_location_information {
+		uses gtp_ies:user_location_information;
+		gtp_ies:order 2;
+		gtp:intsancenum 0;
+	}
+	container uli_timestamp {
+		uses gtp_ies:uli_timestamp;
+		gtp_ies:order 3;
+		gtp:intsancenum 0;
+	}
+	container ue_time_zone {
+		uses gtp_ies:ue_time_zone;
+		gtp_ies:order 4;
+		gtp:intsancenum 0;
+	}
+	container mmes4_sgs_overload_control_information {
+		uses gtp_ies:overload_control_information;
+		gtp_ies:order 5;
+		gtp:intsancenum 0;
+	}
+	container sgw_overload_control_information {
+		uses gtp_ies:overload_control_information;
+		gtp_ies:order 6;
+		gtp:intsancenum 1;
+	}
+	container sender_f_teid_for_control_plane {
+		uses gtp_ies:fully_qualified_tunnel_endpoint_identifier;
+		gtp_ies:order 7;
+		gtp:intsancenum 0;
+	}
+	container secondary_rat_usage_data_report {
+		uses gtp_ies:secondary_rat_usage_data_report;
+		gtp_ies:order 8;
+		gtp:intsancenum 0;
+	}
+	container private_extension {
+		uses gtp_ies:private_extension;
+		gtp_ies:order 9;
+	}
+}
+
+grouping delete_bearer_failure_indication {
+	gtp:messageType "response";
+	gtp:messageTypeValue 67;
+	container cause {
+		uses gtp_ies:cause;
+		gtp_ies:order 1;
+		gtp:iemandatory;
+		gtp:intsancenum 0;
+	}
+	container bearer_context {
+		uses gtp_ies:bearer_context;
+		gtp_ies:order 2;
+		gtp:iemandatory;
+		gtp:intsancenum 0;
+	}
+	container recovery {
+		uses gtp_ies:recovery_restart_counter;
+		gtp_ies:order 3;
+		gtp:intsancenum 0;
+	}
+	container indication_flags {
+		uses gtp_ies:indication;
+		gtp_ies:order 4;
+		gtp:intsancenum 0;
+	}
+	container pgw_overload_control_information {
+		uses gtp_ies:overload_control_information;
+		gtp_ies:order 5;
+		gtp:intsancenum 0;
+	}
+	container sgw_overload_control_information {
+		uses gtp_ies:overload_control_information;
+		gtp_ies:order 6;
+		gtp:intsancenum 1;
+	}
+	container private_extension {
+		uses gtp_ies:private_extension;
+		gtp_ies:order 7;
+	}
+}
+
+grouping create_indirect_data_forwarding_tunnel_request {
+	gtp:messageType "request";
+	gtp:messageTypeValue 166;
+	container imsi {
+		uses gtp_ies:imsi;
+		gtp_ies:order 1;
+		gtp:intsancenum 0;
+	}
+	container me_identity {
+		uses gtp_ies:mobile_equipment_identity;
+		gtp_ies:order 2;
+		gtp:intsancenum 0;
+	}
+	container indication_flags {
+		uses gtp_ies:indication;
+		gtp_ies:order 3;
+		gtp:intsancenum 0;
+	}
+	container sender_fully_qualified_tunnel_endpoint_identifier_for_control_plane {
+		uses gtp_ies:fully_qualified_tunnel_endpoint_identifier;
+		gtp_ies:order 4;
+		gtp:intsancenum 0;
+	}
+	container bearer_context {
+		uses gtp_ies:bearer_context;
+		gtp_ies:order 5;
+		gtp:iemandatory;
+		gtp:intsancenum 0;
+	}
+	container recovery {
+		uses gtp_ies:recovery_restart_counter;
+		gtp_ies:order 6;
+		gtp:intsancenum 0;
+	}
+	container private_extension {
+		uses gtp_ies:private_extension;
+		gtp_ies:order 7;
+	}
+}
+
+grouping create_indirect_data_forwarding_tunnel_response {
+	gtp:messageType "response";
+	gtp:messageTypeValue 167;
+	container cause {
+		uses gtp_ies:cause;
+		gtp_ies:order 2;
+		gtp:iemandatory;
+		gtp:intsancenum 0;
+	}
+	container sender_fully_qualified_tunnel_endpoint_identifier_for_control_plane {
+		uses gtp_ies:fully_qualified_tunnel_endpoint_identifier;
+		gtp_ies:order 3;
+		gtp:intsancenum 0;
+		description "This IE shall be included by an SGW if the SGW receives a Sender F_TEID for Control Plane IE from an MME/SGSN in a Create Indirect Data Forwarding Tunnel Request message.
+See also NOTE 1 in Table 7.2.18_1.";
+	}
+	container bearer_context {
+		uses gtp_ies:bearer_context;
+		gtp_ies:order 4;
+		gtp:iemandatory;
+		gtp:intsancenum 0;
+		description "Several IEs with this type and instance value may be included as necessary to represent a list of Bearers";
+	}
+	container recovery {
+		uses gtp_ies:recovery_restart_counter;
+		gtp_ies:order 5;
+		gtp:intsancenum 0;
+		description "This IE shall be included if contacting the peer for the first time";
+	}
+	container private_extension {
+		uses gtp_ies:private_extension;
+		gtp_ies:order 6;
+	}
+}
+
+grouping release_access_bearers_request {
+	gtp:messageType "request";
+	gtp:messageTypeValue 170;
+	container list_of_rabs {
+		uses gtp_ies:eps_bearer_id;
+		gtp_ies:order 1;
+		gtp:intsancenum 0;
+	}
+	container originating_node {
+		uses gtp_ies:node_type;
+		gtp_ies:order 2;
+		gtp:intsancenum 0;
+	}
+	container indication_flags {
+		uses gtp_ies:indication;
+		gtp_ies:order 3;
+		gtp:intsancenum 0;
+	}
+	container secondary_rat_usage_data_report {
+		uses gtp_ies:secondary_rat_usage_data_report;
+		gtp_ies:order 4;
+		gtp:intsancenum 0;
+	}
+	container private_extension {
+		uses gtp_ies:private_extension;
+		gtp_ies:order 5;
+	}
+}
+grouping release_access_bearers_response {
+	gtp:messageType "response";
+	gtp:messageTypeValue 171;
+	container cause {
+		uses gtp_ies:cause;
+		gtp_ies:order 1;
+		gtp:iemandatory;
+		gtp:intsancenum 0;
+	}
+	container recovery {
+		uses gtp_ies:recovery_restart_counter;
+		gtp_ies:order 2;
+		gtp:intsancenum 0;
+	}
+	container indication_flags {
+		uses gtp_ies:indication;
+		gtp_ies:order 3;
+		gtp:intsancenum 0;
+	}
+	container sgw_node_level_load_control_information {
+		uses gtp_ies:load_control_information;
+		gtp_ies:order 4;
+		gtp:intsancenum 0;
+	}
+	container sgw_overload_control_information {
+		uses gtp_ies:overload_control_information;
+		gtp_ies:order 5;
+		gtp:intsancenum 0;
+	}
+	container private_extension {
+		uses gtp_ies:private_extension;
+		gtp_ies:order 6;
+	}
+}
+grouping stop_paging_indication {
+	gtp:messageType "response";
+	gtp:messageTypeValue 73;
+	container imsi {
+		uses gtp_ies:imsi;
+		gtp_ies:order 2;
+		gtp:intsancenum 0;
+		description "This IE shall be included on the S11/S4 interface when the Stop Paging Indication message is sent to the restarted CN node (or another node in the same pool) as part of the network triggered service restoration procedure with ISR (see 3GPP TS 23.007 [17]).
+";
+	}
+	container private_extension {
+		uses gtp_ies:private_extension;
+		gtp_ies:order 3;
+	}
+}
+grouping modify_access_bearers_request {
+	gtp:messageType "request";
+	gtp:messageTypeValue 211;
+	container indication_flags {
+		uses gtp_ies:indication;
+		gtp_ies:order 1;
+		gtp:intsancenum 0;
+	}
+	container sender_fully_qualified_tunnel_endpoint_identifier_for_control_plane {
+		uses gtp_ies:fully_qualified_tunnel_endpoint_identifier;
+		gtp_ies:order 2;
+		gtp:intsancenum 0;
+	}
+	container delay_downlink_packet_notification_request {
+		uses gtp_ies:delay_value;
+		gtp_ies:order 3;
+		gtp:intsancenum 0;
+	}
+	container bearer_contexts_to_be_modified {
+		uses gtp_ies:bearer_context;
+		gtp_ies:order 4;
+		gtp:intsancenum 0;
+	}
+	container bearer_contexts_to_be_removed {
+		uses gtp_ies:bearer_context;
+		gtp_ies:order 5;
+		gtp:intsancenum 1;
+	}
+	container recovery {
+		uses gtp_ies:recovery_restart_counter;
+		gtp_ies:order 6;
+		gtp:intsancenum 0;
+	}
+	container secondary_rat_usage_data_report {
+		uses gtp_ies:secondary_rat_usage_data_report;
+		gtp_ies:order 7;
+		gtp:intsancenum 0;
+	}
+	container private_extension {
+		uses gtp_ies:private_extension;
+		gtp_ies:order 8;
+	}
+}
+grouping modify_access_bearers_response {
+	gtp:messageType "response";
+	gtp:messageTypeValue 212;
+	container cause {
+		uses gtp_ies:cause;
+		gtp_ies:order 1;
+		gtp:iemandatory;
+		gtp:intsancenum 0;
+	}
+	container bearer_contexts_modified {
+		uses gtp_ies:bearer_context;
+		gtp_ies:order 2;
+		gtp:intsancenum 0;
+	}
+	container bearer_contexts_marked_for_removal {
+		uses gtp_ies:bearer_context;
+		gtp_ies:order 3;
+		gtp:intsancenum 1;
+	}
+	container recovery {
+		uses gtp_ies:recovery_restart_counter;
+		gtp_ies:order 4;
+		gtp:intsancenum 0;
+	}
+	container indication_flags {
+		uses gtp_ies:indication;
+		gtp_ies:order 5;
+		gtp:intsancenum 0;
+	}
+	container sgw_node_level_load_control_information {
+		uses gtp_ies:load_control_information;
+		gtp_ies:order 6;
+		gtp:intsancenum 0;
+	}
+	container sgw_overload_control_information {
+		uses gtp_ies:overload_control_information;
+		gtp_ies:order 7;
+		gtp:intsancenum 0;
+	}
+	container private_extension {
+		uses gtp_ies:private_extension;
+		gtp_ies:order 8;
+	}
+}
+
+grouping remote_ue_report_notification_request {
+	gtp:messageType "request";
+	gtp:messageTypeValue 40;
+	container remote_ue_context__connected {
+		uses gtp_ies:remote_ue_context;
+		gtp_ies:order 2;
+		gtp:intsancenum 0;
+		description "This IE shall be sent on the S11 interface and S5/S8 interface when the MME receives a report from the ProSe UE_to_Network Relay that a remote UE is newly connected.
+
+The SGW shall forward this IE to the PGW.
+
+Several IEs with the same type and instance value may be included as necessary to represent a list of remote UEs newly connected.
+";
+	}
+	container remote_ue_context_disconnected {
+		uses gtp_ies:remote_ue_context;
+		gtp_ies:order 3;
+		gtp:intsancenum 1;
+		description "This IE shall be sent on the S11 interface and S5/S8 interface when the MME receives a report from the ProSe UE_to_Network Relay that a remote UE is newly disconnected.
+
+The SGW shall forward this IE to the PGW.
+
+Several IEs with the same type and instance value may be included as necessary to represent a list of remote UEs newly disconnected.
+";
+	}
+	container private_extension {
+		uses gtp_ies:private_extension;
+		gtp_ies:order 4;
+	}
+}
+grouping remote_ue_report_acknowledge_response {
+	gtp:messageType "response";
+	gtp:messageTypeValue 41;
+	container cause {
+		uses gtp_ies:cause;
+		gtp_ies:order 2;
+		gtp:iemandatory;
+		gtp:intsancenum 0;
+	}
+	container private_extension {
+		uses gtp_ies:private_extension;
+		gtp_ies:order 3;
+	}
+}
+grouping forward_relocation_request {
+	gtp:messageType "request";
+	gtp:messageTypeValue 133;
+	container imsi {
+		uses gtp_ies:imsi;
+		gtp_ies:order 1;
+		gtp:intsancenum 0;
+	}
+	container sender_fully_qualified_tunnel_endpoint_identifier_for_control_plane {
+		uses gtp_ies:fully_qualified_tunnel_endpoint_identifier;
+		gtp_ies:order 2;
+		gtp:iemandatory;
+		gtp:intsancenum 0;
+	}
+	container pdn_connection {
+		uses gtp_ies:pdn_connection;
+		gtp_ies:order 3;
+		gtp:intsancenum 0;
+	}
+	container sgw_s11s4_ip_address_and_teid_for_control_plane {
+		uses gtp_ies:fully_qualified_tunnel_endpoint_identifier;
+		gtp_ies:order 4;
+		gtp:intsancenum 1;
+	}
+	container sgw_node_name {
+		uses gtp_ies:fully_qualified_domain_name;
+		gtp_ies:order 5;
+		gtp:intsancenum 0;
+	}
+	container mmesgsn_amf_ue_mm_context {
+		uses gtp_ies:mm_context;
+		gtp_ies:order 6;
+		gtp:iemandatory;
+		gtp:intsancenum 0;
+	}
+	container indication_flags {
+		uses gtp_ies:indication;
+		gtp_ies:order 7;
+		gtp:intsancenum 0;
+	}
+	container e_utran_transparent_container {
+		uses gtp_ies:fully_qualified_container;
+		gtp_ies:order 8;
+		gtp:intsancenum 0;
+	}
+	container utran_transparent_container {
+		uses gtp_ies:fully_qualified_container;
+		gtp_ies:order 9;
+		gtp:intsancenum 1;
+	}
+	container bss_container {
+		uses gtp_ies:fully_qualified_container;
+		gtp_ies:order 10;
+		gtp:intsancenum 2;
+	}
+	container target_identification {
+		uses gtp_ies:target_identification;
+		gtp_ies:order 11;
+		gtp:intsancenum 0;
+	}
+	container hrpd_access_node_s101_ip_address {
+		uses gtp_ies:ip_address;
+		gtp_ies:order 12;
+		gtp:intsancenum 0;
+	}
+	container Onexiws_s102_ip_address {
+		uses gtp_ies:ip_address;
+		gtp_ies:order 13;
+		gtp:intsancenum 1;
+	}
+	container s1_ap_cause {
+		uses gtp_ies:fully_qualified_cause;
+		gtp_ies:order 14;
+		gtp:intsancenum 0;
+	}
+	container ranap_cause {
+		uses gtp_ies:fully_qualified_cause;
+		gtp_ies:order 15;
+		gtp:intsancenum 1;
+	}
+	container bssgp_cause {
+		uses gtp_ies:fully_qualified_cause;
+		gtp_ies:order 16;
+		gtp:intsancenum 2;
+	}
+	container source_identification {
+		uses gtp_ies:source_identification;
+		gtp_ies:order 17;
+		gtp:intsancenum 0;
+	}
+	container selected_plmn_id {
+		uses gtp_ies:plmn_id;
+		gtp_ies:order 18;
+		gtp:intsancenum 0;
+	}
+	container recovery {
+		uses gtp_ies:recovery_restart_counter;
+		gtp_ies:order 19;
+		gtp:intsancenum 0;
+	}
+	container trace_information {
+		uses gtp_ies:trace_information;
+		gtp_ies:order 20;
+		gtp:intsancenum 0;
+	}
+	container subscribed_rfsp_index {
+		uses gtp_ies:rfsp_index;
+		gtp_ies:order 21;
+		gtp:intsancenum 0;
+	}
+	container rfsp_index_in_use {
+		uses gtp_ies:rfsp_index;
+		gtp_ies:order 22;
+		gtp:intsancenum 1;
+	}
+	container csg_id {
+		uses gtp_ies:csg_id;
+		gtp_ies:order 23;
+		gtp:intsancenum 0;
+	}
+	container csg_membership_indication {
+		uses gtp_ies:csg_membership_indication;
+		gtp_ies:order 24;
+		gtp:intsancenum 0;
+	}
+	container ue_time_zone {
+		uses gtp_ies:ue_time_zone;
+		gtp_ies:order 25;
+		gtp:intsancenum 0;
+	}
+	container serving_network {
+		uses gtp_ies:serving_network;
+		gtp_ies:order 26;
+		gtp:intsancenum 0;
+	}
+	container mmes4_sgsn_ldn {
+		uses gtp_ies:local_distinguished_name;
+		gtp_ies:order 27;
+		gtp:intsancenum 0;
+	}
+	container additional_mm_context_for_srvcc {
+		uses gtp_ies:additional_mm_context_for_srvcc;
+		gtp_ies:order 28;
+		gtp:intsancenum 0;
+	}
+	container additional_flags_for_srvcc {
+		uses gtp_ies:additional_flags_for_srvcc;
+		gtp_ies:order 29;
+		gtp:intsancenum 0;
+	}
+	container stn_sr {
+		uses sv_ies:stn_sr;
+		gtp_ies:order 30;
+		gtp:intsancenum 0;
+	}
+	container c_msisdn {
+		uses gtp_ies:msisdn;
+		gtp_ies:order 31;
+		gtp:intsancenum 0;
+	}
+	container mdt_configuration {
+		uses gtp_ies:mdt_configuration;
+		gtp_ies:order 32;
+		gtp:intsancenum 0;
+	}
+	container sgsn_node_name {
+		uses gtp_ies:fully_qualified_domain_name;
+		gtp_ies:order 33;
+		gtp:intsancenum 1;
+	}
+	container mme_node_name {
+		uses gtp_ies:fully_qualified_domain_name;
+		gtp_ies:order 34;
+		gtp:intsancenum 2;
+	}
+	container user_csg_information {
+		uses gtp_ies:user_csg_information;
+		gtp_ies:order 35;
+		gtp:intsancenum 0;
+	}
+	container monitoring_event_information {
+		uses gtp_ies:monitoring_event_information;
+		gtp_ies:order 36;
+		gtp:intsancenum 0;
+	}
+	container ue_usage_type {
+		uses gtp_ies:integer_number;
+		gtp_ies:order 37;
+		gtp:intsancenum 0;
+	}
+	container mmesgsn_ue_scef_pdn_connections {
+		uses gtp_ies:scef_pdn_connection;
+		gtp_ies:order 38;
+		gtp:intsancenum 0;
+	}
+	container msisdn {
+		uses gtp_ies:msisdn;
+		gtp_ies:order 39;
+		gtp:intsancenum 1;
+	}
+	container source_udp_port_number {
+		uses gtp_ies:port_number;
+		gtp_ies:order 40;
+		gtp:intsancenum 0;
+	}
+	container serving_plmn_rate_control {
+		uses gtp_ies:serving_plmn_rate_control;
+		gtp_ies:order 41;
+		gtp:intsancenum 0;
+	}
+	container private_extension {
+		uses gtp_ies:private_extension;
+		gtp_ies:order 42;
+	}
+}
+grouping forward_relocation_response {
+	gtp:messageType "response";
+	gtp:messageTypeValue 134;
+	container cause {
+		uses gtp_ies:cause;
+		gtp_ies:order 1;
+		gtp:iemandatory;
+		gtp:intsancenum 0;
+	}
+	container sender_fully_qualified_tunnel_endpoint_identifier_for_control_plane {
+		uses gtp_ies:fully_qualified_tunnel_endpoint_identifier;
+		gtp_ies:order 2;
+		gtp:intsancenum 0;
+	}
+	container indication_flags {
+		uses gtp_ies:indication;
+		gtp_ies:order 3;
+		gtp:intsancenum 0;
+	}
+	list list_of_set_up_bearers {
+		uses gtp_ies:bearer_context;
+		gtp_ies:order 4;
+		gtp:intsancenum 0;
+	}
+	list list_of_set_up_up_rabs {
+		uses gtp_ies:bearer_context;
+		gtp_ies:order 5;
+		gtp:intsancenum 1;
+	}
+	list list_of_set_up_pfcs {
+		uses gtp_ies:bearer_context;
+		gtp_ies:order 6;
+		gtp:intsancenum 2;
+	}
+	container s1_ap_cause {
+		uses gtp_ies:fully_qualified_cause;
+		gtp_ies:order 7;
+		gtp:intsancenum 0;
+	}
+	container ranap_cause {
+		uses gtp_ies:fully_qualified_cause;
+		gtp_ies:order 8;
+		gtp:intsancenum 1;
+	}
+	container bssgp_cause {
+		uses gtp_ies:fully_qualified_cause;
+		gtp_ies:order 9;
+		gtp:intsancenum 2;
+	}
+	container e_utran_transparent_container {
+		uses gtp_ies:fully_qualified_container;
+		gtp_ies:order 10;
+		gtp:intsancenum 0;
+	}
+	container utran_transparent_container {
+		uses gtp_ies:fully_qualified_container;
+		gtp_ies:order 11;
+		gtp:intsancenum 1;
+	}
+	container bss_container {
+		uses gtp_ies:fully_qualified_container;
+		gtp_ies:order 12;
+		gtp:intsancenum 2;
+	}
+	container mmes4_sgsn_ldn {
+		uses gtp_ies:local_distinguished_name;
+		gtp_ies:order 13;
+		gtp:intsancenum 0;
+	}
+	container sgsn_node_name {
+		uses gtp_ies:fully_qualified_domain_name;
+		gtp_ies:order 14;
+		gtp:intsancenum 0;
+	}
+	container mme_node_name {
+		uses gtp_ies:fully_qualified_domain_name;
+		gtp_ies:order 15;
+		gtp:intsancenum 1;
+	}
+	container sgsn_number {
+		uses gtp_ies:node_number;
+		gtp_ies:order 16;
+		gtp:intsancenum 0;
+	}
+	container sgsn_identifier {
+		uses gtp_ies:node_identifier;
+		gtp_ies:order 17;
+		gtp:intsancenum 0;
+	}
+	container mme_identifier {
+		uses gtp_ies:node_identifier;
+		gtp_ies:order 18;
+		gtp:intsancenum 1;
+	}
+	container mme_number_for_mt_sms {
+		uses gtp_ies:node_number;
+		gtp_ies:order 19;
+		gtp:intsancenum 1;
+	}
+	container sgsn_identifier_for_mt_sms {
+		uses gtp_ies:node_identifier;
+		gtp_ies:order 20;
+		gtp:intsancenum 2;
+	}
+	container mme_identifier_for_mt_sms {
+		uses gtp_ies:node_identifier;
+		gtp_ies:order 21;
+		gtp:intsancenum 3;
+	}
+	list list_of_set_up_bearers_for_scef_pdn_connections {
+		uses gtp_ies:bearer_context;
+		gtp_ies:order 22;
+		gtp:intsancenum 3;
+	}
+	container private_extension {
+		uses gtp_ies:private_extension;
+		gtp_ies:order 23;
+	}
+}
+grouping forward_relocation_complete_notification {
+	gtp:messageType "notification";
+	gtp:messageTypeValue 135;
+	container indication_flags {
+		uses gtp_ies:indication;
+		gtp_ies:order 2;
+		gtp:intsancenum 0;
+		description "This IE shall be included if any of the flags are set to 1.
+Idle mode Signalling Reduction Activation Indication: This flag shall be set to 1 if the message is used for inter_RAT handover and the UE has ISR capability. This flag is set to indicate to the source MME/SGSN whether it shall maintain the UE context and whether it shall activate ISR.
+";
+	}
+	container private_extension {
+		uses gtp_ies:private_extension;
+		gtp_ies:order 3;
+	}
+}
+grouping forward_relocation_complete_acknowledge {
+	gtp:messageType "acknowledge";
+	gtp:messageTypeValue 136;
+	container cause {
+		uses gtp_ies:cause;
+		gtp_ies:order 1;
+		gtp:iemandatory;
+		gtp:intsancenum 0;
+	}
+	container recovery {
+		uses gtp_ies:recovery_restart_counter;
+		gtp_ies:order 2;
+		gtp:intsancenum 0;
+	}
+	container secondary_rat_usage_data_report {
+		uses gtp_ies:secondary_rat_usage_data_report;
+		gtp_ies:order 3;
+		gtp:intsancenum 0;
+	}
+	container private_extension {
+		uses gtp_ies:private_extension;
+		gtp_ies:order 4;
+	}
+}
+grouping context_request {
+	gtp:messageType "request";
+	gtp:messageTypeValue 130;
+	container imsi {
+		uses gtp_ies:imsi;
+		gtp_ies:order 1;
+		gtp:intsancenum 0;
+	}
+	container guti {
+		uses gtp_ies:guti;
+		gtp_ies:order 2;
+		gtp:intsancenum 0;
+	}
+	container routeing_area_identity {
+		uses gtp_ies:user_location_information;
+		gtp_ies:order 3;
+		gtp:intsancenum 0;
+	}
+	container packet_tmsi {
+		uses gtp_ies:packet_tmsi;
+		gtp_ies:order 4;
+		gtp:intsancenum 0;
+	}
+	container p_tmsi_signature {
+		uses gtp_ies:p_tmsi_signature;
+		gtp_ies:order 5;
+		gtp:intsancenum 0;
+	}
+	container complete_tau_request_message {
+		uses gtp_ies:complete_request_message;
+		gtp_ies:order 6;
+		gtp:intsancenum 0;
+	}
+	container s3s16s10n26_address_and_teid_for_control_plane {
+		uses gtp_ies:fully_qualified_tunnel_endpoint_identifier;
+		gtp_ies:order 7;
+		gtp:intsancenum 0;
+	}
+	container udp_source_port_number {
+		uses gtp_ies:port_number;
+		gtp_ies:order 8;
+		gtp:intsancenum 0;
+	}
+	container rat_type {
+		uses gtp_ies:rat_type;
+		gtp_ies:order 9;
+		gtp:intsancenum 0;
+	}
+	container indication {
+		uses gtp_ies:indication;
+		gtp_ies:order 10;
+		gtp:intsancenum 0;
+	}
+	container hop_counter {
+		uses gtp_ies:hop_counter;
+		gtp_ies:order 11;
+		gtp:intsancenum 0;
+	}
+	container target_plmn_id {
+		uses gtp_ies:serving_network;
+		gtp_ies:order 12;
+		gtp:intsancenum 0;
+	}
+	container mmes4_sgsn_ldn {
+		uses gtp_ies:local_distinguished_name;
+		gtp_ies:order 13;
+		gtp:intsancenum 0;
+	}
+	container sgsn_node_name {
+		uses gtp_ies:fully_qualified_domain_name;
+		gtp_ies:order 14;
+		gtp:intsancenum 0;
+	}
+	container mme_node_name {
+		uses gtp_ies:fully_qualified_domain_name;
+		gtp_ies:order 15;
+		gtp:intsancenum 1;
+	}
+	container sgsn_number {
+		uses gtp_ies:node_number;
+		gtp_ies:order 16;
+		gtp:intsancenum 0;
+	}
+	container sgsn_identifier {
+		uses gtp_ies:node_identifier;
+		gtp_ies:order 17;
+		gtp:intsancenum 0;
+	}
+	container mme_identifier {
+		uses gtp_ies:node_identifier;
+		gtp_ies:order 18;
+		gtp:intsancenum 1;
+	}
+	container ciot_optimizations_support_indication {
+		uses gtp_ies:ciot_optimizations_support_indication;
+		gtp_ies:order 19;
+		gtp:intsancenum 0;
+	}
+	container private_extension {
+		uses gtp_ies:private_extension;
+		gtp_ies:order 20;
+	}
+}
+grouping context_response {
+	gtp:messageType "response";
+	gtp:messageTypeValue 131;
+	container cause {
+		uses gtp_ies:cause;
+		gtp_ies:order 1;
+		gtp:iemandatory;
+		gtp:intsancenum 0;
+	}
+	container imsi {
+		uses gtp_ies:imsi;
+		gtp_ies:order 2;
+		gtp:intsancenum 0;
+	}
+	container mmesgsnamf_ue_mm_context {
+		uses gtp_ies:mm_context;
+		gtp_ies:order 3;
+		gtp:intsancenum 0;
+	}
+	container pdn_connection {
+		uses gtp_ies:pdn_connection;
+		gtp_ies:order 4;
+		gtp:intsancenum 0;
+	}
+	container sender_fully_qualified_tunnel_endpoint_identifier_for_control_plane {
+		uses gtp_ies:fully_qualified_tunnel_endpoint_identifier;
+		gtp_ies:order 5;
+		gtp:intsancenum 0;
+	}
+	container sgw_s11s4_ip_address_and_teid_for_control_plane {
+		uses gtp_ies:fully_qualified_tunnel_endpoint_identifier;
+		gtp_ies:order 6;
+		gtp:intsancenum 1;
+	}
+	container sgw_node_name {
+		uses gtp_ies:fully_qualified_domain_name;
+		gtp_ies:order 7;
+		gtp:intsancenum 0;
+	}
+	container indication_flags {
+		uses gtp_ies:indication;
+		gtp_ies:order 8;
+		gtp:intsancenum 0;
+	}
+	container trace_information {
+		uses gtp_ies:trace_information;
+		gtp_ies:order 9;
+		gtp:intsancenum 0;
+	}
+	container hrpd_access_node_s101_ip_address {
+		uses gtp_ies:ip_address;
+		gtp_ies:order 10;
+		gtp:intsancenum 0;
+	}
+	container onexiws_s102_ip_address {
+		uses gtp_ies:ip_address;
+		gtp_ies:order 11;
+		gtp:intsancenum 1;
+	}
+	container subscribed_rfsp_index {
+		uses gtp_ies:rfsp_index;
+		gtp_ies:order 12;
+		gtp:intsancenum 0;
+	}
+	container rfsp_index_in_use {
+		uses gtp_ies:rfsp_index;
+		gtp_ies:order 13;
+		gtp:intsancenum 1;
+	}
+	container ue_time_zone {
+		uses gtp_ies:ue_time_zone;
+		gtp_ies:order 14;
+		gtp:intsancenum 0;
+	}
+	container mmes4_sgsn_ldn {
+		uses gtp_ies:local_distinguished_name;
+		gtp_ies:order 15;
+		gtp:intsancenum 0;
+	}
+	container mdt_configuration {
+		uses gtp_ies:mdt_configuration;
+		gtp_ies:order 16;
+		gtp:intsancenum 0;
+	}
+	container sgsn_node_name {
+		uses gtp_ies:fully_qualified_domain_name;
+		gtp_ies:order 17;
+		gtp:intsancenum 1;
+	}
+	container mme_node_name {
+		uses gtp_ies:fully_qualified_domain_name;
+		gtp_ies:order 18;
+		gtp:intsancenum 2;
+	}
+	container user_csg_information {
+		uses gtp_ies:user_csg_information;
+		gtp_ies:order 19;
+		gtp:intsancenum 0;
+	}
+	container monitoring_event_information {
+		uses gtp_ies:monitoring_event_information;
+		gtp_ies:order 20;
+		gtp:intsancenum 0;
+	}
+	container ue_usage_type {
+		uses gtp_ies:integer_number;
+		gtp_ies:order 21;
+		gtp:intsancenum 0;
+	}
+	container scef_pdn_connection {
+		uses gtp_ies:scef_pdn_connection;
+		gtp_ies:order 22;
+		gtp:intsancenum 0;
+	}
+	container rat_type {
+		uses gtp_ies:rat_type;
+		gtp_ies:order 23;
+		gtp:intsancenum 0;
+	}
+	container serving_plmn_rate_control {
+		uses gtp_ies:serving_plmn_rate_control;
+		gtp_ies:order 24;
+		gtp:intsancenum 0;
+	}
+	container mo_exception_data_counter {
+		uses gtp_ies:counter;
+		gtp_ies:order 25;
+		gtp:intsancenum 0;
+	}
+	container remaining_running_service_gap_timer {
+		uses gtp_ies:integer_number;
+		gtp_ies:order 26;
+		gtp:intsancenum 1;
+	}
+	container private_extension {
+		uses gtp_ies:private_extension;
+		gtp_ies:order 27;
+	}
+}
+grouping context_acknowledge {
+	gtp:messageType "response";
+	gtp:messageTypeValue 132;
+	container cause {
+		uses gtp_ies:cause;
+		gtp_ies:order 1;
+		gtp:iemandatory;
+		gtp:intsancenum 0;
+	}
+	container indication_flags {
+		uses gtp_ies:indication;
+		gtp_ies:order 2;
+		gtp:intsancenum 0;
+	}
+	container forwarding_f_teid {
+		uses gtp_ies:fully_qualified_tunnel_endpoint_identifier;
+		gtp_ies:order 3;
+		gtp:intsancenum 0;
+	}
+	container bearer_context {
+		uses gtp_ies:bearer_context;
+		gtp_ies:order 4;
+		gtp:intsancenum 0;
+	}
+	container sgsn_number {
+		uses gtp_ies:node_number;
+		gtp_ies:order 5;
+		gtp:intsancenum 0;
+	}
+	container mme_number_for_mt_sms {
+		uses gtp_ies:node_number;
+		gtp_ies:order 6;
+		gtp:intsancenum 1;
+	}
+	container sgsn_identifier_for_mt_sms {
+		uses gtp_ies:node_identifier;
+		gtp_ies:order 7;
+		gtp:intsancenum 0;
+	}
+	container mme_identifier_for_mt_sms {
+		uses gtp_ies:node_identifier;
+		gtp_ies:order 8;
+		gtp:intsancenum 1;
+	}
+	container private_extension {
+		uses gtp_ies:private_extension;
+		gtp_ies:order 9;
+	}
+}
+grouping identification_request {
+	gtp:messageType "request";
+	gtp:messageTypeValue 128;
+	container guti {
+		uses gtp_ies:guti;
+		gtp_ies:order 1;
+		gtp:intsancenum 0;
+	}
+	container routeing_area_identity {
+		uses gtp_ies:user_location_information;
+		gtp_ies:order 2;
+		gtp:intsancenum 0;
+	}
+	container packet_tmsi {
+		uses gtp_ies:packet_tmsi;
+		gtp_ies:order 3;
+		gtp:intsancenum 0;
+	}
+	container p_tmsi_signature {
+		uses gtp_ies:p_tmsi_signature;
+		gtp_ies:order 4;
+		gtp:intsancenum 0;
+	}
+	container complete_attach_request_message {
+		uses gtp_ies:complete_request_message;
+		gtp_ies:order 5;
+		gtp:intsancenum 0;
+	}
+	container address_for_control_plane {
+		uses gtp_ies:ip_address;
+		gtp_ies:order 6;
+		gtp:intsancenum 0;
+	}
+	container udp_source_port_number {
+		uses gtp_ies:port_number;
+		gtp_ies:order 7;
+		gtp:intsancenum 0;
+	}
+	container hop_counter {
+		uses gtp_ies:hop_counter;
+		gtp_ies:order 8;
+		gtp:intsancenum 0;
+	}
+	container target_plmn_id {
+		uses gtp_ies:serving_network;
+		gtp_ies:order 9;
+		gtp:intsancenum 0;
+	}
+	container private_extension {
+		uses gtp_ies:private_extension;
+		gtp_ies:order 10;
+	}
+}
+grouping identification_response {
+	gtp:messageType "response";
+	gtp:messageTypeValue 129;
+	container cause {
+		uses gtp_ies:cause;
+		gtp_ies:order 1;
+		gtp:iemandatory;
+		gtp:intsancenum 0;
+	}
+	container imsi {
+		uses gtp_ies:imsi;
+		gtp_ies:order 2;
+		gtp:intsancenum 0;
+	}
+	container mmesgsn_ue_mm_context {
+		uses gtp_ies:mm_context;
+		gtp_ies:order 3;
+		gtp:intsancenum 0;
+	}
+	container trace_information {
+		uses gtp_ies:trace_information;
+		gtp_ies:order 4;
+		gtp:intsancenum 0;
+	}
+	container ue_usage_type {
+		uses gtp_ies:integer_number;
+		gtp_ies:order 5;
+		gtp:intsancenum 0;
+	}
+	container monitoring_event_information {
+		uses gtp_ies:monitoring_event_information;
+		gtp_ies:order 6;
+		gtp:intsancenum 0;
+	}
+	container private_extension {
+		uses gtp_ies:private_extension;
+		gtp_ies:order 7;
+	}
+}
+grouping forward_access_context_notification {
+	gtp:messageType "notification";
+	gtp:messageTypeValue 137;
+	container rab_context {
+		uses gtp_ies:rab_context;
+		gtp_ies:order 2;
+		gtp:intsancenum 0;
+		description "This IE shall be included for S16 only. Several IEs with this type and instance values shall be included as necessary to represent a list of Bearers.
+For each RAB context in the received RANAP message, the old SGSN shall include this IE in the message.
+";
+	}
+	container source_rnc_pdcp_context_info {
+		uses gtp_ies:source_rnc_pdcp_context_info;
+		gtp_ies:order 3;
+		gtp:intsancenum 0;
+		description "If available, the old SGSN shall include an Source RNC PDCP context info in the message.
+";
+	}
+	container pdu_numbers {
+		uses gtp_ies:pdu_numbers;
+		gtp_ies:order 4;
+		gtp:intsancenum 0;
+		description "This IE only applies to S16. The old SGSN shall include this IE in the message if the acknowledged peer_to_peer LLC operation is used for the Bearer Context or when 'delivery order' is set in the Bearer Context QoS profile in A/Gb mode to Iu/A/Gb mode PS handover.
+";
+	}
+	container e_utran_transparent_container {
+		uses gtp_ies:fully_qualified_container;
+		gtp_ies:order 5;
+		gtp:intsancenum 0;
+		description "This IE shall be included over S10 to contain the 'eNB Status Transfer Transparent Container' as specified in3GPP TS 36.413 [10].
+Container Type shall be set to 3.
+";
+	}
+	container private_extension {
+		uses gtp_ies:private_extension;
+		gtp_ies:order 6;
+	}
+}
+grouping forward_access_context_acknowledge {
+	gtp:messageType "acknowledge";
+	gtp:messageTypeValue 138;
+	container cause {
+		uses gtp_ies:cause;
+		gtp_ies:order 2;
+		gtp:iemandatory;
+		gtp:intsancenum 0;
+	}
+	container private_extension {
+		uses gtp_ies:private_extension;
+		gtp_ies:order 3;
+	}
+}
+grouping detach_notification {
+	gtp:messageType "notification";
+	gtp:messageTypeValue 149;
+	container cause {
+		uses gtp_ies:cause;
+		gtp_ies:order 2;
+		gtp:iemandatory;
+		gtp:intsancenum 0;
+	}
+	container detach_type {
+		uses gtp_ies:detach_type;
+		gtp_ies:order 3;
+		gtp:intsancenum 0;
+		description "This IE shall be included by SGSN when the Cause indicates 'Complete Detach' for the combined IMSI/EPS attached UE.
+";
+	}
+	container private_extension {
+		uses gtp_ies:private_extension;
+		gtp_ies:order 4;
+	}
+}
+grouping detach_acknowledge {
+	gtp:messageType "acknowledge";
+	gtp:messageTypeValue 150;
+	container cause {
+		uses gtp_ies:cause;
+		gtp_ies:order 2;
+		gtp:iemandatory;
+		gtp:intsancenum 0;
+	}
+	container recovery {
+		uses gtp_ies:recovery_restart_counter;
+		gtp_ies:order 3;
+		gtp:intsancenum 0;
+	}
+	container private_extension {
+		uses gtp_ies:private_extension;
+		gtp_ies:order 4;
+	}
+}
+grouping change_notification_request {
+	gtp:messageType "notification";
+	gtp:messageTypeValue 38;
+	container imsi {
+		uses gtp_ies:imsi;
+		gtp_ies:order 1;
+		gtp:intsancenum 0;
+	}
+	container me_identity {
+		uses gtp_ies:mobile_equipment_identity;
+		gtp_ies:order 2;
+		gtp:intsancenum 0;
+	}
+	container indication_flags {
+		uses gtp_ies:indication;
+		gtp_ies:order 3;
+		gtp:intsancenum 0;
+	}
+	container rat_type {
+		uses gtp_ies:rat_type;
+		gtp_ies:order 4;
+		gtp:iemandatory;
+		gtp:intsancenum 0;
+	}
+	container user_location_information {
+		uses gtp_ies:user_location_information;
+		gtp_ies:order 5;
+		gtp:intsancenum 0;
+	}
+	container user_csg_information {
+		uses gtp_ies:user_csg_information;
+		gtp_ies:order 6;
+		gtp:intsancenum 0;
+	}
+	container pgw_s5s8_gtp_c_ip_address {
+		uses gtp_ies:ip_address;
+		gtp_ies:order 7;
+		gtp:intsancenum 0;
+	}
+	container lbi {
+		uses gtp_ies:eps_bearer_id;
+		gtp_ies:order 8;
+		gtp:intsancenum 0;
+	}
+	container presence_reporting_area_information {
+		uses gtp_ies:presence_reporting_area_information;
+		gtp_ies:order 9;
+		gtp:intsancenum 0;
+	}
+	container mo_exception_data_counter {
+		uses gtp_ies:counter;
+		gtp_ies:order 10;
+		gtp:intsancenum 0;
+	}
+	container secondary_rat_usage_data_report {
+		uses gtp_ies:secondary_rat_usage_data_report;
+		gtp_ies:order 11;
+		gtp:intsancenum 0;
+	}
+	container private_extension {
+		uses gtp_ies:private_extension;
+		gtp_ies:order 12;
+	}
+}
+grouping change_notification_response {
+	gtp:messageType "response";
+	gtp:messageTypeValue 39;
+	container imsi {
+		uses gtp_ies:imsi;
+		gtp_ies:order 2;
+		gtp:intsancenum 0;
+		description "The IMSI shall be included in the message if it is received in the Change Notification Request message.
+";
+	}
+	container me_identity {
+		uses gtp_ies:mobile_equipment_identity;
+		gtp_ies:order 3;
+		gtp:intsancenum 0;
+		description "The ME Identity (MEI) shall be included in the message if it is received in the Change Notification Request message.
+";
+	}
+	container cause {
+		uses gtp_ies:cause;
+		gtp_ies:order 4;
+		gtp:iemandatory;
+		gtp:intsancenum 0;
+	}
+	container change_reporting_action {
+		uses gtp_ies:change_reporting_action;
+		gtp_ies:order 5;
+		gtp:intsancenum 0;
+		description "This IE shall be included with the appropriate Action field If the location Change Reporting mechanism is to be started or stopped for this subscriber in the SGSN/MME.
+";
+	}
+	container csg_information_reporting_action {
+		uses gtp_ies:csg_reporting_action ;
+		gtp_ies:order 6;
+		gtp:intsancenum 0;
+		description "This IE shall be included with the appropriate Action field if the location CSG Info reporting mechanism is to be started or stopped for this subscriber in the SGSN/MME.
+";
+	}
+	container presence_reporting_area_action {
+		uses gtp_ies:presence_reporting_area_action;
+		gtp_ies:order 7;
+		gtp:intsancenum 0;
+		description "This IE shall be included on the S5/S8 and S11/S4 interfaces with the appropriate Action field if reporting changes of UE presence in a Presence Routing Area is to be started, stopped or modified for this subscriber in the MME/SGSN.
+Several IEs with the same type and instance value may be included as necessary to represent a list of Presence Reporting Area Actions. One IE shall be included per Presence Reporting Area to be started, stopped or modified.
+";
+	}
+	container private_extension {
+		uses gtp_ies:private_extension;
+		gtp_ies:order 8;
+	}
+}
+grouping relocation_cancel_request {
+	gtp:messageType "request";
+	gtp:messageTypeValue 139;
+	container imsi {
+		uses gtp_ies:imsi;
+		gtp_ies:order 2;
+		gtp:intsancenum 0;
+		description "The IMSI shall be included in the message except for the case:
+_	If the UE is emergency attached and the UE is UICCless.
+The IMSI shall be included in the message but not used as an identifier
+if UE is emergency attached but IMSI is not authenticated.
+";
+	}
+	container me_identity {
+		uses gtp_ies:mobile_equipment_identity;
+		gtp_ies:order 3;
+		gtp:intsancenum 0;
+		description "The MME/SGSN/AMF shall include the ME Identity (MEI) IE:
+_	If the UE is emergency attached and the UE is UICCless
+_	If the UE is emergency attached and the IMSI is not authenticated
+";
+	}
+	container indication_flags {
+		uses gtp_ies:indication;
+		gtp_ies:order 4;
+		gtp:intsancenum 0;
+		description "This IE shall be included if any one of the applicable flags is set to 1.
+Applicable flags are:
+Unauthenticated IMSI: This flag shall be set to 1 if the IMSI present in the message is not authenticated and is for an emergency attached UE.
+";
+	}
+	container ranap_cause {
+		uses gtp_ies:fully_qualified_cause;
+		gtp_ies:order 5;
+		gtp:intsancenum 0;
+		description "This IE shall be present in the case of SRNS relocation cancel procedure. It shall contain the cause value received from the source RNC in the Relocation Cancel message received over the Iu interface.
+";
+	}
+	container private_extension {
+		uses gtp_ies:private_extension;
+		gtp_ies:order 6;
+	}
+}
+grouping relocation_cancel_response {
+	gtp:messageType "response";
+	gtp:messageTypeValue 140;
+	container cause {
+		uses gtp_ies:cause;
+		gtp_ies:order 2;
+		gtp:iemandatory;
+		gtp:intsancenum 0;
+	}
+	container private_extension {
+		uses gtp_ies:private_extension;
+		gtp_ies:order 3;
+	}
+}
+grouping configuration_transfer_tunnel_message {
+	gtp:messageType "request";
+	gtp:messageTypeValue 141;
+	container e_utran_transparent_container {
+		uses gtp_ies:fully_qualified_container;
+		gtp_ies:order 2;
+		gtp:iemandatory;
+		gtp:intsancenum 0;
+		description "This IE shall contain the 'SON Configuration Transfer' as specified in 3GPP TS 36.413 [10].
+Container Type shall be set to 3.
+";
+	}
+	container target_enodeb_id {
+		uses gtp_ies:target_identification;
+		gtp_ies:order 3;
+		gtp:iemandatory;
+		gtp:intsancenum 0;
+		description "This IE shall contain the ID of the target eNodeB
+";
+	}
+}
+grouping ran_information_relay {
+	gtp:messageType "request";
+	gtp:messageTypeValue 152;
+	container bss_container {
+		uses gtp_ies:fully_qualified_container;
+		gtp_ies:order 2;
+		gtp:iemandatory;
+		gtp:intsancenum 0;
+		description "All information elements from the BSSGP RIM PDU, starting from and including the BSSGP 'PDU type', shall be contained within the BSS Container and forwarded to the destination MME/SGSN in the RAN Information Relay message. The Container Type shall be set to 2.
+";
+	}
+	container rim_routing_address {
+		uses gtp_ies:target_identification;
+		gtp_ies:order 3;
+		gtp:intsancenum 0;
+		description "This IE shall be included if the RIM Routing Address information is included in the message sent from the source RAN node.
+This IE identifies the destination RAN node where the RAN Information needs to be relayed to. It contains: 
+the destination RNC Identity when the target is GERAN Iu mode or UTRAN;  or
+the destination Cell Identity when the target is GERAN; or 
+the Target eNodeB ID when the target is E_UTRAN.
+";
+	}
+	container private_extension {
+		uses gtp_ies:private_extension;
+		gtp_ies:order 4;
+		description "None
+";
+	}
+}
+grouping isr_status_indication {
+	gtp:messageType "request";
+	gtp:messageTypeValue 157;
+	container action_indication {
+		uses gtp_ies:action_indication;
+		gtp_ies:order 2;
+		gtp:iemandatory;
+		gtp:intsancenum 0;
+		description "This IE shall include one of the applicable Values:
+Deactivation Indication: If the value is set to 1, this indicates a request to the ISR associated MME/SGSN to deactivate ISR and remove the UE resource locally. See 3GPP TS 23.007 [17].
+Paging Indication: If the value is set to 2, this indicates a request to the ISR associated MME/SGSN to page the UE in IDLE state. See 3GPP TS 23.007 [17].
+Paging Stop Indication: If the value is set to 3, this indicates to the ISR associated MME/SGSN to stop paging the UE. See 3GPP TS 23.380 [61].
+";
+	}
+	container private_extension {
+		uses gtp_ies:private_extension;
+		gtp_ies:order 3;
+	}
+}
+grouping ue_registration_query_request {
+	gtp:messageType "request";
+	gtp:messageTypeValue 158;
+	container imsi {
+		uses gtp_ies:imsi;
+		gtp_ies:order 2;
+		gtp:iemandatory;
+		gtp:intsancenum 0;
+	}
+	container private_extension {
+		uses gtp_ies:private_extension;
+		gtp_ies:order 3;
+	}
+}
+grouping ue_registration_query_response {
+	gtp:messageType "response";
+	gtp:messageTypeValue 159;
+	container cause {
+		uses gtp_ies:cause;
+		gtp_ies:order 2;
+		gtp:iemandatory;
+		gtp:intsancenum 0;
+	}
+	container imsi {
+		uses gtp_ies:imsi;
+		gtp_ies:order 3;
+		gtp:iemandatory;
+		gtp:intsancenum 0;
+	}
+	container selected_core_network_operator_identifier {
+		uses gtp_ies:plmn_id;
+		gtp_ies:order 4;
+		gtp:iemandatory;
+		gtp:intsancenum 0;
+	}
+	container private_extension {
+		uses gtp_ies:private_extension;
+		gtp_ies:order 5;
+	}
+}
+grouping suspend_notification {
+	gtp:messageType "notification";
+	gtp:messageTypeValue 162;
+	container imsi {
+		uses gtp_ies:imsi;
+		gtp_ies:order 1;
+		gtp:intsancenum 0;
+	}
+	container routeing_area_identity {
+		uses gtp_ies:user_location_information;
+		gtp_ies:order 2;
+		gtp:intsancenum 0;
+	}
+	container linked_eps_bearer_id {
+		uses gtp_ies:eps_bearer_id;
+		gtp_ies:order 3;
+		gtp:intsancenum 0;
+	}
+	container packet_tmsi {
+		uses gtp_ies:packet_tmsi;
+		gtp_ies:order 4;
+		gtp:intsancenum 0;
+	}
+	container originating_node {
+		uses gtp_ies:node_type;
+		gtp_ies:order 5;
+		gtp:intsancenum 0;
+	}
+	container address_for_control_plane {
+		uses gtp_ies:ip_address;
+		gtp_ies:order 6;
+		gtp:intsancenum 0;
+	}
+	container udp_source_port_number {
+		uses gtp_ies:port_number;
+		gtp_ies:order 7;
+		gtp:intsancenum 0;
+	}
+	container hop_counter {
+		uses gtp_ies:hop_counter;
+		gtp_ies:order 8;
+		gtp:intsancenum 0;
+	}
+	container sender_fully_qualified_tunnel_endpoint_identifier_for_control_plane {
+		uses gtp_ies:fully_qualified_tunnel_endpoint_identifier;
+		gtp_ies:order 9;
+		gtp:intsancenum 0;
+	}
+	container private_extension {
+		uses gtp_ies:private_extension;
+		gtp_ies:order 10;
+	}
+}
+grouping suspend_acknowledge {
+	gtp:messageType "acknowledge";
+	gtp:messageTypeValue 163;
+	container cause {
+		uses gtp_ies:cause;
+		gtp_ies:order 2;
+		gtp:iemandatory;
+		gtp:intsancenum 0;
+	}
+	container private_extension {
+		uses gtp_ies:private_extension;
+		gtp_ies:order 3;
+	}
+}
+grouping resume_notification {
+	gtp:messageType "notification";
+	gtp:messageTypeValue 164;
+	container imsi {
+		uses gtp_ies:imsi;
+		gtp_ies:order 1;
+		gtp:iemandatory;
+		gtp:intsancenum 0;
+	}
+	container linked_eps_bearer_id {
+		uses gtp_ies:eps_bearer_id;
+		gtp_ies:order 2;
+		gtp:intsancenum 0;
+	}
+	container originating_node {
+		uses gtp_ies:node_type;
+		gtp_ies:order 3;
+		gtp:intsancenum 0;
+	}
+	container sender_f_teid_for_control_plane {
+		uses gtp_ies:fully_qualified_tunnel_endpoint_identifier;
+		gtp_ies:order 4;
+		gtp:intsancenum 0;
+	}
+	container private_extension {
+		uses gtp_ies:private_extension;
+		gtp_ies:order 5;
+	}
+}
+grouping resume_acknowledge {
+	gtp:messageType "acknowledge";
+	gtp:messageTypeValue 165;
+	container cause {
+		uses gtp_ies:cause;
+		gtp_ies:order 2;
+		gtp:iemandatory;
+		gtp:intsancenum 0;
+	}
+	container private_extension {
+		uses gtp_ies:private_extension;
+		gtp_ies:order 3;
+	}
+}
+grouping cs_paging_indication {
+	gtp:messageType "indication";
+	gtp:messageTypeValue 151;
+	container imsi {
+		uses gtp_ies:imsi;
+		gtp_ies:order 2;
+		gtp:iemandatory;
+		gtp:intsancenum 0;
+	}
+	container vlr_name {
+		uses gtp_ies:fully_qualified_domain_name;
+		gtp_ies:order 3;
+		gtp:iemandatory;
+		gtp:intsancenum 0;
+	}
+	container tmsi {
+		uses gtp_ies:tmsi;
+		gtp_ies:order 4;
+		gtp:intsancenum 0;
+	}
+	container location_area_identifier {
+		uses gtp_ies:user_location_information;
+		gtp_ies:order 5;
+		gtp:intsancenum 0;
+	}
+	container global_cn_id {
+		uses gtp_ies:global_cn_id;
+		gtp_ies:order 6;
+		gtp:intsancenum 0;
+	}
+	container channel_needed {
+		uses gtp_ies:channel_needed;
+		gtp_ies:order 7;
+		gtp:intsancenum 0;
+	}
+	container emlpp_priority {
+		uses gtp_ies:emlpp_priority;
+		gtp_ies:order 8;
+		gtp:intsancenum 0;
+	}
+	container service_indicator {
+		uses gtp_ies:service_indicator;
+		gtp_ies:order 9;
+		gtp:intsancenum 0;
+		description "This IE shall be sent if the service type for the paging is available.
+";
+	}
+	container private_extension {
+		uses gtp_ies:private_extension;
+		gtp_ies:order 10;
+	}
+}
+grouping alert_mme_notification {
+	gtp:messageType "notification";
+	gtp:messageTypeValue 153;
+	container private_extension {
+		uses gtp_ies:private_extension;
+		gtp_ies:order 2;
+	}
+}
+grouping alert_mme_acknowledge {
+	gtp:messageType "acknowledge";
+	gtp:messageTypeValue 154;
+	container cause {
+		uses gtp_ies:cause;
+		gtp_ies:order 2;
+		gtp:iemandatory;
+		gtp:intsancenum 0;
+	}
+	container private_extension {
+		uses gtp_ies:private_extension;
+		gtp_ies:order 3;
+	}
+}
+grouping ue_activity_notification {
+	gtp:messageType "notification";
+	gtp:messageTypeValue 155;
+	container private_extension {
+		uses gtp_ies:private_extension;
+		gtp_ies:order 2;
+	}
+}
+grouping ue_activity_acknowledge {
+	gtp:messageType "acknowledge";
+	gtp:messageTypeValue 156;
+	container cause {
+		uses gtp_ies:cause;
+		gtp_ies:order 2;
+		gtp:iemandatory;
+		gtp:intsancenum 0;
+	}
+	container private_extension {
+		uses gtp_ies:private_extension;
+		gtp_ies:order 3;
+	}
+}
+grouping create_forwarding_tunnel_request {
+	gtp:messageType "request";
+	gtp:messageTypeValue 160;
+	container s103_pdn_data_forwarding_info {
+		uses gtp_ies:s103_pdn_data_forwarding_info;
+		gtp_ies:order 2;
+		gtp:iemandatory;
+		gtp:intsancenum 0;
+		description "The MME shall include the forwarding Infomation for all PDN connections of the UE requesting data forwarding towards the HSGW in the message as S103 PDN Data Forwarding Info information elements. For each of those PDN Connections, an IE with the same type and instance value shall be included.
+The Serving GW shall forward downlink data to the HSGW via the GRE tunnel identified by the HSGW Address and HSGW GRE Key included in this information element when it receives downlink data forwarded from the eNodeB belonging to the corresponding EPS bearers of the PDN connection.
+";
+	}
+	container private_extension {
+		uses gtp_ies:private_extension;
+		gtp_ies:order 3;
+	}
+}
+grouping create_forwarding_tunnel_response {
+	gtp:messageType "response";
+	gtp:messageTypeValue 161;
+	container cause {
+		uses gtp_ies:cause;
+		gtp_ies:order 2;
+		gtp:iemandatory;
+		gtp:intsancenum 0;
+	}
+	container s1u_data_forwarding_info {
+		uses gtp_ies:s1u_data_forwarding_info;
+		gtp_ies:order 3;
+		gtp:intsancenum 0;
+		description "S1_U Data Forwarding Info shall be included in the message if the Cause contains the value 'Request accepted'. For each EPS bearer requesting data forwarding which is included in the S103 PDN Data Forwarding Info fields of corresponding Create Forwarding Tunnel Request message, the Serving GW shall assign a Serving GW S1_U Address and Serving GW S1_U TEID pair and included it in the response message as S1_U Data Forwarding Info information element. For each of those EPS bearers, an IE with the same type and instance value shall be included.
+The eNodeB shall forward downlink data of the EPS bearer to the Serving GW via the GTP_U tunnel identified by the Serving GW S1_U Address and Serving GW S1_U TEID.
+";
+	}
+	container private_extension {
+		uses gtp_ies:private_extension;
+		gtp_ies:order 4;
+	}
+}
+
+grouping delete_pdn_connection_set_request {
+	gtp:messageType "request";
+	gtp:messageTypeValue 101;
+	container mme_fq_csid {
+		uses gtp_ies:fq_csid;
+		gtp_ies:order 2;
+		gtp:intsancenum 0;
+		description "This IE shall be included when a MME reports a partial fault according to the requirements in 3GPP TS 23.007 [17]. More than one FQ_CSID may appear.
+";
+	}
+	container sgw_fq_csid {
+		uses gtp_ies:fq_csid;
+		gtp_ies:order 3;
+		gtp:intsancenum 1;
+		description "This IE shall be included when a SGW reports a partial fault according to the requirements in 3GPP TS 23.007 [17]. More than one FQ_CSID may appear.
+";
+	}
+	container pgw_fq_csid {
+		uses gtp_ies:fq_csid;
+		gtp_ies:order 4;
+		gtp:intsancenum 2;
+		description "Shall be included when a PGW reports a partial fault. More than one FQ_CSID may appear
+";
+	}
+	container epdg_fq_csid {
+		uses gtp_ies:fq_csid;
+		gtp_ies:order 5;
+		gtp:intsancenum 3;
+		description "This IE shall be included when an ePDG reports a partial fault according to the requirements in 3GPP TS 23.007 [17]. More than one FQ_CSID may appear.
+";
+	}
+	container twan_fq_csid {
+		uses gtp_ies:fq_csid;
+		gtp_ies:order 6;
+		gtp:intsancenum 4;
+		description "This IE shall be included when a TWAN reports a partial fault according to the requirements in 3GPP TS 23.007 [17]. More than one FQ_CSID may appear.
+";
+	}
+	container private_extension {
+		uses gtp_ies:private_extension;
+		gtp_ies:order 7;
+		description "This IE may be sent on the S2a, S2b, S5, S8 and S11 interfaces.
+";
+	}
+}
+grouping delete_pdn_connection_set_response {
+	gtp:messageType "response";
+	gtp:messageTypeValue 102;
+	container cause {
+		uses gtp_ies:cause;
+		gtp_ies:order 2;
+		gtp:iemandatory;
+		gtp:intsancenum 0;
+	}
+	container recovery {
+		uses gtp_ies:recovery_restart_counter;
+		gtp_ies:order 3;
+		gtp:intsancenum 0;
+		description "This IE shall be included if contacting the peer for the first time 
+";
+	}
+	container private_extension {
+		uses gtp_ies:private_extension;
+		gtp_ies:order 4;
+		description "This IE may be sent on the S2a, S2b, S5, S8 and S11 interfaces.
+";
+	}
+}
+grouping update_pdn_connection_set_request {
+	gtp:messageType "request";
+	gtp:messageTypeValue 200;
+	container mme_fq_csid {
+		uses gtp_ies:fq_csid;
+		gtp_ies:order 2;
+		gtp:intsancenum 0;
+		description "This IE shall be included for MME relocation without SGW relocation according to the requirements in 3GPP TS 23.007 [17].
+";
+	}
+	container sgw_fq_csid {
+		uses gtp_ies:fq_csid;
+		gtp_ies:order 3;
+		gtp:intsancenum 1;
+		description "This IE shall be included for MME relocation without SGW relocation according to the requirements in 3GPP TS 23.007 [17].
+";
+	}
+	container private_extension {
+		uses gtp_ies:private_extension;
+		gtp_ies:order 4;
+	}
+}
+grouping update_pdn_connection_set_response {
+	gtp:messageType "response";
+	gtp:messageTypeValue 201;
+	container cause {
+		uses gtp_ies:cause;
+		gtp_ies:order 2;
+		gtp:iemandatory;
+		gtp:intsancenum 0;
+	}
+	container pgw_fq_csid {
+		uses gtp_ies:fq_csid;
+		gtp_ies:order 3;
+		gtp:intsancenum 0;
+		description "This IE shall be included for MME relocation without SGW relocation according to the requirements in 3GPP TS 23.007 [17].
+";
+	}
+	container recovery {
+		uses gtp_ies:recovery_restart_counter;
+		gtp_ies:order 4;
+		gtp:intsancenum 0;
+		description "This IE shall be included if contacting the peer for the first time 
+";
+	}
+	container private_extension {
+		uses gtp_ies:private_extension;
+		gtp_ies:order 5;
+	}
+}
+grouping pgw_restart_notification {
+	gtp:messageType "notification";
+	gtp:messageTypeValue 179;
+	container pgw_s5s8_ip_address_for_control_plane_or_pmip {
+		uses gtp_ies:ip_address;
+		gtp_ies:order 2;
+		gtp:iemandatory;
+		gtp:intsancenum 0;
+	}
+	container sgw_s11s4_ip_address_for_control_plane {
+		uses gtp_ies:ip_address;
+		gtp_ies:order 3;
+		gtp:iemandatory;
+		gtp:intsancenum 1;
+	}
+	container cause {
+		uses gtp_ies:cause;
+		gtp_ies:order 4;
+		gtp:intsancenum 0;
+		description "The SGW shall send the Cause IE with the value 'PGW not responding' if it sends the PGW Restart Notification to notify that the peer PGW has failed and not restarted. 
+";
+	}
+	container private_extension {
+		uses gtp_ies:private_extension;
+		gtp_ies:order 5;
+	}
+}
+grouping pgw_restart_notification_acknowledge {
+	gtp:messageType "acknowledge";
+	gtp:messageTypeValue 180;
+	container cause {
+		uses gtp_ies:cause;
+		gtp_ies:order 2;
+		gtp:iemandatory;
+		gtp:intsancenum 0;
+	}
+	container private_extension {
+		uses gtp_ies:private_extension;
+		gtp_ies:order 3;
+	}
+}
+grouping information_elements_in_pgw_downlink_triggering_notification {
+	gtp:messageType "notification";
+	gtp:messageTypeValue 103;
+	container imsi {
+		uses gtp_ies:imsi;
+		gtp_ies:order 1;
+		gtp:iemandatory;
+		gtp:intsancenum 0;
+	}
+	container mmes4_sgsn_identifier {
+		uses gtp_ies:ip_address;
+		gtp_ies:order 2;
+		gtp:intsancenum 0;
+	}
+	container pgw_s5_fully_qualified_tunnel_endpoint_identifier_for_gtp_or_pmip_control_plane {
+		uses gtp_ies:fully_qualified_tunnel_endpoint_identifier;
+		gtp_ies:order 3;
+		gtp:intsancenum 0;
+	}
+	container private_extension {
+		uses gtp_ies:private_extension;
+		gtp_ies:order 4;
+	}
+}
+grouping pgw_downlink_triggering_acknowledge {
+	gtp:messageType "acknowledge";
+	gtp:messageTypeValue 104;
+	container cause {
+		uses gtp_ies:cause;
+		gtp_ies:order 2;
+		gtp:iemandatory;
+		gtp:intsancenum 0;
+	}
+	container imsi {
+		uses gtp_ies:imsi;
+		gtp_ies:order 3;
+		gtp:intsancenum 0;
+		description "This IE shall be included on S11/S4 interface if the Cause is indicating the rejection value 'Context Not Found' and if the MME/S4_SGSN identifier is included in the corresponding PGW Downlink Triggering Notification message.
+";
+	}
+	container mmes4_sgsn_identifier {
+		uses gtp_ies:ip_address;
+		gtp_ies:order 4;
+		gtp:intsancenum 0;
+		description "This IE shall be included on S11/S4 interface if the Cause is indicating the rejection value 'Context Not Found' and if the MME/S4_SGSN identifier is included in the corresponding PGW Downlink Triggering Notification message.
+";
+	}
+	container private_extension {
+		uses gtp_ies:private_extension;
+		gtp_ies:order 5;
+	}
+}
+grouping trace_session_activation {
+	gtp:messageType "request";
+	gtp:messageTypeValue 71;
+	container imsi {
+		uses gtp_ies:imsi;
+		gtp_ies:order 1;
+		gtp:intsancenum 0;
+	}
+	container trace_information {
+		uses gtp_ies:trace_information;
+		gtp_ies:order 2;
+		gtp:iemandatory;
+		gtp:intsancenum 0;
+	}
+	container me_identity {
+		uses gtp_ies:mobile_equipment_identity;
+		gtp_ies:order 3;
+		gtp:intsancenum 0;
+	}
+}
+grouping trace_session_deactivation {
+	gtp:messageType "request";
+	gtp:messageTypeValue 72;
+	container trace_reference {
+		uses gtp_ies:trace_reference;
+		gtp_ies:order 2;
+		gtp:iemandatory;
+		gtp:intsancenum 0;
+	}
+}
+grouping mbms_session_start_request {
+	gtp:messageType "request";
+	gtp:messageTypeValue 231;
+	container sender_fully_qualified_tunnel_endpoint_identifier_for_control_plane {
+		uses gtp_ies:fully_qualified_tunnel_endpoint_identifier;
+		gtp_ies:order 1;
+		gtp:iemandatory;
+		gtp:intsancenum 0;
+	}
+	container temporary_mobile_group_identity {
+		uses gtp_ies:tmgi;
+		gtp_ies:order 2;
+		gtp:iemandatory;
+		gtp:intsancenum 0;
+	}
+	container mbms_session_duration {
+		uses gtp_ies:mbms_session_duration;
+		gtp_ies:order 3;
+		gtp:iemandatory;
+		gtp:intsancenum 0;
+	}
+	container mbms_service_area {
+		uses gtp_ies:mbms_service_area;
+		gtp_ies:order 4;
+		gtp:iemandatory;
+		gtp:intsancenum 0;
+	}
+	container mbms_session_identifier {
+		uses gtp_ies:mbms_session_identifier;
+		gtp_ies:order 5;
+		gtp:intsancenum 0;
+	}
+	container mbms_flow_identifier {
+		uses gtp_ies:mbms_flow_identifier;
+		gtp_ies:order 6;
+		gtp:intsancenum 0;
+	}
+	container qos_profile {
+		uses gtp_ies:bearer_quality_of_service;
+		gtp_ies:order 7;
+		gtp:iemandatory;
+		gtp:intsancenum 0;
+	}
+	container mbms_ip_multicast_distribution {
+		uses gtp_ies:mbms_ip_multicast_distribution;
+		gtp_ies:order 8;
+		gtp:iemandatory;
+		gtp:intsancenum 0;
+	}
+	container recovery {
+		uses gtp_ies:recovery_restart_counter;
+		gtp_ies:order 9;
+		gtp:intsancenum 0;
+	}
+	container mbms_time_to_data_transfer {
+		uses gtp_ies:mbms_time_to_data_transfer;
+		gtp_ies:order 10;
+		gtp:intsancenum 0;
+	}
+	container mbms_data_transfer_start {
+		uses gtp_ies:absolute_time_of_mbms_data_transfer;
+		gtp_ies:order 11;
+		gtp:intsancenum 0;
+	}
+	container mbms_flags {
+		uses gtp_ies:mbms_flags;
+		gtp_ies:order 12;
+		gtp:intsancenum 0;
+	}
+	container mbms_alternative_ip_multicast_distribution {
+		uses gtp_ies:mbms_ip_multicast_distribution;
+		gtp_ies:order 13;
+		gtp:intsancenum 1;
+	}
+	container mbms_cell_list {
+		uses gtp_ies:ecgi_list;
+		gtp_ies:order 14;
+		gtp:intsancenum 0;
+	}
+	container private_extension {
+		uses gtp_ies:private_extension;
+		gtp_ies:order 15;
+	}
+}
+grouping mbms_session_start_response {
+	gtp:messageType "response";
+	gtp:messageTypeValue 232;
+	container cause {
+		uses gtp_ies:cause;
+		gtp_ies:order 2;
+		gtp:iemandatory;
+		gtp:intsancenum 0;
+	}
+	container sender_fully_qualified_tunnel_endpoint_identifier_for_control_plane {
+		uses gtp_ies:fully_qualified_tunnel_endpoint_identifier;
+		gtp_ies:order 3;
+		gtp:iemandatory;
+		gtp:intsancenum 0;
+	}
+	container mbms_distribution_acknowledge {
+		uses gtp_ies:mbms_distribution_acknowledge;
+		gtp_ies:order 4;
+		gtp:intsancenum 0;
+		description "This IE shall be included on the Sn interface.
+";
+	}
+	container sn_u_sgsn_fully_qualified_tunnel_endpoint_identifier {
+		uses gtp_ies:fully_qualified_tunnel_endpoint_identifier;
+		gtp_ies:order 5;
+		gtp:intsancenum 1;
+		description "This IE shall be included on the Sn interface if some RNCs have not accepted IP multicast distribution.
+";
+	}
+	container recovery {
+		uses gtp_ies:recovery_restart_counter;
+		gtp_ies:order 6;
+		gtp:intsancenum 0;
+		description "This IE shall be included if contacting the peer for the first time.
+";
+	}
+	container private_extension {
+		uses gtp_ies:private_extension;
+		gtp_ies:order 7;
+	}
+}
+grouping mbms_session_update_request {
+	gtp:messageType "request";
+	gtp:messageTypeValue 233;
+	container mbms_service_area {
+		uses gtp_ies:mbms_service_area;
+		gtp_ies:order 1;
+		gtp:intsancenum 0;
+	}
+	container temporary_mobile_group_identity {
+		uses gtp_ies:tmgi;
+		gtp_ies:order 2;
+		gtp:iemandatory;
+		gtp:intsancenum 0;
+	}
+	container sender_f_teid_for_control_plane {
+		uses gtp_ies:fully_qualified_tunnel_endpoint_identifier;
+		gtp_ies:order 3;
+		gtp:intsancenum 0;
+	}
+	container mbms_session_duration {
+		uses gtp_ies:mbms_session_duration;
+		gtp_ies:order 4;
+		gtp:iemandatory;
+		gtp:intsancenum 0;
+	}
+	container qos_profile {
+		uses gtp_ies:bearer_quality_of_service;
+		gtp_ies:order 5;
+		gtp:iemandatory;
+		gtp:intsancenum 0;
+	}
+	container mbms_session_identifier {
+		uses gtp_ies:mbms_session_identifier;
+		gtp_ies:order 6;
+		gtp:intsancenum 0;
+	}
+	container mbms_flow_identifier {
+		uses gtp_ies:mbms_flow_identifier;
+		gtp_ies:order 7;
+		gtp:intsancenum 0;
+	}
+	container mbms_time_to_data_transfer {
+		uses gtp_ies:mbms_time_to_data_transfer;
+		gtp_ies:order 8;
+		gtp:intsancenum 0;
+	}
+	container mbms_data_transfer_start_update_stop {
+		uses gtp_ies:absolute_time_of_mbms_data_transfer;
+		gtp_ies:order 9;
+		gtp:intsancenum 0;
+	}
+	container mbms_cell_list {
+		uses gtp_ies:ecgi_list;
+		gtp_ies:order 10;
+		gtp:intsancenum 0;
+	}
+	container private_extension {
+		uses gtp_ies:private_extension;
+		gtp_ies:order 11;
+	}
+}
+grouping mbms_session_update_response {
+	gtp:messageType "response";
+	gtp:messageTypeValue 234;
+	container cause {
+		uses gtp_ies:cause;
+		gtp_ies:order 2;
+		gtp:iemandatory;
+		gtp:intsancenum 0;
+	}
+	container mbms_distribution_acknowledge {
+		uses gtp_ies:mbms_distribution_acknowledge;
+		gtp_ies:order 3;
+		gtp:intsancenum 0;
+		description "This IE shall be included on the Sn interface if service area is changed.
+";
+	}
+	container sn_u_sgsn_f_teid {
+		uses gtp_ies:fully_qualified_tunnel_endpoint_identifier;
+		gtp_ies:order 4;
+		gtp:intsancenum 0;
+		description "This IE shall be included on the Sn interface if any of the newly added RNCs have not accepted IP multicast distribution.
+";
+	}
+	container recovery {
+		uses gtp_ies:recovery_restart_counter;
+		gtp_ies:order 5;
+		gtp:intsancenum 0;
+		description "This IE shall be included if contacting the peer for the first time.
+";
+	}
+	container private_extension {
+		uses gtp_ies:private_extension;
+		gtp_ies:order 6;
+	}
+}
+grouping mbms_session_stop_request {
+	gtp:messageType "request";
+	gtp:messageTypeValue 235;
+	container mbms_flow_identifier {
+		uses gtp_ies:mbms_flow_identifier;
+		gtp_ies:order 1;
+		gtp:intsancenum 0;
+	}
+	container mbms_data_transfer_stop {
+		uses gtp_ies:absolute_time_of_mbms_data_transfer;
+		gtp_ies:order 2;
+		gtp:intsancenum 0;
+	}
+	container mbms_flags {
+		uses gtp_ies:mbms_flags;
+		gtp_ies:order 3;
+		gtp:intsancenum 0;
+	}
+	container private_extension {
+		uses gtp_ies:private_extension;
+		gtp_ies:order 4;
+	}
+}
+grouping mbms_session_stop_response {
+	gtp:messageType "response";
+	gtp:messageTypeValue 236;
+	container cause {
+		uses gtp_ies:cause;
+		gtp_ies:order 2;
+		gtp:iemandatory;
+		gtp:intsancenum 0;
+	}
+	container recovery {
+		uses gtp_ies:recovery_restart_counter;
+		gtp_ies:order 3;
+		gtp:intsancenum 0;
+		description "This IE shall be included if contacting the peer for the first time.
+";
+	}
+	container private_extension {
+		uses gtp_ies:private_extension;
+		gtp_ies:order 4;
+	}
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+}

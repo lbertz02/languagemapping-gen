@@ -1,0 +1,36 @@
+module ts29280-ies-f00 {
+
+namespace "urn:onf:params:xml:ns:yang:ts29280:f:messages";
+prefix "svies";
+
+import ts29274-ies-f40 {	
+	prefix "gtp_ies";
+}
+
+// NOTE - this module only fills in what is needed for 29274 messages
+
+grouping stn_sr {
+	gtp_ies:ie-type 51;
+	leaf nanpi {
+		gtp_ies:order 4;
+		type binary {
+			length "8";
+		}
+	}
+	leaf-list number_digit {
+		min-elements 1;
+		gtp_ies:order 5;
+		type binary {
+			length "4";
+		}
+	}
+	leaf filler {
+		gtp_ies:order 6;
+		type binary {
+			length "4";
+		}
+		gtp_ies:defval "1111"; 
+	}
+}
+
+}
