@@ -112,10 +112,10 @@ class gtp2ngicPlugin(plugin.PyangPlugin):
 
         result += "#pragma pack(1)\n\n"
 
+        #Produce IE and non-IE Typedefs
         if root_stmt.i_groupings is not None and len(root_stmt.i_groupings) > 0:
-            ies = [x for x in root_stmt.i_groupings.values() if is_ie(x)]
-            for stmt in ies:
-                result += print_ie(stmt) + "\n\n"
+            for stmt in root_stmt.i_groupings.values():
+                result += print_grouping(stmt) + "\n\n"
 
         dump_stats()
 
@@ -165,7 +165,7 @@ def is_ie(stmt):
             return True
     return False
 
-def print_ie(stmt):
+def print_grouping(stmt):
     children = {}
     if hasattr(stmt, 'substmts'):
         #Collect all container/leaf/leaf-list/list children
@@ -194,10 +194,11 @@ def print_ie(stmt):
                 logging.debug("Non-mandatory member %s ", child.arg)
                 has_non_mandatory_member = True
 
-        result += "typedef struct " + stmt.arg.lower() + "_ie_t {\n"
+        subtype = "_ie" if is_ie(stmt) else ""
+        result += "typedef struct " + stmt.arg.lower() + subtype + "_t {\n"
 
         if first_element_mandatory and has_non_mandatory_member:
-            result += "\tstruct " + stmt.arg.lower() + "_ie_hdr_t {\n"
+            result += "\tstruct " + stmt.arg.lower() + subtype + "_hdr_t {\n"
             indent = "\t\t"
             close_header_struct = True
         else:
@@ -208,12 +209,12 @@ def print_ie(stmt):
         for key in sorted(children.iterkeys()):
             (child, mandatory) = children[key]
             if (not mandatory) and close_header_struct:
-                result += "\t} " + stmt.arg.lower() + "_ie_hdr;\n"
+                result += "\t} " + stmt.arg.lower() + subtype + "_hdr;\n"
                 close_header_struct = False
                 indent = "\t"
             last_child_mandatory = mandatory
             result += produce_ie_member(child, indent)
-        return result + "} " + stmt.arg.lower() + "_ie;\n"
+        return result + "} " + stmt.arg.lower() + subtype + ";\n"
 
 def produce_ie_member(stmt, indent):
     type_stmt = get_substmt('type', stmt)

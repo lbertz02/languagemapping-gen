@@ -4232,3 +4232,719 @@ Unknown Items
 DEBUG:root:
 
 
+DEBUG:pip.utils:lzma module is not available
+DEBUG:pip.vcs:Registered VCS backend: git
+DEBUG:pip.vcs:Registered VCS backend: hg
+DEBUG:pip.vcs:Registered VCS backend: svn
+DEBUG:pip.vcs:Registered VCS backend: bzr
+DEBUG:pip.utils:lzma module is not available
+DEBUG:pip.vcs:Registered VCS backend: git
+DEBUG:pip.vcs:Registered VCS backend: hg
+DEBUG:pip.vcs:Registered VCS backend: svn
+DEBUG:pip.vcs:Registered VCS backend: bzr
+DEBUG:root:First member mcc_digit_2 is mandatory = True
+DEBUG:root:First member integer_number_value is mandatory = True
+DEBUG:root:First member protocol_configuration_options is mandatory = True
+DEBUG:root:First member throttling_delay_unit is mandatory = True
+DEBUG:root:First member uplink_rate_limit is mandatory = True
+DEBUG:root:First member mcc_digit_2 is mandatory = True
+DEBUG:root:First member channel_needed is mandatory = True
+DEBUG:root:First member fqdn is mandatory = True
+DEBUG:root:First member protocol_type is mandatory = True
+DEBUG:root:First member cell_identifier is mandatory = False
+DEBUG:root:Non-mandatory member cell_identifier 
+DEBUG:root:First member service_indicator is mandatory = True
+DEBUG:root:First member job_type is mandatory = True
+DEBUG:root:First member recovery_restart_counter is mandatory = True
+DEBUG:root:First member spare1 is mandatory = True
+DEBUG:root:First member mcc_digit_2 is mandatory = True
+DEBUG:root:First member absolute_time_of_mbms_data_transfer_value_part is mandatory = True
+DEBUG:root:First member length_of_node_name is mandatory = True
+DEBUG:root:First member detach_type is mandatory = True
+DEBUG:root:First member remote_ue_ip_information is mandatory = True
+DEBUG:root:First member bearer_context is mandatory = True
+DEBUG:root:First member spare1 is mandatory = True
+DEBUG:root:First member number_digit is mandatory = False
+DEBUG:root:Non-mandatory member number_digit 
+DEBUG:root:Non-mandatory member filler 
+DEBUG:root:First member spare1 is mandatory = True
+DEBUG:root:First member length_of_node_number is mandatory = True
+DEBUG:root:First member length_of_extended_access_restriction_data is mandatory = True
+DEBUG:root:Non-mandatory member authentication_quadruplet 
+DEBUG:root:Non-mandatory member authentication_quintuplet 
+DEBUG:root:Non-mandatory member ue_network_capability 
+DEBUG:root:Non-mandatory member ms_network_capability 
+DEBUG:root:Non-mandatory member voice_domain_preference_and_ues_usage_setting 
+DEBUG:root:Non-mandatory member ue_radio_capability_for_paging_information 
+DEBUG:root:Non-mandatory member ue_additional_security_capability 
+DEBUG:root:Non-mandatory member ue_nr_security_capability 
+DEBUG:root:First member mapped_ue_usage_type is mandatory = True
+DEBUG:root:First member spare1 is mandatory = True
+DEBUG:root:First member mcc_digit_2 is mandatory = True
+DEBUG:root:First member ipv4_or_ipv6_address is mandatory = True
+DEBUG:root:First member delay_value is mandatory = True
+DEBUG:root:First member time_zone is mandatory = True
+DEBUG:root:First member spare1 is mandatory = True
+DEBUG:root:First member pra_identifier is mandatory = True
+DEBUG:root:First member spare1 is mandatory = True
+DEBUG:root:First member spare1 is mandatory = True
+DEBUG:root:First member emlpp_priority is mandatory = True
+DEBUG:root:First member port_number is mandatory = True
+DEBUG:root:First member mcc_digit_2 is mandatory = True
+DEBUG:root:First member mcc_digit_2 is mandatory = True
+DEBUG:root:First member spare1 is mandatory = True
+DEBUG:root:First member scef_reference_id is mandatory = True
+DEBUG:root:Non-mandatory member remaining_number_of_reports 
+DEBUG:root:First member spare1 is mandatory = True
+DEBUG:root:First member plmn_id is mandatory = True
+DEBUG:root:First member access_point_name is mandatory = True
+DEBUG:root:First member spare1 is mandatory = True
+DEBUG:root:First member spare1 is mandatory = True
+DEBUG:root:First member mcc_digit_2 is mandatory = True
+DEBUG:root:First member spare1 is mandatory = True
+DEBUG:root:First member spare1 is mandatory = True
+DEBUG:root:First member mcc_digit_2 is mandatory = True
+DEBUG:root:First member extended_protocol_configuration_options is mandatory = True
+DEBUG:root:First member common_tunnel_endpoint_identifier is mandatory = True
+DEBUG:root:First member label_qci is mandatory = True
+DEBUG:root:First member spare1 is mandatory = True
+DEBUG:root:First member daf is mandatory = True
+DEBUG:root:First member cause_value is mandatory = True
+DEBUG:root:First member number_digit is mandatory = False
+DEBUG:root:Non-mandatory member number_digit 
+DEBUG:root:Non-mandatory member digit_pad 
+DEBUG:root:First member rand is mandatory = True
+DEBUG:root:Non-mandatory member xres 
+DEBUG:root:Non-mandatory member autn 
+DEBUG:root:First member spare1 is mandatory = True
+DEBUG:root:First member length_of_the_mobile_station_classmark_2 is mandatory = True
+DEBUG:root:First member rand is mandatory = True
+DEBUG:root:First member spare1 is mandatory = True
+DEBUG:root:First member millisecond_time_stamp_value is mandatory = True
+DEBUG:root:First member spare1 is mandatory = True
+DEBUG:root:First member rfsp_index is mandatory = True
+DEBUG:root:First member eps_bearer_level_traffic_flow_template is mandatory = True
+DEBUG:root:First member mcc_digit_2 is mandatory = True
+DEBUG:root:First member security_mode is mandatory = True
+DEBUG:root:Non-mandatory member authentication_quintuplets 
+DEBUG:root:Non-mandatory member ue_network_capability 
+DEBUG:root:Non-mandatory member ms_network_capability 
+DEBUG:root:Non-mandatory member mobile_equipment_identity 
+DEBUG:root:Non-mandatory member voice_domain_preference_and_ues_usage_setting 
+DEBUG:root:First member teid_gre_key is mandatory = True
+DEBUG:root:Non-mandatory member ipv4_address 
+DEBUG:root:Non-mandatory member ipv6_address_ 
+DEBUG:root:First member ldn is mandatory = True
+DEBUG:root:First member procedure_transaction_id is mandatory = True
+DEBUG:root:First member mcc_digit_2 is mandatory = True
+DEBUG:root:First member mcc_digit_2 is mandatory = True
+DEBUG:root:First member spare1 is mandatory = True
+DEBUG:root:First member spare1 is mandatory = True
+DEBUG:root:Non-mandatory member tais 
+DEBUG:root:Non-mandatory member macro_enb_ids 
+DEBUG:root:Non-mandatory member home_enb_ids 
+DEBUG:root:Non-mandatory member ecgis 
+DEBUG:root:Non-mandatory member rais 
+DEBUG:root:Non-mandatory member sais 
+DEBUG:root:Non-mandatory member cgis 
+DEBUG:root:Non-mandatory member extended_macro_enb_ids 
+DEBUG:root:First member twan_identifier_timestamp_value is mandatory = True
+DEBUG:root:First member spare1 is mandatory = True
+DEBUG:root:First member spare1 is mandatory = True
+DEBUG:root:First member security_mode is mandatory = True
+DEBUG:root:Non-mandatory member authentication_triplet 
+DEBUG:root:Non-mandatory member ue_network_capability 
+DEBUG:root:Non-mandatory member ms_network_capability 
+DEBUG:root:Non-mandatory member mobile_equipment_identity 
+DEBUG:root:Non-mandatory member voice_domain_preference_and_ue_usage_setting 
+DEBUG:root:First member security_mode is mandatory = True
+DEBUG:root:Non-mandatory member authentication_quintuplet 
+DEBUG:root:Non-mandatory member ue_network_capability 
+DEBUG:root:Non-mandatory member ms_network_capability 
+DEBUG:root:Non-mandatory member mobile_equipment_identity 
+DEBUG:root:Non-mandatory member voice_domain_preference_and_ues_usage_setting 
+DEBUG:root:First member enterprise_id is mandatory = True
+DEBUG:root:First member spare1 is mandatory = True
+DEBUG:root:First member load_control_information is mandatory = True
+DEBUG:root:First member charging_id_value is mandatory = True
+DEBUG:root:First member mcc_digit_2 is mandatory = True
+DEBUG:root:First member mcc_digit_2 is mandatory = True
+DEBUG:root:First member charging_characteristics_value is mandatory = True
+DEBUG:root:First member mbms_session_duration is mandatory = True
+DEBUG:root:First member security_mode is mandatory = True
+DEBUG:root:Non-mandatory member authentication_quadruplet 
+DEBUG:root:Non-mandatory member authentication_quintuplet 
+DEBUG:root:Non-mandatory member ue_network_capability 
+DEBUG:root:Non-mandatory member ms_network_capability 
+DEBUG:root:Non-mandatory member mobile_equipment_identity 
+DEBUG:root:Non-mandatory member voice_domain_preference_and_ues_usage_setting 
+DEBUG:root:First member mbms_time_to_data_transfer_value_part is mandatory = True
+DEBUG:root:First member remote_ue_context is mandatory = True
+DEBUG:root:First member xres_length is mandatory = True
+DEBUG:root:Non-mandatory member xres 
+DEBUG:root:Non-mandatory member autn 
+DEBUG:root:First member action is mandatory = True
+DEBUG:root:First member mbms_session_duration is mandatory = True
+DEBUG:root:First member traffic_aggregate_description is mandatory = True
+DEBUG:root:First member p_tmsi_signature is mandatory = True
+DEBUG:root:First member mcc_digit_2 is mandatory = True
+DEBUG:root:First member timer_unit is mandatory = True
+DEBUG:root:First member number_of_ecgi_fields is mandatory = True
+DEBUG:root:Non-mandatory member ecgi_list_of_m_ecgi_fields_ 
+DEBUG:root:First member rat_type is mandatory = True
+DEBUG:root:First member mcc_digit_2 is mandatory = True
+DEBUG:root:First member mbms_session_identifier is mandatory = True
+DEBUG:root:First member scef_pdn_connection is mandatory = True
+DEBUG:root:First member restriction_type_value is mandatory = True
+DEBUG:root:First member spare1 is mandatory = True
+DEBUG:root:First member hop_counter is mandatory = True
+DEBUG:root:First member mcc_digit_2 is mandatory = True
+DEBUG:root:First member transaction_identifier is mandatory = True
+DEBUG:root:First member spare1 is mandatory = True
+DEBUG:root:First member hsgw_address_for_forwarding_length is mandatory = True
+DEBUG:root:First member tmgi is mandatory = True
+DEBUG:root:First member security_mode is mandatory = True
+DEBUG:root:Non-mandatory member authentication_quintuplet 
+DEBUG:root:Non-mandatory member ue_network_capability 
+DEBUG:root:Non-mandatory member ms_network_capability 
+DEBUG:root:Non-mandatory member mobile_equipment_identity 
+DEBUG:root:Non-mandatory member voice_domain_preference_and_ues_usage_setting 
+DEBUG:root:First member uli_timestamp_value is mandatory = True
+DEBUG:root:First member sequence_number is mandatory = True
+DEBUG:root:First member relative_capacity is mandatory = True
+DEBUG:root:First member rohc_profiles is mandatory = True
+DEBUG:root:First member spare1 is mandatory = True
+DEBUG:root:First member metric is mandatory = True
+DEBUG:root:First member tmsi is mandatory = True
+DEBUG:root:First member node_type is mandatory = True
+DEBUG:root:First member spare1 is mandatory = True
+DEBUG:root:First member node_id_type is mandatory = True
+DEBUG:root:Non-mandatory member pdn_connection_set_identifier 
+DEBUG:root:First member packet_tmsi is mandatory = True
+DEBUG:root:First member mbms_flow_identifer is mandatory = True
+DEBUG:root:First member spare1 is mandatory = True
+DEBUG:root:First member spare1 is mandatory = True
+DEBUG:root:First member rrc_container is mandatory = True
+DEBUG:root:First member spare1 is mandatory = True
+DEBUG:root:First member spare1 is mandatory = True
+DEBUG:root:First member additional_protocol_configuration_options is mandatory = True
+DEBUG:root:First member apn-ambr_for_uplink is mandatory = True
+DEBUG:root:First member spare1 is mandatory = True
+DEBUG:root:First member mcc_digit_2 is mandatory = True
+DEBUG:root:First member mcc_digit_2 is mandatory = True
+DEBUG:root:First member spare1 is mandatory = True
+DEBUG:root:First member spare1 is mandatory = True
+DEBUG:root:First member target_type is mandatory = True
+DEBUG:root:First member complete_request_message_type is mandatory = True
+DEBUG:root:First member mcc_digit_2 is mandatory = True
+DEBUG:root:First member mcc_digit_2 is mandatory = True
+DEBUG:root:First member overload_control_information is mandatory = True
+DEBUG:root:First member target_cell_id is mandatory = True
+DEBUG:root:First member subnet_prefix_length is mandatory = True
+DEBUG:root:First member extended_macro_enodeb_id is mandatory = True
+DEBUG:root:Non-mandatory member cgi1 
+DEBUG:root:Non-mandatory member sai1 
+DEBUG:root:Non-mandatory member rai1 
+DEBUG:root:Non-mandatory member tai1 
+DEBUG:root:Non-mandatory member ecgi1 
+DEBUG:root:Non-mandatory member lai1 
+DEBUG:root:Non-mandatory member macro_enodeb_id1 
+DEBUG:root:Non-mandatory member extended_macro_enodeb_id1 
+DEBUG:root:First member spare1 is mandatory = True
+DEBUG:root:First member pdn_connection is mandatory = True
+DEBUG:root:First member timestamp_value is mandatory = True
+DEBUG:root:First member mcc_digit_2 is mandatory = True
+DEBUG:root:First member international_mobile_equipment_identity is mandatory = False
+DEBUG:root:Non-mandatory member international_mobile_equipment_identity 
+DEBUG:root:First member spare1 is mandatory = True
+DEBUG:root:First member mcc_digit_2 is mandatory = True
+DEBUG:root:Non-mandatory member extended_rnc-id 
+DEBUG:root:First member supported-features is mandatory = True
+DEBUG:root:
+
+
+>>>>>>>>>>>>>>>> Reference Statistics <<<<<<<<<<<<<<<<<<<<
+
+
+DEBUG:root:
+
+Unknown Items
+
+
+DEBUG:root:
+
+
+DEBUG:pip.utils:lzma module is not available
+DEBUG:pip.vcs:Registered VCS backend: git
+DEBUG:pip.vcs:Registered VCS backend: hg
+DEBUG:pip.vcs:Registered VCS backend: svn
+DEBUG:pip.vcs:Registered VCS backend: bzr
+DEBUG:root:First member mcc_digit_2 is mandatory = True
+DEBUG:root:First member integer_number_value is mandatory = True
+DEBUG:root:First member protocol_configuration_options is mandatory = True
+DEBUG:root:First member throttling_delay_unit is mandatory = True
+DEBUG:root:First member uplink_rate_limit is mandatory = True
+DEBUG:root:First member mcc_digit_2 is mandatory = True
+DEBUG:root:First member channel_needed is mandatory = True
+DEBUG:root:First member fqdn is mandatory = True
+DEBUG:root:First member protocol_type is mandatory = True
+DEBUG:root:First member cell_identifier is mandatory = False
+DEBUG:root:Non-mandatory member cell_identifier 
+DEBUG:root:First member service_indicator is mandatory = True
+DEBUG:root:First member job_type is mandatory = True
+DEBUG:root:First member recovery_restart_counter is mandatory = True
+DEBUG:root:First member spare1 is mandatory = True
+DEBUG:root:First member mcc_digit_2 is mandatory = True
+DEBUG:root:First member absolute_time_of_mbms_data_transfer_value_part is mandatory = True
+DEBUG:root:First member length_of_node_name is mandatory = True
+DEBUG:root:First member detach_type is mandatory = True
+DEBUG:root:First member remote_ue_ip_information is mandatory = True
+DEBUG:root:First member bearer_context is mandatory = True
+DEBUG:root:First member spare1 is mandatory = True
+DEBUG:root:First member number_digit is mandatory = False
+DEBUG:root:Non-mandatory member number_digit 
+DEBUG:root:Non-mandatory member filler 
+DEBUG:root:First member spare1 is mandatory = True
+DEBUG:root:First member length_of_node_number is mandatory = True
+DEBUG:root:First member length_of_extended_access_restriction_data is mandatory = True
+DEBUG:root:Non-mandatory member authentication_quadruplet 
+DEBUG:root:Non-mandatory member authentication_quintuplet 
+DEBUG:root:Non-mandatory member ue_network_capability 
+DEBUG:root:Non-mandatory member ms_network_capability 
+DEBUG:root:Non-mandatory member voice_domain_preference_and_ues_usage_setting 
+DEBUG:root:Non-mandatory member ue_radio_capability_for_paging_information 
+DEBUG:root:Non-mandatory member ue_additional_security_capability 
+DEBUG:root:Non-mandatory member ue_nr_security_capability 
+DEBUG:root:First member mapped_ue_usage_type is mandatory = True
+DEBUG:root:First member spare1 is mandatory = True
+DEBUG:root:First member mcc_digit_2 is mandatory = True
+DEBUG:root:First member ipv4_or_ipv6_address is mandatory = True
+DEBUG:root:First member delay_value is mandatory = True
+DEBUG:root:First member time_zone is mandatory = True
+DEBUG:root:First member spare1 is mandatory = True
+DEBUG:root:First member pra_identifier is mandatory = True
+DEBUG:root:First member spare1 is mandatory = True
+DEBUG:root:First member spare1 is mandatory = True
+DEBUG:root:First member emlpp_priority is mandatory = True
+DEBUG:root:First member port_number is mandatory = True
+DEBUG:root:First member mcc_digit_2 is mandatory = True
+DEBUG:root:First member mcc_digit_2 is mandatory = True
+DEBUG:root:First member spare1 is mandatory = True
+DEBUG:root:First member scef_reference_id is mandatory = True
+DEBUG:root:Non-mandatory member remaining_number_of_reports 
+DEBUG:root:First member spare1 is mandatory = True
+DEBUG:root:First member plmn_id is mandatory = True
+DEBUG:root:First member access_point_name is mandatory = True
+DEBUG:root:First member spare1 is mandatory = True
+DEBUG:root:First member spare1 is mandatory = True
+DEBUG:root:First member mcc_digit_2 is mandatory = True
+DEBUG:root:First member spare1 is mandatory = True
+DEBUG:root:First member spare1 is mandatory = True
+DEBUG:root:First member mcc_digit_2 is mandatory = True
+DEBUG:root:First member extended_protocol_configuration_options is mandatory = True
+DEBUG:root:First member common_tunnel_endpoint_identifier is mandatory = True
+DEBUG:root:First member label_qci is mandatory = True
+DEBUG:root:First member spare1 is mandatory = True
+DEBUG:root:First member daf is mandatory = True
+DEBUG:root:First member cause_value is mandatory = True
+DEBUG:root:First member number_digit is mandatory = False
+DEBUG:root:Non-mandatory member number_digit 
+DEBUG:root:Non-mandatory member digit_pad 
+DEBUG:root:First member rand is mandatory = True
+DEBUG:root:Non-mandatory member xres 
+DEBUG:root:Non-mandatory member autn 
+DEBUG:root:First member spare1 is mandatory = True
+DEBUG:root:First member length_of_the_mobile_station_classmark_2 is mandatory = True
+DEBUG:root:First member rand is mandatory = True
+DEBUG:root:First member spare1 is mandatory = True
+DEBUG:root:First member millisecond_time_stamp_value is mandatory = True
+DEBUG:root:First member spare1 is mandatory = True
+DEBUG:root:First member rfsp_index is mandatory = True
+DEBUG:root:First member eps_bearer_level_traffic_flow_template is mandatory = True
+DEBUG:root:First member mcc_digit_2 is mandatory = True
+DEBUG:root:First member security_mode is mandatory = True
+DEBUG:root:Non-mandatory member authentication_quintuplets 
+DEBUG:root:Non-mandatory member ue_network_capability 
+DEBUG:root:Non-mandatory member ms_network_capability 
+DEBUG:root:Non-mandatory member mobile_equipment_identity 
+DEBUG:root:Non-mandatory member voice_domain_preference_and_ues_usage_setting 
+DEBUG:root:First member teid_gre_key is mandatory = True
+DEBUG:root:Non-mandatory member ipv4_address 
+DEBUG:root:Non-mandatory member ipv6_address_ 
+DEBUG:root:First member ldn is mandatory = True
+DEBUG:root:First member procedure_transaction_id is mandatory = True
+DEBUG:root:First member mcc_digit_2 is mandatory = True
+DEBUG:root:First member mcc_digit_2 is mandatory = True
+DEBUG:root:First member spare1 is mandatory = True
+DEBUG:root:First member spare1 is mandatory = True
+DEBUG:root:Non-mandatory member tais 
+DEBUG:root:Non-mandatory member macro_enb_ids 
+DEBUG:root:Non-mandatory member home_enb_ids 
+DEBUG:root:Non-mandatory member ecgis 
+DEBUG:root:Non-mandatory member rais 
+DEBUG:root:Non-mandatory member sais 
+DEBUG:root:Non-mandatory member cgis 
+DEBUG:root:Non-mandatory member extended_macro_enb_ids 
+DEBUG:root:First member twan_identifier_timestamp_value is mandatory = True
+DEBUG:root:First member spare1 is mandatory = True
+DEBUG:root:First member spare1 is mandatory = True
+DEBUG:root:First member security_mode is mandatory = True
+DEBUG:root:Non-mandatory member authentication_triplet 
+DEBUG:root:Non-mandatory member ue_network_capability 
+DEBUG:root:Non-mandatory member ms_network_capability 
+DEBUG:root:Non-mandatory member mobile_equipment_identity 
+DEBUG:root:Non-mandatory member voice_domain_preference_and_ue_usage_setting 
+DEBUG:root:First member security_mode is mandatory = True
+DEBUG:root:Non-mandatory member authentication_quintuplet 
+DEBUG:root:Non-mandatory member ue_network_capability 
+DEBUG:root:Non-mandatory member ms_network_capability 
+DEBUG:root:Non-mandatory member mobile_equipment_identity 
+DEBUG:root:Non-mandatory member voice_domain_preference_and_ues_usage_setting 
+DEBUG:root:First member enterprise_id is mandatory = True
+DEBUG:root:First member spare1 is mandatory = True
+DEBUG:root:First member load_control_information is mandatory = True
+DEBUG:root:First member charging_id_value is mandatory = True
+DEBUG:root:First member mcc_digit_2 is mandatory = True
+DEBUG:root:First member mcc_digit_2 is mandatory = True
+DEBUG:root:First member charging_characteristics_value is mandatory = True
+DEBUG:root:First member mbms_session_duration is mandatory = True
+DEBUG:root:First member security_mode is mandatory = True
+DEBUG:root:Non-mandatory member authentication_quadruplet 
+DEBUG:root:Non-mandatory member authentication_quintuplet 
+DEBUG:root:Non-mandatory member ue_network_capability 
+DEBUG:root:Non-mandatory member ms_network_capability 
+DEBUG:root:Non-mandatory member mobile_equipment_identity 
+DEBUG:root:Non-mandatory member voice_domain_preference_and_ues_usage_setting 
+DEBUG:root:First member mbms_time_to_data_transfer_value_part is mandatory = True
+DEBUG:root:First member remote_ue_context is mandatory = True
+DEBUG:root:First member xres_length is mandatory = True
+DEBUG:root:Non-mandatory member xres 
+DEBUG:root:Non-mandatory member autn 
+DEBUG:root:First member action is mandatory = True
+DEBUG:root:First member mbms_session_duration is mandatory = True
+DEBUG:root:First member traffic_aggregate_description is mandatory = True
+DEBUG:root:First member p_tmsi_signature is mandatory = True
+DEBUG:root:First member mcc_digit_2 is mandatory = True
+DEBUG:root:First member timer_unit is mandatory = True
+DEBUG:root:First member number_of_ecgi_fields is mandatory = True
+DEBUG:root:Non-mandatory member ecgi_list_of_m_ecgi_fields_ 
+DEBUG:root:First member rat_type is mandatory = True
+DEBUG:root:First member mcc_digit_2 is mandatory = True
+DEBUG:root:First member mbms_session_identifier is mandatory = True
+DEBUG:root:First member scef_pdn_connection is mandatory = True
+DEBUG:root:First member restriction_type_value is mandatory = True
+DEBUG:root:First member spare1 is mandatory = True
+DEBUG:root:First member hop_counter is mandatory = True
+DEBUG:root:First member mcc_digit_2 is mandatory = True
+DEBUG:root:First member transaction_identifier is mandatory = True
+DEBUG:root:First member spare1 is mandatory = True
+DEBUG:root:First member hsgw_address_for_forwarding_length is mandatory = True
+DEBUG:root:First member tmgi is mandatory = True
+DEBUG:root:First member security_mode is mandatory = True
+DEBUG:root:Non-mandatory member authentication_quintuplet 
+DEBUG:root:Non-mandatory member ue_network_capability 
+DEBUG:root:Non-mandatory member ms_network_capability 
+DEBUG:root:Non-mandatory member mobile_equipment_identity 
+DEBUG:root:Non-mandatory member voice_domain_preference_and_ues_usage_setting 
+DEBUG:root:First member uli_timestamp_value is mandatory = True
+DEBUG:root:First member sequence_number is mandatory = True
+DEBUG:root:First member relative_capacity is mandatory = True
+DEBUG:root:First member rohc_profiles is mandatory = True
+DEBUG:root:First member spare1 is mandatory = True
+DEBUG:root:First member metric is mandatory = True
+DEBUG:root:First member tmsi is mandatory = True
+DEBUG:root:First member node_type is mandatory = True
+DEBUG:root:First member spare1 is mandatory = True
+DEBUG:root:First member node_id_type is mandatory = True
+DEBUG:root:Non-mandatory member pdn_connection_set_identifier 
+DEBUG:root:First member packet_tmsi is mandatory = True
+DEBUG:root:First member mbms_flow_identifer is mandatory = True
+DEBUG:root:First member spare1 is mandatory = True
+DEBUG:root:First member spare1 is mandatory = True
+DEBUG:root:First member rrc_container is mandatory = True
+DEBUG:root:First member spare1 is mandatory = True
+DEBUG:root:First member spare1 is mandatory = True
+DEBUG:root:First member additional_protocol_configuration_options is mandatory = True
+DEBUG:root:First member apn-ambr_for_uplink is mandatory = True
+DEBUG:root:First member spare1 is mandatory = True
+DEBUG:root:First member mcc_digit_2 is mandatory = True
+DEBUG:root:First member mcc_digit_2 is mandatory = True
+DEBUG:root:First member spare1 is mandatory = True
+DEBUG:root:First member spare1 is mandatory = True
+DEBUG:root:First member target_type is mandatory = True
+DEBUG:root:First member complete_request_message_type is mandatory = True
+DEBUG:root:First member mcc_digit_2 is mandatory = True
+DEBUG:root:First member mcc_digit_2 is mandatory = True
+DEBUG:root:First member overload_control_information is mandatory = True
+DEBUG:root:First member target_cell_id is mandatory = True
+DEBUG:root:First member subnet_prefix_length is mandatory = True
+DEBUG:root:First member extended_macro_enodeb_id is mandatory = True
+DEBUG:root:Non-mandatory member cgi1 
+DEBUG:root:Non-mandatory member sai1 
+DEBUG:root:Non-mandatory member rai1 
+DEBUG:root:Non-mandatory member tai1 
+DEBUG:root:Non-mandatory member ecgi1 
+DEBUG:root:Non-mandatory member lai1 
+DEBUG:root:Non-mandatory member macro_enodeb_id1 
+DEBUG:root:Non-mandatory member extended_macro_enodeb_id1 
+DEBUG:root:First member spare1 is mandatory = True
+DEBUG:root:First member pdn_connection is mandatory = True
+DEBUG:root:First member timestamp_value is mandatory = True
+DEBUG:root:First member mcc_digit_2 is mandatory = True
+DEBUG:root:First member international_mobile_equipment_identity is mandatory = False
+DEBUG:root:Non-mandatory member international_mobile_equipment_identity 
+DEBUG:root:First member spare1 is mandatory = True
+DEBUG:root:First member mcc_digit_2 is mandatory = True
+DEBUG:root:Non-mandatory member extended_rnc-id 
+DEBUG:root:First member supported-features is mandatory = True
+DEBUG:root:
+
+
+>>>>>>>>>>>>>>>> Reference Statistics <<<<<<<<<<<<<<<<<<<<
+
+
+DEBUG:root:
+
+Unknown Items
+
+
+DEBUG:root:
+
+
+DEBUG:pip.utils:lzma module is not available
+DEBUG:pip.vcs:Registered VCS backend: git
+DEBUG:pip.vcs:Registered VCS backend: hg
+DEBUG:pip.vcs:Registered VCS backend: svn
+DEBUG:pip.vcs:Registered VCS backend: bzr
+DEBUG:root:First member mcc_digit_2 is mandatory = True
+DEBUG:root:First member integer_number_value is mandatory = True
+DEBUG:root:First member protocol_configuration_options is mandatory = True
+DEBUG:root:First member throttling_delay_unit is mandatory = True
+DEBUG:root:First member uplink_rate_limit is mandatory = True
+DEBUG:root:First member mcc_digit_2 is mandatory = True
+DEBUG:root:First member channel_needed is mandatory = True
+DEBUG:root:First member fqdn is mandatory = True
+DEBUG:root:First member protocol_type is mandatory = True
+DEBUG:root:First member cell_identifier is mandatory = False
+DEBUG:root:Non-mandatory member cell_identifier 
+DEBUG:root:First member service_indicator is mandatory = True
+DEBUG:root:First member job_type is mandatory = True
+DEBUG:root:First member recovery_restart_counter is mandatory = True
+DEBUG:root:First member spare1 is mandatory = True
+DEBUG:root:First member mcc_digit_2 is mandatory = True
+DEBUG:root:First member absolute_time_of_mbms_data_transfer_value_part is mandatory = True
+DEBUG:root:First member length_of_node_name is mandatory = True
+DEBUG:root:First member detach_type is mandatory = True
+DEBUG:root:First member remote_ue_ip_information is mandatory = True
+DEBUG:root:First member bearer_context is mandatory = True
+DEBUG:root:First member spare1 is mandatory = True
+DEBUG:root:First member number_digit is mandatory = False
+DEBUG:root:Non-mandatory member number_digit 
+DEBUG:root:Non-mandatory member filler 
+DEBUG:root:First member spare1 is mandatory = True
+DEBUG:root:First member length_of_node_number is mandatory = True
+DEBUG:root:First member length_of_extended_access_restriction_data is mandatory = True
+DEBUG:root:Non-mandatory member authentication_quadruplet 
+DEBUG:root:Non-mandatory member authentication_quintuplet 
+DEBUG:root:Non-mandatory member ue_network_capability 
+DEBUG:root:Non-mandatory member ms_network_capability 
+DEBUG:root:Non-mandatory member voice_domain_preference_and_ues_usage_setting 
+DEBUG:root:Non-mandatory member ue_radio_capability_for_paging_information 
+DEBUG:root:Non-mandatory member ue_additional_security_capability 
+DEBUG:root:Non-mandatory member ue_nr_security_capability 
+DEBUG:root:First member mapped_ue_usage_type is mandatory = True
+DEBUG:root:First member spare1 is mandatory = True
+DEBUG:root:First member mcc_digit_2 is mandatory = True
+DEBUG:root:First member ipv4_or_ipv6_address is mandatory = True
+DEBUG:root:First member delay_value is mandatory = True
+DEBUG:root:First member time_zone is mandatory = True
+DEBUG:root:First member spare1 is mandatory = True
+DEBUG:root:First member pra_identifier is mandatory = True
+DEBUG:root:First member spare1 is mandatory = True
+DEBUG:root:First member spare1 is mandatory = True
+DEBUG:root:First member emlpp_priority is mandatory = True
+DEBUG:root:First member port_number is mandatory = True
+DEBUG:root:First member mcc_digit_2 is mandatory = True
+DEBUG:root:First member mcc_digit_2 is mandatory = True
+DEBUG:root:First member spare1 is mandatory = True
+DEBUG:root:First member scef_reference_id is mandatory = True
+DEBUG:root:Non-mandatory member remaining_number_of_reports 
+DEBUG:root:First member spare1 is mandatory = True
+DEBUG:root:First member plmn_id is mandatory = True
+DEBUG:root:First member access_point_name is mandatory = True
+DEBUG:root:First member spare1 is mandatory = True
+DEBUG:root:First member spare1 is mandatory = True
+DEBUG:root:First member mcc_digit_2 is mandatory = True
+DEBUG:root:First member spare1 is mandatory = True
+DEBUG:root:First member spare1 is mandatory = True
+DEBUG:root:First member mcc_digit_2 is mandatory = True
+DEBUG:root:First member extended_protocol_configuration_options is mandatory = True
+DEBUG:root:First member common_tunnel_endpoint_identifier is mandatory = True
+DEBUG:root:First member label_qci is mandatory = True
+DEBUG:root:First member spare1 is mandatory = True
+DEBUG:root:First member daf is mandatory = True
+DEBUG:root:First member cause_value is mandatory = True
+DEBUG:root:First member number_digit is mandatory = False
+DEBUG:root:Non-mandatory member number_digit 
+DEBUG:root:Non-mandatory member digit_pad 
+DEBUG:root:First member rand is mandatory = True
+DEBUG:root:Non-mandatory member xres 
+DEBUG:root:Non-mandatory member autn 
+DEBUG:root:First member spare1 is mandatory = True
+DEBUG:root:First member length_of_the_mobile_station_classmark_2 is mandatory = True
+DEBUG:root:First member rand is mandatory = True
+DEBUG:root:First member spare1 is mandatory = True
+DEBUG:root:First member millisecond_time_stamp_value is mandatory = True
+DEBUG:root:First member spare1 is mandatory = True
+DEBUG:root:First member rfsp_index is mandatory = True
+DEBUG:root:First member eps_bearer_level_traffic_flow_template is mandatory = True
+DEBUG:root:First member mcc_digit_2 is mandatory = True
+DEBUG:root:First member security_mode is mandatory = True
+DEBUG:root:Non-mandatory member authentication_quintuplets 
+DEBUG:root:Non-mandatory member ue_network_capability 
+DEBUG:root:Non-mandatory member ms_network_capability 
+DEBUG:root:Non-mandatory member mobile_equipment_identity 
+DEBUG:root:Non-mandatory member voice_domain_preference_and_ues_usage_setting 
+DEBUG:root:First member teid_gre_key is mandatory = True
+DEBUG:root:Non-mandatory member ipv4_address 
+DEBUG:root:Non-mandatory member ipv6_address_ 
+DEBUG:root:First member ldn is mandatory = True
+DEBUG:root:First member procedure_transaction_id is mandatory = True
+DEBUG:root:First member mcc_digit_2 is mandatory = True
+DEBUG:root:First member mcc_digit_2 is mandatory = True
+DEBUG:root:First member spare1 is mandatory = True
+DEBUG:root:First member spare1 is mandatory = True
+DEBUG:root:Non-mandatory member tais 
+DEBUG:root:Non-mandatory member macro_enb_ids 
+DEBUG:root:Non-mandatory member home_enb_ids 
+DEBUG:root:Non-mandatory member ecgis 
+DEBUG:root:Non-mandatory member rais 
+DEBUG:root:Non-mandatory member sais 
+DEBUG:root:Non-mandatory member cgis 
+DEBUG:root:Non-mandatory member extended_macro_enb_ids 
+DEBUG:root:First member twan_identifier_timestamp_value is mandatory = True
+DEBUG:root:First member spare1 is mandatory = True
+DEBUG:root:First member spare1 is mandatory = True
+DEBUG:root:First member security_mode is mandatory = True
+DEBUG:root:Non-mandatory member authentication_triplet 
+DEBUG:root:Non-mandatory member ue_network_capability 
+DEBUG:root:Non-mandatory member ms_network_capability 
+DEBUG:root:Non-mandatory member mobile_equipment_identity 
+DEBUG:root:Non-mandatory member voice_domain_preference_and_ue_usage_setting 
+DEBUG:root:First member security_mode is mandatory = True
+DEBUG:root:Non-mandatory member authentication_quintuplet 
+DEBUG:root:Non-mandatory member ue_network_capability 
+DEBUG:root:Non-mandatory member ms_network_capability 
+DEBUG:root:Non-mandatory member mobile_equipment_identity 
+DEBUG:root:Non-mandatory member voice_domain_preference_and_ues_usage_setting 
+DEBUG:root:First member enterprise_id is mandatory = True
+DEBUG:root:First member spare1 is mandatory = True
+DEBUG:root:First member load_control_information is mandatory = True
+DEBUG:root:First member charging_id_value is mandatory = True
+DEBUG:root:First member mcc_digit_2 is mandatory = True
+DEBUG:root:First member mcc_digit_2 is mandatory = True
+DEBUG:root:First member charging_characteristics_value is mandatory = True
+DEBUG:root:First member mbms_session_duration is mandatory = True
+DEBUG:root:First member security_mode is mandatory = True
+DEBUG:root:Non-mandatory member authentication_quadruplet 
+DEBUG:root:Non-mandatory member authentication_quintuplet 
+DEBUG:root:Non-mandatory member ue_network_capability 
+DEBUG:root:Non-mandatory member ms_network_capability 
+DEBUG:root:Non-mandatory member mobile_equipment_identity 
+DEBUG:root:Non-mandatory member voice_domain_preference_and_ues_usage_setting 
+DEBUG:root:First member mbms_time_to_data_transfer_value_part is mandatory = True
+DEBUG:root:First member remote_ue_context is mandatory = True
+DEBUG:root:First member xres_length is mandatory = True
+DEBUG:root:Non-mandatory member xres 
+DEBUG:root:Non-mandatory member autn 
+DEBUG:root:First member action is mandatory = True
+DEBUG:root:First member mbms_session_duration is mandatory = True
+DEBUG:root:First member traffic_aggregate_description is mandatory = True
+DEBUG:root:First member p_tmsi_signature is mandatory = True
+DEBUG:root:First member mcc_digit_2 is mandatory = True
+DEBUG:root:First member timer_unit is mandatory = True
+DEBUG:root:First member number_of_ecgi_fields is mandatory = True
+DEBUG:root:Non-mandatory member ecgi_list_of_m_ecgi_fields_ 
+DEBUG:root:First member rat_type is mandatory = True
+DEBUG:root:First member mcc_digit_2 is mandatory = True
+DEBUG:root:First member mbms_session_identifier is mandatory = True
+DEBUG:root:First member scef_pdn_connection is mandatory = True
+DEBUG:root:First member restriction_type_value is mandatory = True
+DEBUG:root:First member spare1 is mandatory = True
+DEBUG:root:First member hop_counter is mandatory = True
+DEBUG:root:First member mcc_digit_2 is mandatory = True
+DEBUG:root:First member transaction_identifier is mandatory = True
+DEBUG:root:First member spare1 is mandatory = True
+DEBUG:root:First member hsgw_address_for_forwarding_length is mandatory = True
+DEBUG:root:First member tmgi is mandatory = True
+DEBUG:root:First member security_mode is mandatory = True
+DEBUG:root:Non-mandatory member authentication_quintuplet 
+DEBUG:root:Non-mandatory member ue_network_capability 
+DEBUG:root:Non-mandatory member ms_network_capability 
+DEBUG:root:Non-mandatory member mobile_equipment_identity 
+DEBUG:root:Non-mandatory member voice_domain_preference_and_ues_usage_setting 
+DEBUG:root:First member uli_timestamp_value is mandatory = True
+DEBUG:root:First member sequence_number is mandatory = True
+DEBUG:root:First member relative_capacity is mandatory = True
+DEBUG:root:First member rohc_profiles is mandatory = True
+DEBUG:root:First member spare1 is mandatory = True
+DEBUG:root:First member metric is mandatory = True
+DEBUG:root:First member tmsi is mandatory = True
+DEBUG:root:First member node_type is mandatory = True
+DEBUG:root:First member spare1 is mandatory = True
+DEBUG:root:First member node_id_type is mandatory = True
+DEBUG:root:Non-mandatory member pdn_connection_set_identifier 
+DEBUG:root:First member packet_tmsi is mandatory = True
+DEBUG:root:First member mbms_flow_identifer is mandatory = True
+DEBUG:root:First member spare1 is mandatory = True
+DEBUG:root:First member spare1 is mandatory = True
+DEBUG:root:First member rrc_container is mandatory = True
+DEBUG:root:First member spare1 is mandatory = True
+DEBUG:root:First member spare1 is mandatory = True
+DEBUG:root:First member additional_protocol_configuration_options is mandatory = True
+DEBUG:root:First member apn-ambr_for_uplink is mandatory = True
+DEBUG:root:First member spare1 is mandatory = True
+DEBUG:root:First member mcc_digit_2 is mandatory = True
+DEBUG:root:First member mcc_digit_2 is mandatory = True
+DEBUG:root:First member spare1 is mandatory = True
+DEBUG:root:First member spare1 is mandatory = True
+DEBUG:root:First member target_type is mandatory = True
+DEBUG:root:First member complete_request_message_type is mandatory = True
+DEBUG:root:First member mcc_digit_2 is mandatory = True
+DEBUG:root:First member mcc_digit_2 is mandatory = True
+DEBUG:root:First member overload_control_information is mandatory = True
+DEBUG:root:First member target_cell_id is mandatory = True
+DEBUG:root:First member subnet_prefix_length is mandatory = True
+DEBUG:root:First member extended_macro_enodeb_id is mandatory = True
+DEBUG:root:Non-mandatory member cgi1 
+DEBUG:root:Non-mandatory member sai1 
+DEBUG:root:Non-mandatory member rai1 
+DEBUG:root:Non-mandatory member tai1 
+DEBUG:root:Non-mandatory member ecgi1 
+DEBUG:root:Non-mandatory member lai1 
+DEBUG:root:Non-mandatory member macro_enodeb_id1 
+DEBUG:root:Non-mandatory member extended_macro_enodeb_id1 
+DEBUG:root:First member spare1 is mandatory = True
+DEBUG:root:First member pdn_connection is mandatory = True
+DEBUG:root:First member timestamp_value is mandatory = True
+DEBUG:root:First member mcc_digit_2 is mandatory = True
+DEBUG:root:First member international_mobile_equipment_identity is mandatory = False
+DEBUG:root:Non-mandatory member international_mobile_equipment_identity 
+DEBUG:root:First member spare1 is mandatory = True
+DEBUG:root:First member mcc_digit_2 is mandatory = True
+DEBUG:root:Non-mandatory member extended_rnc-id 
+DEBUG:root:First member supported-features is mandatory = True
+DEBUG:root:
+
+
+>>>>>>>>>>>>>>>> Reference Statistics <<<<<<<<<<<<<<<<<<<<
+
+
+DEBUG:root:
+
+Unknown Items
+
+
+DEBUG:root:
+
+
