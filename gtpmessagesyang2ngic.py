@@ -16,13 +16,6 @@ from pyang import error
 
 logging.basicConfig(filename="test.log", level=logging.DEBUG)
 
-#Used to capture refcounts for reporting
-refcounts = {}
-unknown_refs = []
-# The number of values in an IE's ENUM that when exceeded will
-# cause the generator to swith from #define to an enum type
-ie_enum_define_limit = 3
-
 def pyang_plugin_init():
     plugin.register_plugin(gtp2ngicMessagePlugin())
 
@@ -80,29 +73,16 @@ class gtp2ngicMessagePlugin(plugin.PyangPlugin):
             ies = [x for x in root_stmt.i_groupings.values() if is_message(x)]
             for stmt in ies:
                 try:
-                    w = int(get_substmt( (u'ts29274-ies-f40', u'messageTypeValue'), stmt).arg)
+                    w = int(get_substmt( (u'ts29274-messages-f40', u'messageTypeValue'), stmt).arg)
                 except ValueError:
                     w = counter
                     counter += 1
                 ie_reg[w] = stmt.arg
             if len(ies) > 0:
                 for key in sorted(ie_reg.iterkeys()):
-                    result += "{:<65}".format("#define IE_" + ie_reg[key].upper()) + "(" + str(key) +")\n"
+                    result += "{:<75}".format("#define GTP_" + ie_reg[key].upper()) + "(" + str(key) +")\n"
 
         fd.write( result )
-
-def hold():
-        #Produce non-IE Typedefs
-        if root_stmt.i_groupings is not None and len(root_stmt.i_groupings) > 0:
-            non_ies = [x for x in root_stmt.i_groupings.values() if not is_ie(x)]
-            for stmt in non_ies:
-                result += print_grouping(stmt) + "\n\n"
-
-        #Produce IE Typedefs
-        if root_stmt.i_groupings is not None and len(root_stmt.i_groupings) > 0:
-            ies = [x for x in root_stmt.i_groupings.values() if is_ie(x)]
-            for stmt in ies:
-                result += print_grouping(stmt) + "\n\n"
 
 def get_substmts(name, stmt):
     if hasattr(stmt, 'substmts'):
@@ -117,159 +97,11 @@ def get_substmt(name, stmt):
 
 def is_message(stmt):
     if hasattr(stmt, 'substmts'):
-        y = [x for x in stmt.substmts if x.keyword == (u'ts29274-messages-f40', u'request') or x.keyword == (u'ts29274-messages-f40', u'response') or x.keyword == (u'ts29274-messages-f40', u'notification') or x.keyword == (u'ts29274-messages-f40', u'acknowledge') or (u'ts29274-messages-f40', u'indication')]
+        y = [x for x in stmt.substmts if x.keyword == (u'ts29274-messages-f40', u'messageType') ]
         if len(y) > 0:
             return True
     return False
-
+"""
 def get_message_info(stmt):
-    mandatory = has_attr(
-
-def print_grouping(stmt):
-    children = {}
-    if hasattr(stmt, 'substmts'):
-        #Collect all container/leaf/leaf-list/list children
-        result = ""
-        for x in stmt.substmts:
-            if x.keyword in [ 'leaf', 'container', 'leaf-list', 'list' ]:
-                #result = str(x.keyword) + " with name = " + x.arg + "\n"
-                #for zz in x.substmts:
-                #    result += "item: " + str(zz.keyword) + "\n"
-                z = [y for y in x.substmts if y.keyword == (u'ts29274-ies-f40', u'order')]
-                #result += "length = " + str(len(z)) + "\n"
-                if len(z) > 0:
-                    aa = get_substmt('mandatory', x)
-                    da_truth = True if (aa is not None and aa.arg == "true") else False
-                    children[z[0]] = (x, da_truth)
-                        
-        #Determine if the mandatory header structure is in effect
-        first_element_mandatory = None
-        has_non_mandatory_member = False
-        for key in sorted(children.iterkeys()):
-            (child, mandatory) = children[key]
-            if first_element_mandatory is None:
-                logging.debug("First member %s is mandatory = %s", child.arg, mandatory)
-                first_element_mandatory = mandatory
-            if not mandatory:
-                logging.debug("Non-mandatory member %s ", child.arg)
-                has_non_mandatory_member = True
-
-        subtype = "_ie" if is_ie(stmt) else ""
-        result += "typedef struct " + stmt.arg.lower() + subtype + "_t {\n"
-
-        if first_element_mandatory and has_non_mandatory_member:
-            result += "\tstruct " + stmt.arg.lower() + subtype + "_hdr_t {\n"
-            indent = "\t\t"
-            close_header_struct = True
-        else:
-            indent = "\t"
-            close_header_struct = False
-        #result += str(children)
-
-        for key in sorted(children.iterkeys()):
-            (child, mandatory) = children[key]
-            if (not mandatory) and close_header_struct:
-                result += "\t} " + stmt.arg.lower() + subtype + "_hdr;\n"
-                close_header_struct = False
-                indent = "\t"
-            last_child_mandatory = mandatory
-            result += produce_ie_member(child, indent)
-        return result + "} " + stmt.arg.lower() + subtype + ";\n"
-
-def produce_ie_member(stmt, indent):
-    type_stmt = get_substmt('type', stmt)
-    type = stmt.arg
-    
-    result = ""
-    if stmt.keyword == 'leaf':
-        bitslength = get_substmt('length', type_stmt)
-        if bitslength is not None:
-            blengths = bitslength.arg.split("|")
-            if blengths[0] == '':
-                blengths = blengths[1:]
-            if len(blengths) > 1:
-                result += indent + "union type_union_u {\n"
-                for bl in blengths:
-                    blength = 0 if bl is None else int( bl )
-                    (tp, endl) = get_member_info( type_stmt.arg, blength )
-                    result += indent + "\t" + tp + " " + stmt.arg + endl
-                result += indent + "} type_union;\n"
-            else:
-                blength = 0 if bitslength is None else int( blengths[0] )
-                (tp, endl) = get_member_info( type_stmt.arg, blength )
-                result += indent + tp + " " + stmt.arg + endl
-        else:
-            result = indent + "char* " + stmt.arg + ";\n"
-    elif stmt.keyword == 'leaf-list':
-        bitslength = get_substmt('length', type_stmt)
-        mx = get_substmt('max-elements', type_stmt)
-        mx_elms = 0 if mx is None else int( mx.arg )
-        
-        bl = 0 if bitslength is None else int( bitslength.arg )
-        (tp, endl) = get_member_info( type_stmt.arg, bl )
-        if (":" in endl) or ("[" in endl):
-            result += indent + "struct {\n"
-            result += indent + "\t" + tp + " " + stmt.arg + endl
-            result += indent + "} "
-            if mx_elms == 0:
-                result += "*data"
-            else:
-                result += "data"
-        else:
-            result += indent + tp + " "
-        if mx_elms > 0:
-            result +=  stmt.arg + "[" + mx_elms + "]\n;"
-        else:
-            result +=  "*" + stmt.arg + ";\n"
-    elif stmt.keyword == 'container':
-        mandatory = get_substmt('mandatory', stmt)
-        uses_stmt = get_substmt('uses', stmt)
-        is_ptr = "" if mandatory is not None and mandatory.arg == 'true' else "*"
-        result += indent + uses_stmt.arg + "_t " + is_ptr + stmt.arg + ";\n"
-    else:
-        result = "NOT SUPPORTED - TYPE = " + stmt.keyword + " for member = " + stmt.arg + "\n"
-    return result
-
-def get_member_info(type, bitlength):
-    (rlength, modulus) = roundToMultipleOf8( bitlength )
-    if modulus != 0:
-        endl = " :"  + str(bitlength) + ";\n"
-    else:
-        endl = ";\n"
-    if rlength == 16:
-        tgt_type = "uint16_t"
-    elif rlength == 32:
-        tgt_type = "uint32_t"
-    elif rlength == 8:
-        tgt_type = "uint8_t"
-    elif modulus == 0 and rlength > 8:
-        tgt_type = "uint8_t"
-        endl = "[" + str(rlength / 8) + "];\n"
-    elif type == 'binary':
-        tgt_type = "char* "
-    else:
-        tgt_type = "????"
-        endl = " This was the disaster we were waiting for in the generator. Hand code it!\n";
-    return (tgt_type, endl)
-
-
-def roundToMultipleOf8(val):
-    if val == 0:
-        return (0, 0)
-    m = val % 8
-    if m == 0:
-        return (val, 0)
-    return ((val + 8 - m), m)
-
-def print_enum_struct(nm, enums):
-    res = "enum " + nm.lower() + " {\n"
-    for key in sorted(enums.iterkeys()):
-        res += "\t" + nm.upper() + "_" + enums[key].upper() + " = " + str(key) + ",\n"
-    res += "};\n\n"
-    return res
-
-def print_enum_defs(nm, enums):
-    res = ""
-    for key in sorted(enums.iterkeys()):
-        res += "{:<67}".format("#define " + nm.upper() + "_" + enums[key].upper()) + "(" + str(key) + ")\n"
-    return res + "\n"
+    return ( stmt.arg, get_substmt((u'ts29274-messages-f40', u'messageType'), stmt), get_substmt((u'ts29274-messages-f40', u'messageTypeValue') )
+"""
