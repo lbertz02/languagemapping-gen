@@ -26,14 +26,14 @@ class gtp2ngicMessagePlugin(plugin.PyangPlugin):
     def add_opts(self, optparser):
         optlist = [
             optparse.make_option('--ngic-message-debug',
-                                 dest='schema_debug',
+                                 dest='ngic_debug',
                                  action="store_true",
                                  help='NGIC Message Generator debug'),
             optparse.make_option('--ngic-message-path',
-                                 dest='schema_path',
+                                 dest='gen_path',
                                  help='NGIC Message Generator path'),
             optparse.make_option('--ngic-message-title',
-                                 dest='schema_title',
+                                 dest='gen_title',
                                  help='NGIC Message Generator title')
             ]
 
@@ -67,22 +67,45 @@ class gtp2ngicMessagePlugin(plugin.PyangPlugin):
         result = "/* GTP Message Type Values */\n"
 
         # Produce Registry values
-        ie_reg = {}
+        msg_reg = {}
         counter = 1000
         if root_stmt.i_groupings is not None and len(root_stmt.i_groupings) > 0:
-            ies = [x for x in root_stmt.i_groupings.values() if is_message(x)]
-            for stmt in ies:
+            msgs = [x for x in root_stmt.i_groupings.values() if is_message(x)]
+            for stmt in msgs:
                 try:
                     w = int(get_substmt( (u'ts29274-messages-f40', u'messageTypeValue'), stmt).arg)
                 except ValueError:
                     w = counter
                     counter += 1
-                ie_reg[w] = stmt.arg
-            if len(ies) > 0:
-                for key in sorted(ie_reg.iterkeys()):
-                    result += "{:<75}".format("#define GTP_" + ie_reg[key].upper()) + "(" + str(key) +")\n"
+                msg_reg[w] = stmt.arg
+            if len(msgs) > 0:
+                for key in sorted(msg_reg.iterkeys()):
+                    result += "{:<75}".format("#define GTP_" + msg_reg[key].upper()) + "(" + str(key) +")\n"
 
-        fd.write( result )
+        generated_msgs = []
+        for msg in msgs:
+            if msg.arg not in generated_msgs:
+                (name, type, typeValue) = get_message_info(msg)
+                basename = "_".join( name.lower().split("_")[:-1] )
+                companion_message = None
+                for x in msgs:
+                    if x.arg.startswith(basename) and x.arg != name:
+                        companion_message = x
+                        logging.debug("Found %s companion message for %s", x.arg, name)
+                if companion_message is None:
+                    logging.debug("Did not find companion message for %s", name)
+#else:
+#Do stuff
+
+                generated_msgs.append(msg)
+                if companion_message is not None:
+                    generated_msgs.append(companion_message)
+
+        hdr_file = open("gtpv2.h","w")
+        hdr_file.write(result)
+        hdr_file.close()
+
+        fd.write( "Processing Complete" )
 
 def get_substmts(name, stmt):
     if hasattr(stmt, 'substmts'):
@@ -101,7 +124,6 @@ def is_message(stmt):
         if len(y) > 0:
             return True
     return False
-"""
+
 def get_message_info(stmt):
-    return ( stmt.arg, get_substmt((u'ts29274-messages-f40', u'messageType'), stmt), get_substmt((u'ts29274-messages-f40', u'messageTypeValue') )
-"""
+    return ( stmt.arg, get_substmt((u'ts29274-messages-f40', u'messageType'), stmt), get_substmt((u'ts29274-messages-f40', u'messageTypeValue'), stmt) )

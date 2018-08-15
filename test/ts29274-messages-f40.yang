@@ -2427,8 +2427,8 @@ grouping modify_access_bearers_response {
 	}
 }
 
-grouping remote_ue_report_notification_request {
-	gtp:messageType "request";
+grouping remote_ue_report_notification {
+	gtp:messageType "notification";
 	gtp:messageTypeValue 40;
 	container remote_ue_context__connected {
 		uses gtp_ies:remote_ue_context;
@@ -2457,8 +2457,8 @@ Several IEs with the same type and instance value may be included as necessary t
 		gtp_ies:order 4;
 	}
 }
-grouping remote_ue_report_acknowledge_response {
-	gtp:messageType "response";
+grouping remote_ue_report_acknowledge {
+	gtp:messageType "acknowledge";
 	gtp:messageTypeValue 41;
 	container cause {
 		uses gtp_ies:cause;
@@ -3492,7 +3492,7 @@ grouping relocation_cancel_response {
 	}
 }
 grouping configuration_transfer_tunnel_message {
-	gtp:messageType "request";
+	gtp:messageType "indication";
 	gtp:messageTypeValue 141;
 	container e_utran_transparent_container {
 		uses gtp_ies:fully_qualified_container;
@@ -3513,7 +3513,7 @@ Container Type shall be set to 3.
 	}
 }
 grouping ran_information_relay {
-	gtp:messageType "request";
+	gtp:messageType "indication";
 	gtp:messageTypeValue 152;
 	container bss_container {
 		uses gtp_ies:fully_qualified_container;
@@ -4005,7 +4005,7 @@ grouping pgw_restart_notification_acknowledge {
 		gtp_ies:order 3;
 	}
 }
-grouping information_elements_in_pgw_downlink_triggering_notification {
+grouping pgw_downlink_triggering_notification {
 	gtp:messageType "notification";
 	gtp:messageTypeValue 103;
 	container imsi {
