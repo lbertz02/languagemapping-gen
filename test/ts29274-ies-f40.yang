@@ -925,6 +925,9 @@ grouping user_location_information {
 			length "1";
 		}
 	}
+    uses cgi_field {
+
+    }
 	container cgi1 {
 		gtp:order 12;
 		uses cgi_field;
