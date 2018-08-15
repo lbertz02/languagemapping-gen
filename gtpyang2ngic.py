@@ -226,17 +226,45 @@ def produce_ie_member(stmt, indent):
             blengths = bitslength.arg.split("|")
             if blengths[0] == '':
                 blengths = blengths[1:]
-            for bl in blengths:
-                blength = 0 if bitslength is None else int( bl )
-                (tp, endl) = get_member_info( blength )
+            if len(blengths) > 1:
+                result += indent + "union type_union_u {\n"
+                for bl in blengths:
+                    blength = 0 if bl is None else int( bl )
+                    (tp, endl) = get_member_info( type_stmt.arg, blength )
+                    result += indent + "\t" + tp + " " + stmt.arg + endl
+                result += indent + "} type_union;\n"
+            else:
+                blength = 0 if bitslength is None else int( blengths[0] )
+                (tp, endl) = get_member_info( type_stmt.arg, blength )
                 result += indent + tp + " " + stmt.arg + endl
         else:
             result = indent + "char* " + stmt.arg + ";\n"
+    elif stmt.keyword == 'leaf-list':
+        bitslength = get_substmt('length', type_stmt)
+        mx = get_substmt('max-elements', type_stmt)
+        mx_elms = 0 if mx is None else int( mx.arg )
+        
+        bl = 0 if bitslength is None else int( bitslength.arg )
+        (tp, endl) = get_member_info( type_stmt.arg, bl )
+        if (":" in endl) or ("[" in endl):
+            result += indent + "struct {\n"
+            result += indent + "\t" + tp + " " + stmt.arg + endl
+            result += indent + "} "
+            if mx_elms == 0:
+                result += "*data"
+            else:
+                result += "data"
+        else:
+            result += indent + tp + " "
+        if mx_elms > 0:
+            result +=  stmt.arg + "[" + mx_elms + "]\n;"
+        else:
+            result +=  "*" + stmt.arg + ";\n"
     else:
         result = "NOT SUPPORTED - TYPE = " + stmt.keyword + " for member = " + stmt.arg + "\n"
     return result
 
-def get_member_info(bitlength):
+def get_member_info(type, bitlength):
     (rlength, modulus) = roundToMultipleOf8( bitlength )
     if modulus != 0:
         endl = " :"  + str(bitlength) + ";\n"
@@ -248,9 +276,11 @@ def get_member_info(bitlength):
         tgt_type = "uint32_t"
     elif rlength == 8:
         tgt_type = "uint8_t"
-    elif modulus == 0 and rlength == 8:
+    elif modulus == 0 and rlength > 8:
         tgt_type = "uint8_t"
-        endl = "[" + (rlength / 8) + "];\n"
+        endl = "[" + str(rlength / 8) + "];\n"
+    elif type == 'binary':
+        tgt_type = "char* "
     else:
         tgt_type = "????"
         endl = " This was the disaster we were waiting for in the generator. Hand code it!\n";

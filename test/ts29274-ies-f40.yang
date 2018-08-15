@@ -1946,7 +1946,7 @@ grouping mm_context_gsm_key_and_triplets {
 		gtp:order 14;
 		mandatory true;
 		type binary {
-			length "8";
+			length "64";
 		}
 	}
 	leaf-list authentication_triplet {
