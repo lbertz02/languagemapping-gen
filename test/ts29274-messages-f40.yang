@@ -697,7 +697,7 @@ grouping create_bearer_response {
 	container sgw_fq_csid {
 		uses gtp_ies:fq_csid;
 		gtp_ies:order 5;
-		gtp:intsancenum 1_;
+		gtp:intsancenum 1;
 	}
 	container epdg_fq_csid {
 		uses gtp_ies:fq_csid;
@@ -1009,7 +1009,7 @@ grouping modify_bearer_request {
 	container sgw_fq_csid {
 		uses gtp_ies:fq_csid;
 		gtp_ies:order 13;
-		gtp:intsancenum 1_;
+		gtp:intsancenum 1;
 	}
 	container user_csg_information {
 		uses gtp_ies:user_csg_information;
