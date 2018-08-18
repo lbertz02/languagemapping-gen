@@ -1,0 +1,5 @@
+*.pyc
+test/test.log
+test/*.h
+test/*.c
+test/messages/*
