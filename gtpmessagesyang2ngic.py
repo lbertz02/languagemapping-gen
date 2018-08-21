@@ -169,6 +169,8 @@ def produce_message(stmt, template):
             logging.debug("Appending a mandatory check for %s", var_name)
             mandatory_checks.append( "!" + var_name + "->" + m_name )
 
+    zzz = " * Copyright 2017-2018 Lyle Bertz."
+    template = template.replace("ZZZ", zzz)
     template = template.replace( "BBB", "\t" + "\n\t".join(member_defs) )
     template = template.replace( "CCC", "\t\t" + " else ".join(if_stmts) + "\n")
     checks = ""
